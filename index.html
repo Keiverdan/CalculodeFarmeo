@@ -1359,13 +1359,8 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
             const startObj = AppState.parseLocalDate(startVal);
             const endObj = AppState.parseLocalDate(endVal);
 
-            if (!startObj || !endObj) {
+            if (! || !endObj) {
                 showToast("Fechas no válidas seleccionadas.");
-                return;
-            }
-
-            if (endObj < startObj) {
-                showToast("La fecha de finalización debe ser mayor o igual a la de inicio.");
                 return;
             }
 
@@ -1374,7 +1369,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
 
             AppState.targetGold = goldGoal;
             AppState.startDate = startObj;
-            AppState.endDate = endObj;
+             = endObj;
             AppState.totalDays = diffDays;
             AppState.initialDailyRate = Math.round(goldGoal / diffDays);
             
