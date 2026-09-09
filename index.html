@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
+<html lang="es"><script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/content/location/location.js" id="eppiocemhmnlbhjplcgkofciiegomcon"></script><script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/extend-native-history-api.js"></script><script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js"></script><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoldQuest Planner - Calculadora e Inteligencia de Oro</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cinzel:wght@400;600;800&family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Cinzel:wght@400;600;800&amp;family=Poppins:wght@300;400;500;600;700&amp;family=Roboto+Mono:wght@400;500;700&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <!-- Reader Engine QR (CDN Oficial y Ligero) -->
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+
     <style>
         :root {
             --main-font: 'Inter', sans-serif;
@@ -352,16 +353,16 @@
             box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
         }
     </style>
-</head>
-<body class="min-h-screen bg-slate-950 flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950" style="--main-font: 'Inter', sans-serif;">
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.left-2{left:0.5rem}.left-2\.5{left:0.625rem}.left-3{left:0.75rem}.right-2{right:0.5rem}.right-2\.5{right:0.625rem}.top-0{top:0px}.top-1\/2{top:50%}.bottom-5{bottom:1.25rem}.right-5{right:1.25rem}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.my-1{margin-top:0.25rem;margin-bottom:0.25rem}.mb-1{margin-bottom:0.25rem}.mb-1\.5{margin-bottom:0.375rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.ml-1{margin-left:0.25rem}.mt-1{margin-top:0.25rem}.mt-1\.5{margin-top:0.375rem}.mt-2{margin-top:0.5rem}.mb-6{margin-bottom:1.5rem}.mt-0\.5{margin-top:0.125rem}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-1\.5{height:0.375rem}.h-10{height:2.5rem}.h-2{height:0.5rem}.h-6{height:1.5rem}.h-1{height:0.25rem}.h-2\.5{height:0.625rem}.h-20{height:5rem}.h-4{height:1rem}.h-48{height:12rem}.h-full{height:100%}.h-14{height:3.5rem}.max-h-36{max-height:9rem}.max-h-\[400px\]{max-height:400px}.min-h-screen{min-height:100vh}.w-1\.5{width:0.375rem}.w-10{width:2.5rem}.w-2{width:0.5rem}.w-6{width:1.5rem}.w-full{width:100%}.w-0{width:0px}.w-12{width:3rem}.w-16{width:4rem}.w-20{width:5rem}.w-3{width:0.75rem}.w-4{width:1rem}.min-w-\[120px\]{min-width:120px}.min-w-full{min-width:100%}.max-w-7xl{max-width:80rem}.max-w-2xl{max-width:42rem}.max-w-md{max-width:28rem}.max-w-sm{max-width:24rem}.flex-grow{flex-grow:1}.-translate-y-1\/2{--tw-translate-y:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.translate-y-10{--tw-translate-y:2.5rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.scale-95{--tw-scale-x:.95;--tw-scale-y:.95;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.scale-100{--tw-scale-x:1;--tw-scale-y:1;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes ping{75%, 100%{transform:scale(2);opacity:0}}.animate-ping{animation:ping 1s cubic-bezier(0, 0, 0.2, 1) infinite}@keyframes pulse{50%{opacity:.5}}.animate-pulse{animation:pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite}.cursor-pointer{cursor:pointer}.select-none{-webkit-user-select:none;user-select:none}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.grid-cols-7{grid-template-columns:repeat(7, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.items-baseline{align-items:baseline}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-1\.5{gap:0.375rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.space-y-1\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.375rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.375rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-2\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.625rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.625rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.divide-y > :not([hidden]) ~ :not([hidden]){--tw-divide-y-reverse:0;border-top-width:calc(1px * calc(1 - var(--tw-divide-y-reverse)));border-bottom-width:calc(1px * var(--tw-divide-y-reverse))}.divide-slate-900 > :not([hidden]) ~ :not([hidden]){--tw-divide-opacity:1;border-color:rgb(15 23 42 / var(--tw-divide-opacity, 1))}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.overflow-y-auto{overflow-y:auto}.overflow-y-hidden{overflow-y:hidden}.scroll-smooth{scroll-behavior:smooth}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rounded{border-radius:0.25rem}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.rounded-md{border-radius:0.375rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-l-4{border-left-width:4px}.border-dashed{border-style:dashed}.border-none{border-style:none}.border-amber-500\/40{border-color:rgb(245 158 11 / 0.4)}.border-blue-500\/40{border-color:rgb(59 130 246 / 0.4)}.border-emerald-500\/20{border-color:rgb(16 185 129 / 0.2)}.border-emerald-500\/30{border-color:rgb(16 185 129 / 0.3)}.border-emerald-500\/40{border-color:rgb(16 185 129 / 0.4)}.border-slate-800{--tw-border-opacity:1;border-color:rgb(30 41 59 / var(--tw-border-opacity, 1))}.border-slate-800\/60{border-color:rgb(30 41 59 / 0.6)}.border-slate-800\/80{border-color:rgb(30 41 59 / 0.8)}.border-slate-900\/60{border-color:rgb(15 23 42 / 0.6)}.border-amber-500\/20{border-color:rgb(245 158 11 / 0.2)}.border-cyan-500\/40{border-color:rgb(6 182 212 / 0.4)}.border-indigo-500\/20{border-color:rgb(99 102 241 / 0.2)}.border-indigo-500\/40{border-color:rgb(99 102 241 / 0.4)}.border-rose-900\/30{border-color:rgb(136 19 55 / 0.3)}.border-rose-900\/40{border-color:rgb(136 19 55 / 0.4)}.border-slate-800\/40{border-color:rgb(30 41 59 / 0.4)}.border-slate-900{--tw-border-opacity:1;border-color:rgb(15 23 42 / var(--tw-border-opacity, 1))}.border-yellow-500\/40{border-color:rgb(234 179 8 / 0.4)}.border-emerald-500\/50{border-color:rgb(16 185 129 / 0.5)}.border-amber-500{--tw-border-opacity:1;border-color:rgb(245 158 11 / var(--tw-border-opacity, 1))}.border-l-amber-500{--tw-border-opacity:1;border-left-color:rgb(245 158 11 / var(--tw-border-opacity, 1))}.bg-slate-950{--tw-bg-opacity:1;background-color:rgb(2 6 23 / var(--tw-bg-opacity, 1))}.bg-amber-500{--tw-bg-opacity:1;background-color:rgb(245 158 11 / var(--tw-bg-opacity, 1))}.bg-amber-500\/10{background-color:rgb(245 158 11 / 0.1)}.bg-blue-500\/10{background-color:rgb(59 130 246 / 0.1)}.bg-emerald-500{--tw-bg-opacity:1;background-color:rgb(16 185 129 / var(--tw-bg-opacity, 1))}.bg-emerald-500\/10{background-color:rgb(16 185 129 / 0.1)}.bg-indigo-500{--tw-bg-opacity:1;background-color:rgb(99 102 241 / var(--tw-bg-opacity, 1))}.bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42 / var(--tw-bg-opacity, 1))}.bg-slate-900\/80{background-color:rgb(15 23 42 / 0.8)}.bg-slate-950\/40{background-color:rgb(2 6 23 / 0.4)}.bg-slate-950\/60{background-color:rgb(2 6 23 / 0.6)}.bg-slate-950\/80{background-color:rgb(2 6 23 / 0.8)}.bg-blue-500{--tw-bg-opacity:1;background-color:rgb(59 130 246 / var(--tw-bg-opacity, 1))}.bg-cyan-500\/10{background-color:rgb(6 182 212 / 0.1)}.bg-indigo-500\/10{background-color:rgb(99 102 241 / 0.1)}.bg-rose-950\/40{background-color:rgb(76 5 25 / 0.4)}.bg-slate-900\/40{background-color:rgb(15 23 42 / 0.4)}.bg-transparent{background-color:transparent}.bg-yellow-500\/10{background-color:rgb(234 179 8 / 0.1)}.bg-amber-400{--tw-bg-opacity:1;background-color:rgb(251 191 36 / var(--tw-bg-opacity, 1))}.bg-amber-950\/20{background-color:rgb(69 26 3 / 0.2)}.bg-emerald-950\/40{background-color:rgb(2 44 34 / 0.4)}.bg-slate-900\/90{background-color:rgb(15 23 42 / 0.9)}.bg-slate-950\/20{background-color:rgb(2 6 23 / 0.2)}.bg-rose-500{--tw-bg-opacity:1;background-color:rgb(244 63 94 / var(--tw-bg-opacity, 1))}.bg-gradient-to-r{background-image:linear-gradient(to right, var(--tw-gradient-stops))}.bg-gradient-to-tr{background-image:linear-gradient(to top right, var(--tw-gradient-stops))}.from-amber-400{--tw-gradient-from:#fbbf24 var(--tw-gradient-from-position);--tw-gradient-to:rgb(251 191 36 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-amber-600{--tw-gradient-from:#d97706 var(--tw-gradient-from-position);--tw-gradient-to:rgb(217 119 6 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-emerald-600{--tw-gradient-from:#059669 var(--tw-gradient-from-position);--tw-gradient-to:rgb(5 150 105 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.via-amber-500{--tw-gradient-to:rgb(245 158 11 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #f59e0b var(--tw-gradient-via-position), var(--tw-gradient-to)}.via-yellow-200{--tw-gradient-to:rgb(254 240 138 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #fef08a var(--tw-gradient-via-position), var(--tw-gradient-to)}.to-amber-500{--tw-gradient-to:#f59e0b var(--tw-gradient-to-position)}.to-yellow-400{--tw-gradient-to:#facc15 var(--tw-gradient-to-position)}.to-yellow-500{--tw-gradient-to:#eab308 var(--tw-gradient-to-position)}.to-teal-500{--tw-gradient-to:#14b8a6 var(--tw-gradient-to-position)}.bg-clip-text{-webkit-background-clip:text;background-clip:text}.p-3{padding:0.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-12{padding:3rem}.p-3\.5{padding:0.875rem}.p-6{padding:1.5rem}.p-1{padding:0.25rem}.px-1\.5{padding-left:0.375rem;padding-right:0.375rem}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-3\.5{padding-left:0.875rem;padding-right:0.875rem}.px-4{padding-left:1rem;padding-right:1rem}.py-0\.5{padding-top:0.125rem;padding-bottom:0.125rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.py-4{padding-top:1rem;padding-bottom:1rem}.px-1{padding-left:0.25rem;padding-right:0.25rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.py-3\.5{padding-top:0.875rem;padding-bottom:0.875rem}.pb-1{padding-bottom:0.25rem}.pl-10{padding-left:2.5rem}.pl-6{padding-left:1.5rem}.pl-7{padding-left:1.75rem}.pl-9{padding-left:2.25rem}.pr-2{padding-right:0.5rem}.pr-3{padding-right:0.75rem}.pr-4{padding-right:1rem}.pr-6{padding-right:1.5rem}.pt-2{padding-top:0.5rem}.pt-2\.5{padding-top:0.625rem}.pt-3{padding-top:0.75rem}.pb-1\.5{padding-bottom:0.375rem}.pb-2{padding-bottom:0.5rem}.pl-8{padding-left:2rem}.pt-1{padding-top:0.25rem}.pt-4{padding-top:1rem}.text-left{text-align:left}.text-center{text-align:center}.text-right{text-align:right}.font-mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}.font-sans{font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-\[9px\]{font-size:9px}.text-base{font-size:1rem;line-height:1.5rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-\[7px\]{font-size:7px}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.font-semibold{font-weight:600}.font-normal{font-weight:400}.uppercase{text-transform:uppercase}.capitalize{text-transform:capitalize}.italic{font-style:italic}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-wide{letter-spacing:0.025em}.tracking-wider{letter-spacing:0.05em}.tracking-tight{letter-spacing:-0.025em}.text-amber-300{--tw-text-opacity:1;color:rgb(252 211 77 / var(--tw-text-opacity, 1))}.text-amber-400{--tw-text-opacity:1;color:rgb(251 191 36 / var(--tw-text-opacity, 1))}.text-amber-500{--tw-text-opacity:1;color:rgb(245 158 11 / var(--tw-text-opacity, 1))}.text-blue-400{--tw-text-opacity:1;color:rgb(96 165 250 / var(--tw-text-opacity, 1))}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153 / var(--tw-text-opacity, 1))}.text-emerald-500{--tw-text-opacity:1;color:rgb(16 185 129 / var(--tw-text-opacity, 1))}.text-indigo-400{--tw-text-opacity:1;color:rgb(129 140 248 / var(--tw-text-opacity, 1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225 / var(--tw-text-opacity, 1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-slate-950{--tw-text-opacity:1;color:rgb(2 6 23 / var(--tw-text-opacity, 1))}.text-transparent{color:transparent}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-blue-500{--tw-text-opacity:1;color:rgb(59 130 246 / var(--tw-text-opacity, 1))}.text-cyan-400{--tw-text-opacity:1;color:rgb(34 211 238 / var(--tw-text-opacity, 1))}.text-rose-300{--tw-text-opacity:1;color:rgb(253 164 175 / var(--tw-text-opacity, 1))}.text-rose-400{--tw-text-opacity:1;color:rgb(251 113 133 / var(--tw-text-opacity, 1))}.text-rose-500{--tw-text-opacity:1;color:rgb(244 63 94 / var(--tw-text-opacity, 1))}.text-slate-200{--tw-text-opacity:1;color:rgb(226 232 240 / var(--tw-text-opacity, 1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}.text-teal-400{--tw-text-opacity:1;color:rgb(45 212 191 / var(--tw-text-opacity, 1))}.text-yellow-400{--tw-text-opacity:1;color:rgb(250 204 21 / var(--tw-text-opacity, 1))}.text-yellow-500{--tw-text-opacity:1;color:rgb(234 179 8 / var(--tw-text-opacity, 1))}.text-amber-200{--tw-text-opacity:1;color:rgb(253 230 138 / var(--tw-text-opacity, 1))}.text-emerald-300{--tw-text-opacity:1;color:rgb(110 231 183 / var(--tw-text-opacity, 1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85 / var(--tw-text-opacity, 1))}.text-slate-800{--tw-text-opacity:1;color:rgb(30 41 59 / var(--tw-text-opacity, 1))}.placeholder-slate-600::placeholder{--tw-placeholder-opacity:1;color:rgb(71 85 105 / var(--tw-placeholder-opacity, 1))}.accent-amber-500{accent-color:#f59e0b}.opacity-0{opacity:0}.opacity-60{opacity:0.6}.opacity-70{opacity:0.7}.opacity-100{opacity:1}.shadow-inner{--tw-shadow:inset 0 2px 4px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:inset 0 2px 4px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-\[0_0_10px_rgba\(239\2c 68\2c 68\2c 0\.5\)\]{--tw-shadow:0 0 10px rgba(239,68,68,0.5);--tw-shadow-colored:0 0 10px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-amber-500\/10{--tw-shadow-color:rgb(245 158 11 / 0.1);--tw-shadow:var(--tw-shadow-colored)}.shadow-amber-500\/20{--tw-shadow-color:rgb(245 158 11 / 0.2);--tw-shadow:var(--tw-shadow-colored)}.shadow-emerald-950\/40{--tw-shadow-color:rgb(2 44 34 / 0.4);--tw-shadow:var(--tw-shadow-colored)}.shadow-emerald-900\/10{--tw-shadow-color:rgb(6 78 59 / 0.1);--tw-shadow:var(--tw-shadow-colored)}.ring-1{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.ring-amber-500{--tw-ring-opacity:1;--tw-ring-color:rgb(245 158 11 / var(--tw-ring-opacity, 1))}.backdrop-blur{--tw-backdrop-blur:blur(8px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.duration-500{transition-duration:500ms}.selection\:bg-amber-500 *::selection{--tw-bg-opacity:1;background-color:rgb(245 158 11 / var(--tw-bg-opacity, 1))}.selection\:text-slate-950 *::selection{--tw-text-opacity:1;color:rgb(2 6 23 / var(--tw-text-opacity, 1))}.selection\:bg-amber-500::selection{--tw-bg-opacity:1;background-color:rgb(245 158 11 / var(--tw-bg-opacity, 1))}.selection\:text-slate-950::selection{--tw-text-opacity:1;color:rgb(2 6 23 / var(--tw-text-opacity, 1))}.hover\:-translate-y-0\.5:hover{--tw-translate-y:-0.125rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:scale-\[1\.03\]:hover{--tw-scale-x:1.03;--tw-scale-y:1.03;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:border-amber-500:hover{--tw-border-opacity:1;border-color:rgb(245 158 11 / var(--tw-border-opacity, 1))}.hover\:border-blue-500\/50:hover{border-color:rgb(59 130 246 / 0.5)}.hover\:border-cyan-500\/50:hover{border-color:rgb(6 182 212 / 0.5)}.hover\:border-slate-700:hover{--tw-border-opacity:1;border-color:rgb(51 65 85 / var(--tw-border-opacity, 1))}.hover\:border-amber-500\/60:hover{border-color:rgb(245 158 11 / 0.6)}.hover\:bg-slate-900\/80:hover{background-color:rgb(15 23 42 / 0.8)}.hover\:bg-amber-500\/20:hover{background-color:rgb(245 158 11 / 0.2)}.hover\:bg-rose-900\/60:hover{background-color:rgb(136 19 55 / 0.6)}.hover\:bg-rose-950\/40:hover{background-color:rgb(76 5 25 / 0.4)}.hover\:bg-slate-800:hover{--tw-bg-opacity:1;background-color:rgb(30 41 59 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-900:hover{--tw-bg-opacity:1;background-color:rgb(15 23 42 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-900\/40:hover{background-color:rgb(15 23 42 / 0.4)}.hover\:from-amber-500:hover{--tw-gradient-from:#f59e0b var(--tw-gradient-from-position);--tw-gradient-to:rgb(245 158 11 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.hover\:from-emerald-500:hover{--tw-gradient-from:#10b981 var(--tw-gradient-from-position);--tw-gradient-to:rgb(16 185 129 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.hover\:to-yellow-400:hover{--tw-gradient-to:#facc15 var(--tw-gradient-to-position)}.hover\:to-teal-400:hover{--tw-gradient-to:#2dd4bf var(--tw-gradient-to-position)}.hover\:to-yellow-500:hover{--tw-gradient-to:#eab308 var(--tw-gradient-to-position)}.hover\:text-amber-400:hover{--tw-text-opacity:1;color:rgb(251 191 36 / var(--tw-text-opacity, 1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:text-rose-300:hover{--tw-text-opacity:1;color:rgb(253 164 175 / var(--tw-text-opacity, 1))}.hover\:text-amber-500:hover{--tw-text-opacity:1;color:rgb(245 158 11 / var(--tw-text-opacity, 1))}.hover\:shadow-amber-500\/25:hover{--tw-shadow-color:rgb(245 158 11 / 0.25);--tw-shadow:var(--tw-shadow-colored)}.focus\:border-amber-500:focus{--tw-border-opacity:1;border-color:rgb(245 158 11 / var(--tw-border-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus\:ring-1:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.focus\:ring-amber-500:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(245 158 11 / var(--tw-ring-opacity, 1))}.focus\:ring-blue-500:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(59 130 246 / var(--tw-ring-opacity, 1))}.focus\:ring-amber-500\/50:focus{--tw-ring-color:rgb(245 158 11 / 0.5)}.focus\:ring-indigo-500:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(99 102 241 / var(--tw-ring-opacity, 1))}.active\:translate-y-0:active{--tw-translate-y:0px;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.active\:scale-95:active{--tw-scale-x:.95;--tw-scale-y:.95;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.active\:scale-\[0\.98\]:active{--tw-scale-x:0.98;--tw-scale-y:0.98;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@media (min-width: 640px){.sm\:grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.sm\:flex-row{flex-direction:row}.sm\:items-center{align-items:center}.sm\:text-left{text-align:left}}@media (min-width: 768px){.md\:h-64{height:16rem}.md\:h-20{height:5rem}.md\:w-24{width:6rem}.md\:w-auto{width:auto}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:justify-start{justify-content:flex-start}.md\:gap-2{gap:0.5rem}.md\:p-6{padding:1.5rem}.md\:p-2{padding:0.5rem}.md\:text-left{text-align:left}.md\:text-base{font-size:1rem;line-height:1.5rem}.md\:text-lg{font-size:1.125rem;line-height:1.75rem}.md\:text-sm{font-size:0.875rem;line-height:1.25rem}.md\:text-xl{font-size:1.25rem;line-height:1.75rem}.md\:text-xs{font-size:0.75rem;line-height:1rem}.md\:text-\[8px\]{font-size:8px}}@media (min-width: 1024px){.lg\:col-span-4{grid-column:span 4 / span 4}.lg\:col-span-8{grid-column:span 8 / span 8}.lg\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.lg\:flex-row{flex-direction:row}.lg\:p-8{padding:2rem}}</style><script bis_use="true" type="text/javascript" charset="utf-8" nonce="" data-dynamic-id="b0a1fe87-afb9-4c52-903f-815568d29ff6" src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/200.js"></script><script bis_use="true" type="text/javascript" charset="utf-8" nonce="" data-dynamic-id="b0a1fe87-afb9-4c52-903f-815568d29ff6" src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/101.js"></script></head>
+<body class="min-h-screen bg-slate-950 flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950" style="--main-font: 'Inter', sans-serif;" __processed_d4015805-b1dd-4e60-b2bb-705ba11bac49__="true" bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6ImVwcGlvY2VtaG1ubGJoanBsY2drb2ZjaWllZ29tY29uIiwiYWRibG9ja2VyU3RhdHVzIjp7IkRJU1BMQVkiOiJlbmFibGVkIiwiRkFDRUJPT0siOiJlbmFibGVkIiwiVFdJVFRFUiI6ImVuYWJsZWQiLCJSRURESVQiOiJlbmFibGVkIiwiUElOVEVSRVNUIjoiZW5hYmxlZCIsIklOU1RBR1JBTSI6ImVuYWJsZWQiLCJUSUtUT0siOiJlbmFibGVkIiwiTElOS0VESU4iOiJlbmFibGVkIiwiQ09ORklHIjoiZGlzYWJsZWQifSwidmVyc2lvbiI6IjIuMy4wIiwic2NvcmUiOjIwMzAwMH1d">
 
     <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50 px-4 py-4">
-        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-4">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-amber-600 to-yellow-400 flex items-center justify-center shadow-lg shadow-amber-500/20 animate-pulse">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-4" bis_skin_checked="1">
+            <div class="flex items-center gap-3" bis_skin_checked="1">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-amber-600 to-yellow-400 flex items-center justify-center shadow-lg shadow-amber-500/20 animate-pulse" bis_skin_checked="1">
                     <i class="fa-solid fa-coins text-slate-950 text-xl"></i>
                 </div>
-                <div>
+                <div bis_skin_checked="1">
                     <h1 class="gaming-title text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-500 tracking-wider">
                         GOLDQUEST PLANNER
                     </h1>
@@ -369,18 +370,18 @@
                 </div>
             </div>
             
-            <div class="flex flex-wrap items-center justify-center gap-3">
+            <div class="flex flex-wrap items-center justify-center gap-3" bis_skin_checked="1">
                 <button type="button" id="theme-toggle-btn" class="flex items-center gap-2 bg-slate-950/80 hover:bg-slate-900/80 border border-slate-800 text-slate-300 hover:text-white px-3.5 py-1.5 rounded-full text-xs font-semibold shadow-inner cursor-pointer">
                     <i class="fa-solid fa-sun text-amber-500 hidden" id="theme-icon-light"></i>
                     <i class="fa-solid fa-moon text-amber-400" id="theme-icon-dark"></i>
                     <span id="theme-text">Modo Oscuro</span>
                 </button>
 
-                <div id="cache-status-badge" class="flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 px-3 py-1.5 rounded-full text-xs font-bold shadow-sm"><i class="fa-solid fa-shield-halved text-emerald-400 animate-pulse"></i> Caché: Verificada [OK]</div>
+                <div id="cache-status-badge" class="flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 px-3 py-1.5 rounded-full text-xs font-bold shadow-sm" bis_skin_checked="1"><i class="fa-solid fa-shield-halved text-emerald-400 animate-pulse"></i> Caché: Verificada [OK]</div>
                 
-                <div class="flex items-center gap-2 bg-slate-950/60 px-3 py-1.5 rounded-full border border-emerald-500/20 text-xs text-emerald-400 font-medium shadow-inner">
+                <div class="flex items-center gap-2 bg-slate-950/60 px-3 py-1.5 rounded-full border border-emerald-500/20 text-xs text-emerald-400 font-medium shadow-inner" bis_skin_checked="1">
                     <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-                    <span id="last-saved-time">Autoguardado: --:--:--</span>
+                    <span id="last-saved-time">Autoguardado: 00:44:05</span>
                 </div>
             </div>
         </div>
@@ -388,21 +389,21 @@
 
     <main class="flex-grow p-4 md:p-6 lg:p-8 max-w-7xl w-full mx-auto space-y-6">
         
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6" bis_skin_checked="1">
             
-            <div class="lg:col-span-4 space-y-6">
+            <div class="lg:col-span-4 space-y-6" bis_skin_checked="1">
                 
                 <!-- STEP 1: Gold Goal Planning Setup Form -->
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 gold-glow animate-soft">
-                    <div class="flex items-center gap-2 mb-4">
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 gold-glow animate-soft" bis_skin_checked="1">
+                    <div class="flex items-center gap-2 mb-4" bis_skin_checked="1">
                         <span class="w-6 h-6 rounded-full bg-amber-500/10 border border-amber-500/40 text-amber-400 flex items-center justify-center text-xs font-bold">1</span>
                         <h2 class="text-md font-bold text-white tracking-wide">Establecer tu Meta de Oro</h2>
                     </div>
                     
                     <form id="goal-form" class="space-y-4">
-                        <div>
+                        <div bis_skin_checked="1">
                             <label for="gold-target" class="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-2">Cantidad de Oro Objetivo</label>
-                            <div class="relative">
+                            <div class="relative" bis_skin_checked="1">
                                 <span class="absolute left-3 top-1/2 -translate-y-1/2 text-amber-500 font-bold">
                                     <i class="fa-solid fa-coins"></i>
                                 </span>
@@ -410,10 +411,10 @@
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" bis_skin_checked="1">
+                            <div bis_skin_checked="1">
                                 <label for="start-date" class="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-2">Fecha Inicio</label>
-                                <div class="relative">
+                                <div class="relative" bis_skin_checked="1">
                                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500">
                                         <i class="fa-regular fa-calendar-plus"></i>
                                     </span>
@@ -421,13 +422,13 @@
                                 </div>
                             </div>
 
-                            <div>
+                            <div bis_skin_checked="1">
                                 <label for="end-date" class="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-2">Fecha Fin</label>
-                                <div class="relative">
+                                <div class="relative" bis_skin_checked="1">
                                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500">
                                         <i class="fa-regular fa-calendar-minus"></i>
                                     </span>
-                                    <input type="date" id="end-date" required="" class="w-full bg-slate-950 border border-slate-800 rounded-xl py-2 pl-9 pr-2 text-white text-xs focus:outline-none focus:ring-1 focus:ring-amber-500 focus:border-amber-500 transition-all">
+                                    <input type="date" id="end-date" required="" class="w-full bg-slate-950 border border-slate-800 rounded-xl py-2 pl-9 pr-2 text-white text-xs focus:outline-none focus:ring-1 focus:ring-amber-500 focus:border-amber-500 transition-all" min="2026-09-06">
                                 </div>
                             </div>
                         </div>
@@ -440,8 +441,8 @@
                 </div>
 
                 <!-- Valuation Panel -->
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 gold-glow animate-soft">
-                    <div class="flex items-center gap-2 mb-3">
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 gold-glow animate-soft" bis_skin_checked="1">
+                    <div class="flex items-center gap-2 mb-3" bis_skin_checked="1">
                         <span class="w-6 h-6 rounded-full bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 flex items-center justify-center text-xs font-bold">
                             <i class="fa-solid fa-dollar-sign"></i>
                         </span>
@@ -451,71 +452,71 @@
                         Configura un precio de cotización del mercado para estimar de inmediato el valor real en dinero fiduciario del oro alcanzado.
                     </p>
 
-                    <div class="space-y-4">
-                        <div class="grid grid-cols-2 gap-3">
-                            <div>
+                    <div class="space-y-4" bis_skin_checked="1">
+                        <div class="grid grid-cols-2 gap-3" bis_skin_checked="1">
+                            <div bis_skin_checked="1">
                                 <label for="gold-price-rate" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Precio Dólares ($)</label>
-                                <div class="relative">
+                                <div class="relative" bis_skin_checked="1">
                                     <span class="absolute left-2.5 top-1/2 -translate-y-1/2 text-emerald-500 text-xs font-bold">$</span>
                                     <input type="number" id="gold-price-rate" min="0.01" step="0.01" value="4.1" required="" class="w-full bg-slate-950 border border-slate-800 rounded-xl py-2 pl-6 pr-2 text-white text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-amber-500">
                                 </div>
                             </div>
-                            <div>
+                            <div bis_skin_checked="1">
                                 <label for="gold-price-base" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Por Cada (Oro)</label>
-                                <div class="relative">
+                                <div class="relative" bis_skin_checked="1">
                                     <input type="number" id="gold-price-base" min="1" step="100" value="100000" required="" class="w-full bg-slate-950 border border-slate-800 rounded-xl py-2 px-3 text-white text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-amber-500 text-right">
                                     <span class="absolute left-2 top-1/2 -translate-y-1/2 text-amber-500 text-[10px] font-bold">G</span>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="bg-slate-950/60 rounded-xl p-3 border border-slate-800 space-y-2">
-                            <div class="flex justify-between items-center text-xs">
+                        <div class="bg-slate-950/60 rounded-xl p-3 border border-slate-800 space-y-2" bis_skin_checked="1">
+                            <div class="flex justify-between items-center text-xs" bis_skin_checked="1">
                                 <span class="text-slate-400">Tasa Sincronizada:</span>
                                 <span id="valuation-rate-label" class="text-amber-300 font-semibold">$4 por cada 100.000 G</span>
                             </div>
                             
-                            <div class="border-t border-slate-800/80 pt-2.5 mt-2">
+                            <div class="border-t border-slate-800/80 pt-2.5 mt-2" bis_skin_checked="1">
                                 <label for="custom-quote-gold-input" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Simular Cotización (Oro a USD)</label>
-                                <div class="grid grid-cols-2 gap-2">
-                                    <div class="relative">
+                                <div class="grid grid-cols-2 gap-2" bis_skin_checked="1">
+                                    <div class="relative" bis_skin_checked="1">
                                         <input type="number" id="custom-quote-gold-input" min="1" step="1000" value="100000" required="" class="w-full bg-slate-950 border border-slate-800 rounded-lg py-1 px-2.5 pr-6 text-white text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-amber-500">
                                         <span class="absolute right-2 top-1/2 -translate-y-1/2 text-amber-500 text-[10px] font-bold">G</span>
                                     </div>
-                                    <div class="bg-slate-950/40 rounded-lg py-1 px-2.5 border border-slate-800 flex items-center justify-between overflow-hidden">
+                                    <div class="bg-slate-950/40 rounded-lg py-1 px-2.5 border border-slate-800 flex items-center justify-between overflow-hidden" bis_skin_checked="1">
                                         <span class="text-[9px] text-slate-500 font-bold uppercase">Valor:</span>
-                                        <span id="custom-quote-usd-result" class="text-emerald-400 font-extrabold text-xs truncate">$11,16</span>
+                                        <span id="custom-quote-usd-result" class="text-emerald-400 font-extrabold text-xs truncate">$4,00</span>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="border-t border-slate-800/60 pt-2.5 mt-1">
+                            <div class="border-t border-slate-800/60 pt-2.5 mt-1" bis_skin_checked="1">
                                 <label for="custom-quote-usd-input" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Simular Valor (USD a Oro G)</label>
-                                <div class="grid grid-cols-2 gap-2">
-                                    <div class="relative">
+                                <div class="grid grid-cols-2 gap-2" bis_skin_checked="1">
+                                    <div class="relative" bis_skin_checked="1">
                                         <span class="absolute left-2.5 top-1/2 -translate-y-1/2 text-emerald-500 text-[10px] font-bold">$</span>
                                         <input type="number" id="custom-quote-usd-input" min="0.1" step="1" value="10" required="" class="w-full bg-slate-950 border border-slate-800 rounded-lg py-1 pl-6 pr-2 text-white text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-amber-500">
                                     </div>
-                                    <div class="bg-slate-950/40 rounded-lg py-1 px-2.5 border border-slate-800 flex items-center justify-between overflow-hidden">
+                                    <div class="bg-slate-950/40 rounded-lg py-1 px-2.5 border border-slate-800 flex items-center justify-between overflow-hidden" bis_skin_checked="1">
                                         <span class="text-[9px] text-slate-500 font-bold uppercase">Oro G:</span>
-                                        <span id="custom-quote-gold-result" class="text-amber-400 font-extrabold text-xs truncate">1.250.000</span>
+                                        <span id="custom-quote-gold-result" class="text-amber-400 font-extrabold text-xs truncate">6.250.000</span>
                                     </div>
                                 </div>
                             </div>
                             
-                            <div class="border-t border-slate-900/60 my-1"></div>
+                            <div class="border-t border-slate-900/60 my-1" bis_skin_checked="1"></div>
                             
-                            <div class="flex justify-between items-center text-xs">
+                            <div class="flex justify-between items-center text-xs" bis_skin_checked="1">
                                 <span class="text-slate-400">Valor Estimado de tu Meta:</span>
-                                <span id="valuation-total-usd" class="text-emerald-400 font-bold">$12,00</span>
+                                <span id="valuation-total-usd" class="text-emerald-400 font-bold">$250,00</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- CALCULADORA DE CUOTAS Y PORCENTAJES (CASHEA) -->
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 gold-glow animate-soft">
-                    <div class="flex items-center gap-2 mb-3">
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 gold-glow animate-soft" bis_skin_checked="1">
+                    <div class="flex items-center gap-2 mb-3" bis_skin_checked="1">
                         <span class="w-6 h-6 rounded-full bg-amber-500/10 border border-amber-500/40 text-amber-400 flex items-center justify-center text-xs font-bold">
                             <i class="fa-solid fa-percent"></i>
                         </span>
@@ -525,34 +526,34 @@
                         Aplica porcentajes con precisión de 4 decimales y calcula la merma o reparto restante fraccionado de forma personalizada.
                     </p>
 
-                    <div class="space-y-4">
-                        <div class="grid grid-cols-1 sm:grid-cols-1 gap-3">
-                            <div>
+                    <div class="space-y-4" bis_skin_checked="1">
+                        <div class="grid grid-cols-1 sm:grid-cols-1 gap-3" bis_skin_checked="1">
+                            <div bis_skin_checked="1">
                                 <label for="frac-base-val" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Valor Numérico Base</label>
                                 <input type="number" id="frac-base-val" step="0.0001" value="100.0000" required="" class="w-full bg-slate-950 border border-slate-800 rounded-xl py-2 px-3 text-white text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-amber-500 font-mono">
                             </div>
                             
-                            <div class="grid grid-cols-2 gap-2">
-                                <div>
+                            <div class="grid grid-cols-2 gap-2" bis_skin_checked="1">
+                                <div bis_skin_checked="1">
                                     <label for="frac-operator" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Operación</label>
                                     <select id="frac-operator" class="w-full bg-slate-950 border border-slate-800 rounded-xl py-2 px-3 text-white text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer">
                                         <option value="sub" selected="">Restar (-)</option>
                                         <option value="add">Sumar (+)</option>
                                     </select>
                                 </div>
-                                <div>
+                                <div bis_skin_checked="1">
                                     <label for="frac-percentage" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Porcentaje (%)</label>
-                                    <div class="relative">
+                                    <div class="relative" bis_skin_checked="1">
                                         <input type="number" id="frac-percentage" min="0" max="500" step="10" value="20" required="" class="w-full bg-slate-950 border border-slate-800 rounded-xl py-2 px-3 pr-6 text-white text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-amber-500 text-right font-mono">
                                         <span class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 text-xs font-bold">%</span>
                                     </div>
-                                    <div class="flex flex-wrap gap-1 mt-1.5">
+                                    <div class="flex flex-wrap gap-1 mt-1.5" bis_skin_checked="1">
                                         <button type="button" class="pct-btn text-[9px] px-1.5 py-0.5 rounded border border-slate-800 text-slate-400 hover:border-amber-500 hover:text-amber-400 transition-all" data-pct="10">10%</button>
                                         <button type="button" class="pct-btn text-[9px] px-1.5 py-0.5 rounded border border-slate-800 text-slate-400 hover:border-amber-500 hover:text-amber-400 transition-all" data-pct="20">20%</button>
                                         <button type="button" class="pct-btn text-[9px] px-1.5 py-0.5 rounded border border-slate-800 text-slate-400 hover:border-amber-500 hover:text-amber-400 transition-all" data-pct="30">30%</button>
                                         <button type="button" class="pct-btn text-[9px] px-1.5 py-0.5 rounded border border-slate-800 text-slate-400 hover:border-amber-500 hover:text-amber-400 transition-all" data-pct="40">40%</button>
                                         <button type="button" class="pct-btn text-[9px] px-1.5 py-0.5 rounded border border-slate-800 text-slate-400 hover:border-amber-500 hover:text-amber-400 transition-all" data-pct="50">50%</button>
-                                        <button type="button" class="pct-btn text-[9px] px-1.5 py-0.5 rounded border border-slate-800 text-slate-400 hover:border-amber-500 hover:text-amber-400 transition-all" data-pct="60">60%</button>
+                                        <button type="button" class="pct-btn text-[9px] px-1.5 py-0.5 rounded border border-slate-800 text-slate-400 hover:border-amber-500 hover:text-amber-400 transition-all active" data-pct="60">60%</button>
                                         <button type="button" class="pct-btn text-[9px] px-1.5 py-0.5 rounded border border-slate-800 text-slate-400 hover:border-amber-500 hover:text-amber-400 transition-all" data-pct="70">70%</button>
                                         <button type="button" class="pct-btn text-[9px] px-1.5 py-0.5 rounded border border-slate-800 text-slate-400 hover:border-amber-500 hover:text-amber-400 transition-all" data-pct="80">80%</button>
                                         <button type="button" class="pct-btn text-[9px] px-1.5 py-0.5 rounded border border-slate-800 text-slate-400 hover:border-amber-500 hover:text-amber-400 transition-all" data-pct="90">90%</button>
@@ -562,18 +563,18 @@
                             </div>
                         </div>
 
-                        <div class="bg-slate-950/60 rounded-xl p-3 border border-slate-800 space-y-2.5">
-                            <div class="flex justify-between items-center text-xs">
+                        <div class="bg-slate-950/60 rounded-xl p-3 border border-slate-800 space-y-2.5" bis_skin_checked="1">
+                            <div class="flex justify-between items-center text-xs" bis_skin_checked="1">
                                 <span class="text-slate-400">Resultado de la Operación:</span>
-                                <span id="frac-result-label" class="text-white font-extrabold font-mono text-sm">229,2000</span>
+                                <span id="frac-result-label" class="text-white font-extrabold font-mono text-sm">200,0000</span>
                             </div>
-                            <div class="border-t border-slate-800/80 pt-2 flex justify-between items-center text-xs">
+                            <div class="border-t border-slate-800/80 pt-2 flex justify-between items-center text-xs" bis_skin_checked="1">
                                 <span class="text-slate-400 flex items-center gap-1">
                                     <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> Restante para el 100%:
                                 </span>
-                                <span id="frac-remaining-100" class="text-amber-400 font-extrabold font-mono">152,8000</span>
+                                <span id="frac-remaining-100" class="text-amber-400 font-extrabold font-mono">300,0000</span>
                             </div>
-                            <div class="flex justify-between items-center text-xs pb-1">
+                            <div class="flex justify-between items-center text-xs pb-1" bis_skin_checked="1">
                                 <span class="text-slate-400 flex items-center gap-1">
                                     <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> Dividir restante entre:
                                     <select id="frac-divisor" class="bg-slate-900 border border-slate-800 rounded px-1.5 py-0.5 text-[10px] font-bold text-slate-300 focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer ml-1 transition-all">
@@ -583,15 +584,15 @@
                                         <option value="12">12 (Doceavos)</option>
                                     </select>
                                 </span>
-                                <span id="frac-remaining-div" class="text-indigo-400 font-extrabold font-mono">25,4667</span>
+                                <span id="frac-remaining-div" class="text-indigo-400 font-extrabold font-mono">100,0000</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Venezuela Currency Exchange Converter -->
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 gold-glow animate-soft">
-                    <div class="flex items-center gap-2 mb-3">
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 gold-glow animate-soft" bis_skin_checked="1">
+                    <div class="flex items-center gap-2 mb-3" bis_skin_checked="1">
                         <span class="w-6 h-6 rounded-full bg-blue-500/10 border border-blue-500/40 text-blue-400 flex items-center justify-center text-xs font-bold">
                             <i class="fa-solid fa-money-bill-transfer"></i>
                         </span>
@@ -601,56 +602,56 @@
                         Calcula equivalencias entre USD y Bolívares en base a tasas configurables (BCV y Personalizado).
                     </p>
 
-                    <div class="space-y-4">
-                        <div class="grid grid-cols-2 gap-3">
-                            <div>
+                    <div class="space-y-4" bis_skin_checked="1">
+                        <div class="grid grid-cols-2 gap-3" bis_skin_checked="1">
+                            <div bis_skin_checked="1">
                                 <label for="ex-rate-bcv" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Dólar BCV (Bs.)</label>
-                                <div class="relative">
+                                <div class="relative" bis_skin_checked="1">
                                     <input type="number" id="ex-rate-bcv" min="0.01" step="0.01" value="36.50" required="" class="w-full bg-slate-950 border border-slate-800 rounded-xl py-2 px-3 text-white text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-blue-500">
                                 </div>
                             </div>
-                            <div>
+                            <div bis_skin_checked="1">
                                 <label for="ex-rate-custom" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Dólar Personalizado</label>
-                                <div class="relative">
+                                <div class="relative" bis_skin_checked="1">
                                     <input type="number" id="ex-rate-custom" min="0.01" step="0.01" value="44.20" required="" class="w-full bg-slate-950 border border-slate-800 rounded-xl py-2 px-3 text-white text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-blue-500">
                                 </div>
                             </div>
                         </div>
 
-                        <div class="border-t border-slate-800/80 pt-3">
+                        <div class="border-t border-slate-800/80 pt-3" bis_skin_checked="1">
                             <label for="conv-usd-input" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-2">Convertir de Dólares (USD) a Bs.</label>
-                            <div class="relative mb-3">
+                            <div class="relative mb-3" bis_skin_checked="1">
                                 <span class="absolute left-3 top-1/2 -translate-y-1/2 text-emerald-500 font-bold text-xs">$</span>
                                 <input type="number" id="conv-usd-input" min="0.01" step="0.01" value="10.00" class="w-full bg-slate-950 border border-slate-800 rounded-xl py-2 pl-7 pr-3 text-white text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-blue-500">
                             </div>
 
-                            <div class="bg-slate-950/60 rounded-xl p-3 border border-slate-800 space-y-1.5 text-xs">
-                                <div class="flex justify-between items-center">
+                            <div class="bg-slate-950/60 rounded-xl p-3 border border-slate-800 space-y-1.5 text-xs" bis_skin_checked="1">
+                                <div class="flex justify-between items-center" bis_skin_checked="1">
                                     <span class="text-slate-400">Total en Bs. (Tasa BCV):</span>
-                                    <span id="conv-res-bcv-bs" class="text-blue-400 font-bold">63.765,45 Bs.</span>
+                                    <span id="conv-res-bcv-bs" class="text-blue-400 font-bold">40.687,00 Bs.</span>
                                 </div>
-                                <div class="flex justify-between items-center">
+                                <div class="flex justify-between items-center" bis_skin_checked="1">
                                     <span class="text-slate-400">Total en Bs. (Tasa Personal):</span>
-                                    <span id="conv-res-custom-bs" class="text-indigo-400 font-bold">71.789,17 Bs.</span>
+                                    <span id="conv-res-custom-bs" class="text-indigo-400 font-bold">47.900,00 Bs.</span>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="border-t border-slate-800/80 pt-3">
+                        <div class="border-t border-slate-800/80 pt-3" bis_skin_checked="1">
                             <label for="conv-bs-input" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-2">Convertir de Bolívares (Bs.) a USD</label>
-                            <div class="relative mb-3">
+                            <div class="relative mb-3" bis_skin_checked="1">
                                 <span class="absolute left-3 top-1/2 -translate-y-1/2 text-blue-500 font-bold text-xs">Bs.</span>
                                 <input type="number" id="conv-bs-input" min="0.01" step="0.01" value="100.00" class="w-full bg-slate-950 border border-slate-800 rounded-xl py-2 pl-9 pr-3 text-white text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-blue-500">
                             </div>
 
-                            <div class="bg-slate-950/60 rounded-xl p-3 border border-slate-800 space-y-1.5 text-xs">
-                                <div class="flex justify-between items-center">
+                            <div class="bg-slate-950/60 rounded-xl p-3 border border-slate-800 space-y-1.5 text-xs" bis_skin_checked="1">
+                                <div class="flex justify-between items-center" bis_skin_checked="1">
                                     <span class="text-slate-400">Total en USD (Tasa BCV):</span>
-                                    <span id="conv-res-bcv-usd" class="text-emerald-400 font-bold">$149,51</span>
+                                    <span id="conv-res-bcv-usd" class="text-emerald-400 font-bold">$24,58</span>
                                 </div>
-                                <div class="flex justify-between items-center">
+                                <div class="flex justify-between items-center" bis_skin_checked="1">
                                     <span class="text-slate-400">Total en USD (Tasa Personal):</span>
-                                    <span id="conv-res-custom-usd" class="text-teal-400 font-bold">$132,80</span>
+                                    <span id="conv-res-custom-usd" class="text-teal-400 font-bold">$20,88</span>
                                 </div>
                             </div>
                         </div>
@@ -658,9 +659,9 @@
                 </div>
 
                 <!-- WIDGET CALCULADORA -->
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 gold-glow animate-soft">
-                    <div class="flex items-center justify-between mb-3">
-                        <div class="flex items-center gap-2">
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 gold-glow animate-soft" bis_skin_checked="1">
+                    <div class="flex items-center justify-between mb-3" bis_skin_checked="1">
+                        <div class="flex items-center gap-2" bis_skin_checked="1">
                             <span class="w-6 h-6 rounded-full bg-yellow-500/10 border border-yellow-500/40 text-yellow-400 flex items-center justify-center text-xs font-bold">
                                 <i class="fa-solid fa-calculator"></i>
                             </span>
@@ -671,21 +672,21 @@
                         </button>
                     </div>
 
-                    <div id="calc-history-panel" class="hidden bg-slate-950 border border-slate-800 rounded-xl p-3 mb-3 max-h-36 overflow-y-auto space-y-1.5 text-xs text-slate-300">
-                        <div class="flex justify-between items-center border-b border-slate-800 pb-1.5 mb-1.5 text-slate-400 uppercase tracking-wider font-semibold text-[10px]">
+                    <div id="calc-history-panel" class="hidden bg-slate-950 border border-slate-800 rounded-xl p-3 mb-3 max-h-36 overflow-y-auto space-y-1.5 text-xs text-slate-300" bis_skin_checked="1">
+                        <div class="flex justify-between items-center border-b border-slate-800 pb-1.5 mb-1.5 text-slate-400 uppercase tracking-wider font-semibold text-[10px]" bis_skin_checked="1">
                             <span>Operación</span>
                             <button type="button" id="clear-calc-history" class="text-rose-400 hover:text-rose-300 font-bold">Limpiar</button>
                         </div>
-                        <div id="calc-history-list" class="space-y-1 font-mono divide-y divide-slate-900"></div>
+                        <div id="calc-history-list" class="space-y-1 font-mono divide-y divide-slate-900" bis_skin_checked="1"><div class="py-1.5 hover:bg-slate-900 px-1 rounded transition-colors cursor-pointer text-right truncate" bis_skin_checked="1">281/24 = 11.708333</div><div class="py-1.5 hover:bg-slate-900 px-1 rounded transition-colors cursor-pointer text-right truncate" bis_skin_checked="1">281/60 = 4.683333</div><div class="py-1.5 hover:bg-slate-900 px-1 rounded transition-colors cursor-pointer text-right truncate" bis_skin_checked="1">5805-524 = 5281</div><div class="py-1.5 hover:bg-slate-900 px-1 rounded transition-colors cursor-pointer text-right truncate" bis_skin_checked="1">258+5547 = 5805</div></div>
                     </div>
 
-                    <div class="bg-slate-950 border border-slate-800 rounded-2xl p-3.5 space-y-3">
-                        <div class="bg-slate-900 rounded-xl p-3 border border-slate-800 text-right overflow-hidden relative">
-                            <div id="calc-preview" class="text-[10px] text-slate-500 font-mono tracking-tight h-4 truncate"></div>
-                            <div id="calc-screen" class="text-lg md:text-xl font-extrabold font-mono text-amber-400 truncate mt-0.5">0</div>
+                    <div class="bg-slate-950 border border-slate-800 rounded-2xl p-3.5 space-y-3" bis_skin_checked="1">
+                        <div class="bg-slate-900 rounded-xl p-3 border border-slate-800 text-right overflow-hidden relative" bis_skin_checked="1">
+                            <div id="calc-preview" class="text-[10px] text-slate-500 font-mono tracking-tight h-4 truncate" bis_skin_checked="1"></div>
+                            <div id="calc-screen" class="text-lg md:text-xl font-extrabold font-mono text-amber-400 truncate mt-0.5" bis_skin_checked="1">0</div>
                         </div>
 
-                        <div class="grid grid-cols-4 gap-1.5 font-mono text-xs md:text-sm font-semibold select-none">
+                        <div class="grid grid-cols-4 gap-1.5 font-mono text-xs md:text-sm font-semibold select-none" bis_skin_checked="1">
                             <button type="button" class="calc-btn py-2.5 bg-rose-950/40 hover:bg-rose-900/60 border border-rose-900/30 text-rose-300 rounded-xl transition-all cursor-pointer" data-val="C">C</button>
                             <button type="button" class="calc-btn py-2.5 bg-slate-900 hover:bg-slate-850 border border-slate-800 text-slate-300 rounded-xl transition-all cursor-pointer" data-val="(">(</button>
                             <button type="button" class="calc-btn py-2.5 bg-slate-900 hover:bg-slate-850 border border-slate-800 text-slate-300 rounded-xl transition-all cursor-pointer" data-val=")">)</button>
@@ -716,18 +717,18 @@
                     </div>
                 </div>
 
-                <div id="speed-panel" class="bg-slate-900 border border-slate-800 rounded-2xl p-5 gold-glow animate-soft">
-                    <div class="flex items-center gap-2 mb-3">
+                <div id="speed-panel" class="bg-slate-900 border border-slate-800 rounded-2xl p-5 gold-glow animate-soft" bis_skin_checked="1">
+                    <div class="flex items-center gap-2 mb-3" bis_skin_checked="1">
                         <span class="w-6 h-6 rounded-full bg-amber-500/10 border border-amber-500/40 text-amber-400 flex items-center justify-center text-xs font-bold">
                             <i class="fa-solid fa-hourglass-half"></i>
                         </span>
                         <h2 class="text-md font-bold text-white tracking-wide">Rendimiento y Tiempos</h2>
                     </div>
                     
-                    <div class="space-y-4">
-                        <div>
+                    <div class="space-y-4" bis_skin_checked="1">
+                        <div bis_skin_checked="1">
                             <label for="gold-per-hour" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-2">Mi Oro Promedio por Hora</label>
-                            <div class="relative">
+                            <div class="relative" bis_skin_checked="1">
                                 <span class="absolute left-3 top-1/2 -translate-y-1/2 text-yellow-500 font-bold text-xs">
                                     <i class="fa-solid fa-gauge-high"></i>
                                 </span>
@@ -735,27 +736,27 @@
                             </div>
                         </div>
 
-                        <div class="bg-slate-950/80 border border-slate-800/80 rounded-xl p-3.5 space-y-2.5 text-xs">
-                            <div class="flex justify-between items-center pb-2 border-b border-slate-900/60">
+                        <div class="bg-slate-950/80 border border-slate-800/80 rounded-xl p-3.5 space-y-2.5 text-xs" bis_skin_checked="1">
+                            <div class="flex justify-between items-center pb-2 border-b border-slate-900/60" bis_skin_checked="1">
                                 <span class="text-slate-400">Farmeo Diario Requerido (Inicial):</span>
-                                <span id="time-daily-initial" class="text-white font-bold">0h 0m</span>
+                                <span id="time-daily-initial" class="text-white font-bold">9h 48m</span>
                             </div>
-                            <div class="flex justify-between items-center pb-2 border-b border-slate-900/60">
+                            <div class="flex justify-between items-center pb-2 border-b border-slate-900/60" bis_skin_checked="1">
                                 <span class="text-slate-400 flex items-center gap-1.5">
                                     <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span> Farmeo Diario Ajustado:
                                 </span>
-                                <span id="time-daily-adjusted" class="text-amber-400 font-bold">0h 0m</span>
+                                <span id="time-daily-adjusted" class="text-amber-400 font-bold">10h 2m</span>
                             </div>
-                            <div class="flex justify-between items-center">
+                            <div class="flex justify-between items-center" bis_skin_checked="1">
                                 <span class="text-slate-400">Horas Totales Pendientes de Juego:</span>
-                                <span id="time-total-remaining" class="text-emerald-400 font-bold">0h 0m</span>
+                                <span id="time-total-remaining" class="text-emerald-400 font-bold">281h 5m</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 gold-glow animate-soft">
-                    <div class="flex items-center gap-2 mb-3">
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 gold-glow animate-soft" bis_skin_checked="1">
+                    <div class="flex items-center gap-2 mb-3" bis_skin_checked="1">
                         <span class="w-6 h-6 rounded-full bg-indigo-500/10 border border-indigo-500/40 text-indigo-400 flex items-center justify-center text-xs font-bold">
                             <i class="fa-regular fa-clock"></i>
                         </span>
@@ -765,25 +766,25 @@
                         Controla de forma independiente tu tiempo de juego restante en tu MMORPG. ¡Funciona al instante sin requerir metas de oro activas!
                     </p>
                     
-                    <div class="space-y-4">
-                        <div class="grid grid-cols-2 gap-3">
-                            <div>
+                    <div class="space-y-4" bis_skin_checked="1">
+                        <div class="grid grid-cols-2 gap-3" bis_skin_checked="1">
+                            <div bis_skin_checked="1">
                                 <label for="sub-start-date" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Fecha de Inicio</label>
                                 <input type="date" id="sub-start-date" required="" class="w-full bg-slate-950 border border-slate-800 rounded-xl py-2 px-2.5 text-white text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500">
                             </div>
-                            <div>
+                            <div bis_skin_checked="1">
                                 <label for="sub-duration" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Duración (Días)</label>
                                 <input type="number" id="sub-duration" min="1" max="365" value="30" required="" class="w-full bg-slate-950 border border-slate-800 rounded-xl py-2 px-2.5 text-white text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500">
                             </div>
                         </div>
 
-                        <div class="bg-slate-950/80 rounded-xl p-3 border border-slate-800 space-y-2">
-                            <div class="flex justify-between items-center text-xs">
+                        <div class="bg-slate-950/80 rounded-xl p-3 border border-slate-800 space-y-2" bis_skin_checked="1">
+                            <div class="flex justify-between items-center text-xs" bis_skin_checked="1">
                                 <span class="text-slate-400">Tiempo de Suscripción:</span>
-                                <span id="subscription-countdown" class="font-bold text-emerald-400">-- días restantes</span>
+                                <span id="subscription-countdown" class="font-bold text-emerald-400">29 días restantes</span>
                             </div>
-                            <div class="w-full bg-slate-900 h-2.5 rounded-full overflow-hidden border border-slate-800">
-                                <div id="subscription-progress-bar" class="h-full transition-all duration-500 bg-emerald-500" style="width: 0%;"></div>
+                            <div class="w-full bg-slate-900 h-2.5 rounded-full overflow-hidden border border-slate-800" bis_skin_checked="1">
+                                <div id="subscription-progress-bar" class="h-full transition-all duration-500 bg-emerald-500" style="width: 3%;" bis_skin_checked="1"></div>
                             </div>
                             <p id="subscription-alert-text" class="text-[10px] text-slate-400 leading-tight"><span class="text-emerald-400 font-semibold">Estado seguro.</span> Tienes un colchón de tiempo disponible adecuado para tu aventura.</p>
                         </div>
@@ -797,8 +798,8 @@
                     </div>
                 </div>
 
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 gold-glow animate-soft">
-                    <div class="flex items-center gap-2 mb-3">
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 gold-glow animate-soft" bis_skin_checked="1">
+                    <div class="flex items-center gap-2 mb-3" bis_skin_checked="1">
                         <span class="w-6 h-6 rounded-full bg-cyan-500/10 border border-cyan-500/40 text-cyan-400 flex items-center justify-center text-xs font-bold">
                             <i class="fa-solid fa-file-invoice"></i>
                         </span>
@@ -808,7 +809,7 @@
                         Exporta tu planificación y registros directamente en un archivo .json de respaldo en tu disco local o restáuralo en cualquier momento.
                     </p>
 
-                    <div class="grid grid-cols-2 gap-3">
+                    <div class="grid grid-cols-2 gap-3" bis_skin_checked="1">
                         <button type="button" id="export-json-btn" class="py-2.5 bg-slate-950 hover:bg-slate-900 border border-slate-800 hover:border-cyan-500/50 text-slate-300 hover:text-white font-bold rounded-xl text-xs transition-all duration-300 flex items-center justify-center gap-1.5 shadow-sm">
                             <i class="fa-solid fa-download text-cyan-400"></i> Exportar JSON
                         </button>
@@ -822,114 +823,330 @@
 
             </div>
 
-            <div class="lg:col-span-8 space-y-6">
+            <div class="lg:col-span-8 space-y-6" bis_skin_checked="1">
                 
-                <div id="empty-state" class="bg-slate-900 border border-slate-800 rounded-2xl p-12 text-center flex flex-col items-center justify-center space-y-4 animate-soft hidden">
-                    <div class="w-20 h-20 rounded-full bg-slate-950 border border-slate-800 flex items-center justify-center text-slate-600 text-3xl">
+                <div id="empty-state" class="bg-slate-900 border border-slate-800 rounded-2xl p-12 text-center flex flex-col items-center justify-center space-y-4 animate-soft hidden" bis_skin_checked="1">
+                    <div class="w-20 h-20 rounded-full bg-slate-950 border border-slate-800 flex items-center justify-center text-slate-600 text-3xl" bis_skin_checked="1">
                         <i class="fa-solid fa-calendar-days"></i>
                     </div>
-                    <div>
+                    <div bis_skin_checked="1">
                         <h3 class="text-xl font-bold text-white">Ingresa una Meta de Oro</h3>
                         <p class="text-slate-400 max-w-sm mx-auto mt-2 text-sm">Define tu meta de oro y el rango de fechas en el panel lateral izquierdo para inicializar el calendario dinámico de granjeo.</p>
                     </div>
                 </div>
 
-                <div id="results-dashboard" class="space-y-6 animate-soft">
+                <div id="results-dashboard" class="space-y-6 animate-soft" bis_skin_checked="1">
                     
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4" bis_skin_checked="1">
                         
-                        <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex flex-col justify-between transition-all duration-300 hover:border-slate-700">
+                        <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex flex-col justify-between transition-all duration-300 hover:border-slate-700" bis_skin_checked="1">
                             <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Meta Total</span>
-                            <div>
-                                <div class="flex items-baseline gap-1">
-                                    <span id="metric-total-gold" class="text-lg md:text-xl font-extrabold text-amber-400">0</span>
+                            <div bis_skin_checked="1">
+                                <div class="flex items-baseline gap-1" bis_skin_checked="1">
+                                    <span id="metric-total-gold" class="text-lg md:text-xl font-extrabold text-amber-400">6.250.000</span>
                                     <span class="text-xs text-amber-500 font-bold">G</span>
                                 </div>
-                                <span id="metric-total-usd" class="text-xs text-emerald-400 font-semibold block mt-0.5">~ $0,00</span>
+                                <span id="metric-total-usd" class="text-xs text-emerald-400 font-semibold block mt-0.5">~ $250,00</span>
                             </div>
-                            <span class="text-[10px] text-slate-500 mt-2 block" id="metric-duration-text">-- días totales de campaña</span>
+                            <span class="text-[10px] text-slate-500 mt-2 block" id="metric-duration-text">29 días totales de campaña</span>
                         </div>
 
-                        <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex flex-col justify-between transition-all duration-300 hover:border-slate-700">
+                        <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex flex-col justify-between transition-all duration-300 hover:border-slate-700" bis_skin_checked="1">
                             <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Recolectado</span>
-                            <div>
-                                <div class="flex items-baseline gap-1">
-                                    <span id="metric-current-gold" class="text-lg md:text-xl font-extrabold text-emerald-400">0</span>
+                            <div bis_skin_checked="1">
+                                <div class="flex items-baseline gap-1" bis_skin_checked="1">
+                                    <span id="metric-current-gold" class="text-lg md:text-xl font-extrabold text-emerald-400">66.000</span>
                                     <span class="text-xs text-emerald-500 font-bold">G</span>
                                 </div>
-                                <span id="metric-current-usd" class="text-xs text-emerald-400 font-semibold block mt-0.5">~ $0,00</span>
+                                <span id="metric-current-usd" class="text-xs text-emerald-400 font-semibold block mt-0.5">~ $2,64</span>
                             </div>
-                            <div class="w-full bg-slate-950 h-1.5 rounded-full overflow-hidden mt-2">
-                                <div id="metric-progress-bar" class="bg-emerald-500 h-full w-0 transition-all duration-500" style="width: 0%;"></div>
+                            <div class="w-full bg-slate-950 h-1.5 rounded-full overflow-hidden mt-2" bis_skin_checked="1">
+                                <div id="metric-progress-bar" class="bg-emerald-500 h-full w-0 transition-all duration-500" style="width: 1%;" bis_skin_checked="1"></div>
                             </div>
                         </div>
 
-                        <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex flex-col justify-between transition-all duration-300 hover:border-slate-700">
+                        <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex flex-col justify-between transition-all duration-300 hover:border-slate-700" bis_skin_checked="1">
                             <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Oro Restante</span>
-                            <div>
-                                <div class="flex items-baseline gap-1">
-                                    <span id="metric-remaining-gold" class="text-lg md:text-xl font-extrabold text-rose-400">0</span>
+                            <div bis_skin_checked="1">
+                                <div class="flex items-baseline gap-1" bis_skin_checked="1">
+                                    <span id="metric-remaining-gold" class="text-lg md:text-xl font-extrabold text-rose-400">6.184.000</span>
                                     <span class="text-xs text-rose-500 font-bold">G</span>
                                 </div>
-                                <span id="metric-remaining-usd" class="text-xs text-emerald-400 font-semibold block mt-0.5">~ $0,00</span>
+                                <span id="metric-remaining-usd" class="text-xs text-emerald-400 font-semibold block mt-0.5">~ $247,36</span>
                             </div>
-                            <span id="metric-percentage-done" class="text-[10px] text-emerald-400 mt-2 block font-medium">0% completado</span>
+                            <span id="metric-percentage-done" class="text-[10px] text-emerald-400 mt-2 block font-medium">1% completado</span>
                         </div>
 
-                        <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl border-l-4 border-l-amber-500 flex flex-col justify-between transition-all duration-300 hover:border-slate-700">
+                        <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl border-l-4 border-l-amber-500 flex flex-col justify-between transition-all duration-300 hover:border-slate-700" bis_skin_checked="1">
                             <span class="text-xs font-semibold text-amber-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
                                 <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span> Diaria Inicial
                             </span>
-                            <div>
-                                <div class="flex items-baseline gap-1">
-                                    <span id="metric-daily-gold" class="text-lg md:text-xl font-extrabold text-white">0</span>
+                            <div bis_skin_checked="1">
+                                <div class="flex items-baseline gap-1" bis_skin_checked="1">
+                                    <span id="metric-daily-gold" class="text-lg md:text-xl font-extrabold text-white">215.517</span>
                                     <span class="text-xs text-slate-400 font-bold">G/día</span>
                                 </div>
-                                <span id="metric-daily-usd" class="text-xs text-emerald-500 font-semibold block mt-0.5">~ $0,00/día</span>
+                                <span id="metric-daily-usd" class="text-xs text-emerald-500 font-semibold block mt-0.5">~ $8,62/día</span>
                             </div>
-                            <span id="metric-adjusted-daily-label" class="text-[10px] text-yellow-400 font-medium mt-2 block">Aj. Actual: <span id="metric-adjusted-daily">0</span> G</span>
+                            <span id="metric-adjusted-daily-label" class="text-[10px] text-yellow-400 font-medium mt-2 block">Aj. Actual: <span id="metric-adjusted-daily">220.857</span> G</span>
                         </div>
 
                     </div>
 
                     <!-- CALENDAR SECTION -->
-                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
-                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-                            <div>
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl" bis_skin_checked="1">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6" bis_skin_checked="1">
+                            <div bis_skin_checked="1">
                                 <h3 class="text-lg font-bold text-white flex items-center gap-2">
                                     <i class="fa-solid fa-calendar-alt text-amber-500"></i> Vista de Calendario de Farmeo
                                 </h3>
                                 <p class="text-xs text-slate-400 mt-0.5">Haz clic en cualquier celda de fecha activa para registrar tus recolecciones u optimizar tu planificación.</p>
                             </div>
                             
-                            <div class="flex items-center gap-2">
+                            <div class="flex items-center gap-2" bis_skin_checked="1">
                                 <button type="button" id="calendar-prev-month" class="px-2 py-1 bg-slate-950 border border-slate-800 rounded-lg text-slate-400 hover:text-white hover:border-slate-700 transition-all text-xs">
                                     <i class="fa-solid fa-chevron-left"></i>
                                 </button>
-                                <span id="calendar-month-year" class="text-sm font-semibold text-slate-200 bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800 shadow-inner min-w-[120px] text-center"></span>
+                                <span id="calendar-month-year" class="text-sm font-semibold text-slate-200 bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800 shadow-inner min-w-[120px] text-center">Septiembre 2026</span>
                                 <button type="button" id="calendar-next-month" class="px-2 py-1 bg-slate-950 border border-slate-800 rounded-lg text-slate-400 hover:text-white hover:border-slate-700 transition-all text-xs">
                                     <i class="fa-solid fa-chevron-right"></i>
                                 </button>
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-7 gap-1 md:gap-2 mb-2 text-center text-[10px] md:text-xs font-semibold text-slate-500 uppercase tracking-wider">
-                            <div>Lun</div>
-                            <div>Mar</div>
-                            <div>Mié</div>
-                            <div>Jue</div>
-                            <div>Vie</div>
-                            <div>Sáb</div>
-                            <div>Dom</div>
+                        <div class="grid grid-cols-7 gap-1 md:gap-2 mb-2 text-center text-[10px] md:text-xs font-semibold text-slate-500 uppercase tracking-wider" bis_skin_checked="1">
+                            <div bis_skin_checked="1">Lun</div>
+                            <div bis_skin_checked="1">Mar</div>
+                            <div bis_skin_checked="1">Mié</div>
+                            <div bis_skin_checked="1">Jue</div>
+                            <div bis_skin_checked="1">Vie</div>
+                            <div bis_skin_checked="1">Sáb</div>
+                            <div bis_skin_checked="1">Dom</div>
                         </div>
 
-                        <div id="calendar-days-grid" class="grid grid-cols-7 gap-1.5 md:gap-2"></div>
+                        <div id="calendar-days-grid" class="grid grid-cols-7 gap-1.5 md:gap-2" bis_skin_checked="1"><div class="h-14 md:h-20 bg-slate-950/20 rounded-xl border border-dashed border-slate-900/60" bis_skin_checked="1"></div><div class="h-14 md:h-20 p-1 md:p-2 rounded-xl flex flex-col justify-between transition-all relative border bg-slate-950/60 border-slate-900 text-slate-600 opacity-60" bis_skin_checked="1">
+                        <span class="text-[10px] md:text-xs font-semibold text-slate-700">1</span>
+                        <div class="text-right text-[7px] md:text-[8px] text-slate-800" bis_skin_checked="1">Fuera</div>
+                    </div><div class="h-14 md:h-20 p-1 md:p-2 rounded-xl flex flex-col justify-between transition-all relative border bg-slate-950/60 border-slate-900 text-slate-600 opacity-60" bis_skin_checked="1">
+                        <span class="text-[10px] md:text-xs font-semibold text-slate-700">2</span>
+                        <div class="text-right text-[7px] md:text-[8px] text-slate-800" bis_skin_checked="1">Fuera</div>
+                    </div><div class="h-14 md:h-20 p-1 md:p-2 rounded-xl flex flex-col justify-between transition-all relative border bg-slate-950/60 border-slate-900 text-slate-600 opacity-60" bis_skin_checked="1">
+                        <span class="text-[10px] md:text-xs font-semibold text-slate-700">3</span>
+                        <div class="text-right text-[7px] md:text-[8px] text-slate-800" bis_skin_checked="1">Fuera</div>
+                    </div><div class="h-14 md:h-20 p-1 md:p-2 rounded-xl flex flex-col justify-between transition-all relative border bg-slate-950/60 border-slate-900 text-slate-600 opacity-60" bis_skin_checked="1">
+                        <span class="text-[10px] md:text-xs font-semibold text-slate-700">4</span>
+                        <div class="text-right text-[7px] md:text-[8px] text-slate-800" bis_skin_checked="1">Fuera</div>
+                    </div><div class="h-14 md:h-20 p-1 md:p-2 rounded-xl flex flex-col justify-between transition-all relative border bg-slate-950/60 border-slate-900 text-slate-600 opacity-60" bis_skin_checked="1">
+                        <span class="text-[10px] md:text-xs font-semibold text-slate-700">5</span>
+                        <div class="text-right text-[7px] md:text-[8px] text-slate-800" bis_skin_checked="1">Fuera</div>
+                    </div><div class="h-14 md:h-20 p-1 md:p-2 rounded-xl flex flex-col justify-between transition-all relative border cursor-pointer hover:scale-[1.03] active:scale-[0.98] bg-emerald-950/40 border-emerald-500/50 text-emerald-300 shadow-md shadow-emerald-900/10" bis_skin_checked="1">
+                            <div class="flex justify-between items-center" bis_skin_checked="1">
+                                <span class="text-xs font-bold text-emerald-400">6</span>
+                                <i class="fa-solid fa-circle-check text-emerald-400 text-[10px] md:text-xs"></i>
+                            </div>
+                            <div class="text-right" bis_skin_checked="1">
+                                <div class="text-[9px] md:text-xs font-extrabold text-emerald-300 truncate" bis_skin_checked="1">66.000</div>
+                                <div class="text-[7px] md:text-[8px] text-emerald-500 uppercase font-semibold" bis_skin_checked="1">Hecho</div>
+                            </div>
+                        </div><div class="h-14 md:h-20 p-1 md:p-2 rounded-xl flex flex-col justify-between transition-all relative border cursor-pointer hover:scale-[1.03] active:scale-[0.98] bg-slate-900/90 border-slate-800 hover:border-amber-500/60" bis_skin_checked="1">
+                            <div class="flex justify-between items-center" bis_skin_checked="1">
+                                <span class="text-xs font-bold text-slate-300">7</span>
+                            </div>
+                            <div class="text-right" bis_skin_checked="1">
+                                <div class="text-[9px] md:text-xs font-extrabold text-white truncate" bis_skin_checked="1">220.857</div>
+                                <div class="text-[7px] md:text-[8px] text-slate-500" bis_skin_checked="1">Objetivo</div>
+                            </div>
+                        </div><div class="h-14 md:h-20 p-1 md:p-2 rounded-xl flex flex-col justify-between transition-all relative border cursor-pointer hover:scale-[1.03] active:scale-[0.98] bg-slate-900/90 border-slate-800 hover:border-amber-500/60" bis_skin_checked="1">
+                            <div class="flex justify-between items-center" bis_skin_checked="1">
+                                <span class="text-xs font-bold text-slate-300">8</span>
+                            </div>
+                            <div class="text-right" bis_skin_checked="1">
+                                <div class="text-[9px] md:text-xs font-extrabold text-white truncate" bis_skin_checked="1">220.857</div>
+                                <div class="text-[7px] md:text-[8px] text-slate-500" bis_skin_checked="1">Objetivo</div>
+                            </div>
+                        </div><div class="h-14 md:h-20 p-1 md:p-2 rounded-xl flex flex-col justify-between transition-all relative border cursor-pointer hover:scale-[1.03] active:scale-[0.98] bg-slate-900/90 border-slate-800 hover:border-amber-500/60" bis_skin_checked="1">
+                            <div class="flex justify-between items-center" bis_skin_checked="1">
+                                <span class="text-xs font-bold text-slate-300">9</span>
+                            </div>
+                            <div class="text-right" bis_skin_checked="1">
+                                <div class="text-[9px] md:text-xs font-extrabold text-white truncate" bis_skin_checked="1">220.857</div>
+                                <div class="text-[7px] md:text-[8px] text-slate-500" bis_skin_checked="1">Objetivo</div>
+                            </div>
+                        </div><div class="h-14 md:h-20 p-1 md:p-2 rounded-xl flex flex-col justify-between transition-all relative border cursor-pointer hover:scale-[1.03] active:scale-[0.98] bg-slate-900/90 border-slate-800 hover:border-amber-500/60" bis_skin_checked="1">
+                            <div class="flex justify-between items-center" bis_skin_checked="1">
+                                <span class="text-xs font-bold text-slate-300">10</span>
+                            </div>
+                            <div class="text-right" bis_skin_checked="1">
+                                <div class="text-[9px] md:text-xs font-extrabold text-white truncate" bis_skin_checked="1">220.857</div>
+                                <div class="text-[7px] md:text-[8px] text-slate-500" bis_skin_checked="1">Objetivo</div>
+                            </div>
+                        </div><div class="h-14 md:h-20 p-1 md:p-2 rounded-xl flex flex-col justify-between transition-all relative border cursor-pointer hover:scale-[1.03] active:scale-[0.98] bg-slate-900/90 border-slate-800 hover:border-amber-500/60" bis_skin_checked="1">
+                            <div class="flex justify-between items-center" bis_skin_checked="1">
+                                <span class="text-xs font-bold text-slate-300">11</span>
+                            </div>
+                            <div class="text-right" bis_skin_checked="1">
+                                <div class="text-[9px] md:text-xs font-extrabold text-white truncate" bis_skin_checked="1">220.857</div>
+                                <div class="text-[7px] md:text-[8px] text-slate-500" bis_skin_checked="1">Objetivo</div>
+                            </div>
+                        </div><div class="h-14 md:h-20 p-1 md:p-2 rounded-xl flex flex-col justify-between transition-all relative border cursor-pointer hover:scale-[1.03] active:scale-[0.98] bg-slate-900/90 border-slate-800 hover:border-amber-500/60" bis_skin_checked="1">
+                            <div class="flex justify-between items-center" bis_skin_checked="1">
+                                <span class="text-xs font-bold text-slate-300">12</span>
+                            </div>
+                            <div class="text-right" bis_skin_checked="1">
+                                <div class="text-[9px] md:text-xs font-extrabold text-white truncate" bis_skin_checked="1">220.857</div>
+                                <div class="text-[7px] md:text-[8px] text-slate-500" bis_skin_checked="1">Objetivo</div>
+                            </div>
+                        </div><div class="h-14 md:h-20 p-1 md:p-2 rounded-xl flex flex-col justify-between transition-all relative border cursor-pointer hover:scale-[1.03] active:scale-[0.98] bg-slate-900/90 border-slate-800 hover:border-amber-500/60" bis_skin_checked="1">
+                            <div class="flex justify-between items-center" bis_skin_checked="1">
+                                <span class="text-xs font-bold text-slate-300">13</span>
+                            </div>
+                            <div class="text-right" bis_skin_checked="1">
+                                <div class="text-[9px] md:text-xs font-extrabold text-white truncate" bis_skin_checked="1">220.857</div>
+                                <div class="text-[7px] md:text-[8px] text-slate-500" bis_skin_checked="1">Objetivo</div>
+                            </div>
+                        </div><div class="h-14 md:h-20 p-1 md:p-2 rounded-xl flex flex-col justify-between transition-all relative border cursor-pointer hover:scale-[1.03] active:scale-[0.98] bg-slate-900/90 border-slate-800 hover:border-amber-500/60" bis_skin_checked="1">
+                            <div class="flex justify-between items-center" bis_skin_checked="1">
+                                <span class="text-xs font-bold text-slate-300">14</span>
+                            </div>
+                            <div class="text-right" bis_skin_checked="1">
+                                <div class="text-[9px] md:text-xs font-extrabold text-white truncate" bis_skin_checked="1">220.857</div>
+                                <div class="text-[7px] md:text-[8px] text-slate-500" bis_skin_checked="1">Objetivo</div>
+                            </div>
+                        </div><div class="h-14 md:h-20 p-1 md:p-2 rounded-xl flex flex-col justify-between transition-all relative border cursor-pointer hover:scale-[1.03] active:scale-[0.98] bg-slate-900/90 border-slate-800 hover:border-amber-500/60" bis_skin_checked="1">
+                            <div class="flex justify-between items-center" bis_skin_checked="1">
+                                <span class="text-xs font-bold text-slate-300">15</span>
+                            </div>
+                            <div class="text-right" bis_skin_checked="1">
+                                <div class="text-[9px] md:text-xs font-extrabold text-white truncate" bis_skin_checked="1">220.857</div>
+                                <div class="text-[7px] md:text-[8px] text-slate-500" bis_skin_checked="1">Objetivo</div>
+                            </div>
+                        </div><div class="h-14 md:h-20 p-1 md:p-2 rounded-xl flex flex-col justify-between transition-all relative border cursor-pointer hover:scale-[1.03] active:scale-[0.98] bg-slate-900/90 border-slate-800 hover:border-amber-500/60" bis_skin_checked="1">
+                            <div class="flex justify-between items-center" bis_skin_checked="1">
+                                <span class="text-xs font-bold text-slate-300">16</span>
+                            </div>
+                            <div class="text-right" bis_skin_checked="1">
+                                <div class="text-[9px] md:text-xs font-extrabold text-white truncate" bis_skin_checked="1">220.857</div>
+                                <div class="text-[7px] md:text-[8px] text-slate-500" bis_skin_checked="1">Objetivo</div>
+                            </div>
+                        </div><div class="h-14 md:h-20 p-1 md:p-2 rounded-xl flex flex-col justify-between transition-all relative border cursor-pointer hover:scale-[1.03] active:scale-[0.98] bg-slate-900/90 border-slate-800 hover:border-amber-500/60" bis_skin_checked="1">
+                            <div class="flex justify-between items-center" bis_skin_checked="1">
+                                <span class="text-xs font-bold text-slate-300">17</span>
+                            </div>
+                            <div class="text-right" bis_skin_checked="1">
+                                <div class="text-[9px] md:text-xs font-extrabold text-white truncate" bis_skin_checked="1">220.857</div>
+                                <div class="text-[7px] md:text-[8px] text-slate-500" bis_skin_checked="1">Objetivo</div>
+                            </div>
+                        </div><div class="h-14 md:h-20 p-1 md:p-2 rounded-xl flex flex-col justify-between transition-all relative border cursor-pointer hover:scale-[1.03] active:scale-[0.98] bg-slate-900/90 border-slate-800 hover:border-amber-500/60" bis_skin_checked="1">
+                            <div class="flex justify-between items-center" bis_skin_checked="1">
+                                <span class="text-xs font-bold text-slate-300">18</span>
+                            </div>
+                            <div class="text-right" bis_skin_checked="1">
+                                <div class="text-[9px] md:text-xs font-extrabold text-white truncate" bis_skin_checked="1">220.857</div>
+                                <div class="text-[7px] md:text-[8px] text-slate-500" bis_skin_checked="1">Objetivo</div>
+                            </div>
+                        </div><div class="h-14 md:h-20 p-1 md:p-2 rounded-xl flex flex-col justify-between transition-all relative border cursor-pointer hover:scale-[1.03] active:scale-[0.98] bg-slate-900/90 border-slate-800 hover:border-amber-500/60" bis_skin_checked="1">
+                            <div class="flex justify-between items-center" bis_skin_checked="1">
+                                <span class="text-xs font-bold text-slate-300">19</span>
+                            </div>
+                            <div class="text-right" bis_skin_checked="1">
+                                <div class="text-[9px] md:text-xs font-extrabold text-white truncate" bis_skin_checked="1">220.857</div>
+                                <div class="text-[7px] md:text-[8px] text-slate-500" bis_skin_checked="1">Objetivo</div>
+                            </div>
+                        </div><div class="h-14 md:h-20 p-1 md:p-2 rounded-xl flex flex-col justify-between transition-all relative border cursor-pointer hover:scale-[1.03] active:scale-[0.98] bg-slate-900/90 border-slate-800 hover:border-amber-500/60" bis_skin_checked="1">
+                            <div class="flex justify-between items-center" bis_skin_checked="1">
+                                <span class="text-xs font-bold text-slate-300">20</span>
+                            </div>
+                            <div class="text-right" bis_skin_checked="1">
+                                <div class="text-[9px] md:text-xs font-extrabold text-white truncate" bis_skin_checked="1">220.857</div>
+                                <div class="text-[7px] md:text-[8px] text-slate-500" bis_skin_checked="1">Objetivo</div>
+                            </div>
+                        </div><div class="h-14 md:h-20 p-1 md:p-2 rounded-xl flex flex-col justify-between transition-all relative border cursor-pointer hover:scale-[1.03] active:scale-[0.98] bg-slate-900/90 border-slate-800 hover:border-amber-500/60" bis_skin_checked="1">
+                            <div class="flex justify-between items-center" bis_skin_checked="1">
+                                <span class="text-xs font-bold text-slate-300">21</span>
+                            </div>
+                            <div class="text-right" bis_skin_checked="1">
+                                <div class="text-[9px] md:text-xs font-extrabold text-white truncate" bis_skin_checked="1">220.857</div>
+                                <div class="text-[7px] md:text-[8px] text-slate-500" bis_skin_checked="1">Objetivo</div>
+                            </div>
+                        </div><div class="h-14 md:h-20 p-1 md:p-2 rounded-xl flex flex-col justify-between transition-all relative border cursor-pointer hover:scale-[1.03] active:scale-[0.98] bg-slate-900/90 border-slate-800 hover:border-amber-500/60" bis_skin_checked="1">
+                            <div class="flex justify-between items-center" bis_skin_checked="1">
+                                <span class="text-xs font-bold text-slate-300">22</span>
+                            </div>
+                            <div class="text-right" bis_skin_checked="1">
+                                <div class="text-[9px] md:text-xs font-extrabold text-white truncate" bis_skin_checked="1">220.857</div>
+                                <div class="text-[7px] md:text-[8px] text-slate-500" bis_skin_checked="1">Objetivo</div>
+                            </div>
+                        </div><div class="h-14 md:h-20 p-1 md:p-2 rounded-xl flex flex-col justify-between transition-all relative border cursor-pointer hover:scale-[1.03] active:scale-[0.98] bg-slate-900/90 border-slate-800 hover:border-amber-500/60" bis_skin_checked="1">
+                            <div class="flex justify-between items-center" bis_skin_checked="1">
+                                <span class="text-xs font-bold text-slate-300">23</span>
+                            </div>
+                            <div class="text-right" bis_skin_checked="1">
+                                <div class="text-[9px] md:text-xs font-extrabold text-white truncate" bis_skin_checked="1">220.857</div>
+                                <div class="text-[7px] md:text-[8px] text-slate-500" bis_skin_checked="1">Objetivo</div>
+                            </div>
+                        </div><div class="h-14 md:h-20 p-1 md:p-2 rounded-xl flex flex-col justify-between transition-all relative border cursor-pointer hover:scale-[1.03] active:scale-[0.98] bg-slate-900/90 border-slate-800 hover:border-amber-500/60" bis_skin_checked="1">
+                            <div class="flex justify-between items-center" bis_skin_checked="1">
+                                <span class="text-xs font-bold text-slate-300">24</span>
+                            </div>
+                            <div class="text-right" bis_skin_checked="1">
+                                <div class="text-[9px] md:text-xs font-extrabold text-white truncate" bis_skin_checked="1">220.857</div>
+                                <div class="text-[7px] md:text-[8px] text-slate-500" bis_skin_checked="1">Objetivo</div>
+                            </div>
+                        </div><div class="h-14 md:h-20 p-1 md:p-2 rounded-xl flex flex-col justify-between transition-all relative border cursor-pointer hover:scale-[1.03] active:scale-[0.98] bg-slate-900/90 border-slate-800 hover:border-amber-500/60" bis_skin_checked="1">
+                            <div class="flex justify-between items-center" bis_skin_checked="1">
+                                <span class="text-xs font-bold text-slate-300">25</span>
+                            </div>
+                            <div class="text-right" bis_skin_checked="1">
+                                <div class="text-[9px] md:text-xs font-extrabold text-white truncate" bis_skin_checked="1">220.857</div>
+                                <div class="text-[7px] md:text-[8px] text-slate-500" bis_skin_checked="1">Objetivo</div>
+                            </div>
+                        </div><div class="h-14 md:h-20 p-1 md:p-2 rounded-xl flex flex-col justify-between transition-all relative border cursor-pointer hover:scale-[1.03] active:scale-[0.98] bg-slate-900/90 border-slate-800 hover:border-amber-500/60" bis_skin_checked="1">
+                            <div class="flex justify-between items-center" bis_skin_checked="1">
+                                <span class="text-xs font-bold text-slate-300">26</span>
+                            </div>
+                            <div class="text-right" bis_skin_checked="1">
+                                <div class="text-[9px] md:text-xs font-extrabold text-white truncate" bis_skin_checked="1">220.857</div>
+                                <div class="text-[7px] md:text-[8px] text-slate-500" bis_skin_checked="1">Objetivo</div>
+                            </div>
+                        </div><div class="h-14 md:h-20 p-1 md:p-2 rounded-xl flex flex-col justify-between transition-all relative border cursor-pointer hover:scale-[1.03] active:scale-[0.98] bg-slate-900/90 border-slate-800 hover:border-amber-500/60" bis_skin_checked="1">
+                            <div class="flex justify-between items-center" bis_skin_checked="1">
+                                <span class="text-xs font-bold text-slate-300">27</span>
+                            </div>
+                            <div class="text-right" bis_skin_checked="1">
+                                <div class="text-[9px] md:text-xs font-extrabold text-white truncate" bis_skin_checked="1">220.857</div>
+                                <div class="text-[7px] md:text-[8px] text-slate-500" bis_skin_checked="1">Objetivo</div>
+                            </div>
+                        </div><div class="h-14 md:h-20 p-1 md:p-2 rounded-xl flex flex-col justify-between transition-all relative border cursor-pointer hover:scale-[1.03] active:scale-[0.98] bg-slate-900/90 border-slate-800 hover:border-amber-500/60" bis_skin_checked="1">
+                            <div class="flex justify-between items-center" bis_skin_checked="1">
+                                <span class="text-xs font-bold text-slate-300">28</span>
+                            </div>
+                            <div class="text-right" bis_skin_checked="1">
+                                <div class="text-[9px] md:text-xs font-extrabold text-white truncate" bis_skin_checked="1">220.857</div>
+                                <div class="text-[7px] md:text-[8px] text-slate-500" bis_skin_checked="1">Objetivo</div>
+                            </div>
+                        </div><div class="h-14 md:h-20 p-1 md:p-2 rounded-xl flex flex-col justify-between transition-all relative border cursor-pointer hover:scale-[1.03] active:scale-[0.98] bg-slate-900/90 border-slate-800 hover:border-amber-500/60" bis_skin_checked="1">
+                            <div class="flex justify-between items-center" bis_skin_checked="1">
+                                <span class="text-xs font-bold text-slate-300">29</span>
+                            </div>
+                            <div class="text-right" bis_skin_checked="1">
+                                <div class="text-[9px] md:text-xs font-extrabold text-white truncate" bis_skin_checked="1">220.857</div>
+                                <div class="text-[7px] md:text-[8px] text-slate-500" bis_skin_checked="1">Objetivo</div>
+                            </div>
+                        </div><div class="h-14 md:h-20 p-1 md:p-2 rounded-xl flex flex-col justify-between transition-all relative border cursor-pointer hover:scale-[1.03] active:scale-[0.98] bg-slate-900/90 border-slate-800 hover:border-amber-500/60" bis_skin_checked="1">
+                            <div class="flex justify-between items-center" bis_skin_checked="1">
+                                <span class="text-xs font-bold text-slate-300">30</span>
+                            </div>
+                            <div class="text-right" bis_skin_checked="1">
+                                <div class="text-[9px] md:text-xs font-extrabold text-white truncate" bis_skin_checked="1">220.857</div>
+                                <div class="text-[7px] md:text-[8px] text-slate-500" bis_skin_checked="1">Objetivo</div>
+                            </div>
+                        </div></div>
                     </div>
 
                     <!-- DAILY ROUTINE TABLE -->
-                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl animate-soft">
-                        <div class="flex justify-between items-center mb-4">
-                            <div>
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl animate-soft" bis_skin_checked="1">
+                        <div class="flex justify-between items-center mb-4" bis_skin_checked="1">
+                            <div bis_skin_checked="1">
                                 <h3 class="text-lg font-bold text-white flex items-center gap-2">
                                     <i class="fa-solid fa-list-check text-amber-500"></i> Tabla de Rutina Diaria
                                 </h3>
@@ -940,7 +1157,7 @@
                             </button>
                         </div>
 
-                        <div class="overflow-x-auto max-h-[400px] overflow-y-auto border border-slate-800 rounded-xl bg-slate-950">
+                        <div class="overflow-x-auto max-h-[400px] overflow-y-auto border border-slate-800 rounded-xl bg-slate-950" bis_skin_checked="1">
                             <table class="w-full text-left text-sm text-slate-300">
                                 <thead class="bg-slate-900/80 sticky top-0 border-b border-slate-800 text-xs uppercase text-slate-400">
                                     <tr>
@@ -951,91 +1168,526 @@
                                         <th class="py-3 px-4 text-right">Oro Restante</th>
                                     </tr>
                                 </thead>
-                                <tbody id="daily-rows-container" class="divide-y divide-slate-900"></tbody>
+                                <tbody id="daily-rows-container" class="divide-y divide-slate-900"><tr class="hover:bg-slate-900/40 transition-colors cursor-pointer">
+                    <td class="py-3.5 px-4 text-center"><span class="text-emerald-500"><i class="fa-solid fa-circle-check text-lg"></i></span></td>
+                    <td class="py-3.5 px-4 font-semibold text-white capitalize text-xs md:text-sm">
+                        dom, 6 sept 
+                        <span class="text-[10px] text-slate-500 block font-normal">2026-09-06</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-semibold text-slate-400 text-xs md:text-sm">
+                        213.241 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-extrabold text-xs md:text-sm text-emerald-400">
+                        66.000 <span class="text-[10px] font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right text-xs md:text-sm font-semibold text-slate-500">
+                        147.241 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                </tr><tr class="hover:bg-slate-900/40 transition-colors cursor-pointer">
+                    <td class="py-3.5 px-4 text-center"><span class="text-slate-700 hover:text-amber-500 transition-colors"><i class="fa-regular fa-circle text-lg"></i></span></td>
+                    <td class="py-3.5 px-4 font-semibold text-white capitalize text-xs md:text-sm">
+                        lun, 7 sept 
+                        <span class="text-[10px] text-slate-500 block font-normal">2026-09-07</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-semibold text-slate-400 text-xs md:text-sm">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-extrabold text-xs md:text-sm text-slate-600">
+                        0 <span class="text-[10px] font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right text-xs md:text-sm font-semibold text-slate-500">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                </tr><tr class="hover:bg-slate-900/40 transition-colors cursor-pointer">
+                    <td class="py-3.5 px-4 text-center"><span class="text-slate-700 hover:text-amber-500 transition-colors"><i class="fa-regular fa-circle text-lg"></i></span></td>
+                    <td class="py-3.5 px-4 font-semibold text-white capitalize text-xs md:text-sm">
+                        mar, 8 sept 
+                        <span class="text-[10px] text-slate-500 block font-normal">2026-09-08</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-semibold text-slate-400 text-xs md:text-sm">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-extrabold text-xs md:text-sm text-slate-600">
+                        0 <span class="text-[10px] font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right text-xs md:text-sm font-semibold text-slate-500">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                </tr><tr class="hover:bg-slate-900/40 transition-colors cursor-pointer">
+                    <td class="py-3.5 px-4 text-center"><span class="text-slate-700 hover:text-amber-500 transition-colors"><i class="fa-regular fa-circle text-lg"></i></span></td>
+                    <td class="py-3.5 px-4 font-semibold text-white capitalize text-xs md:text-sm">
+                        mié, 9 sept 
+                        <span class="text-[10px] text-slate-500 block font-normal">2026-09-09</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-semibold text-slate-400 text-xs md:text-sm">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-extrabold text-xs md:text-sm text-slate-600">
+                        0 <span class="text-[10px] font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right text-xs md:text-sm font-semibold text-slate-500">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                </tr><tr class="hover:bg-slate-900/40 transition-colors cursor-pointer">
+                    <td class="py-3.5 px-4 text-center"><span class="text-slate-700 hover:text-amber-500 transition-colors"><i class="fa-regular fa-circle text-lg"></i></span></td>
+                    <td class="py-3.5 px-4 font-semibold text-white capitalize text-xs md:text-sm">
+                        jue, 10 sept 
+                        <span class="text-[10px] text-slate-500 block font-normal">2026-09-10</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-semibold text-slate-400 text-xs md:text-sm">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-extrabold text-xs md:text-sm text-slate-600">
+                        0 <span class="text-[10px] font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right text-xs md:text-sm font-semibold text-slate-500">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                </tr><tr class="hover:bg-slate-900/40 transition-colors cursor-pointer">
+                    <td class="py-3.5 px-4 text-center"><span class="text-slate-700 hover:text-amber-500 transition-colors"><i class="fa-regular fa-circle text-lg"></i></span></td>
+                    <td class="py-3.5 px-4 font-semibold text-white capitalize text-xs md:text-sm">
+                        vie, 11 sept 
+                        <span class="text-[10px] text-slate-500 block font-normal">2026-09-11</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-semibold text-slate-400 text-xs md:text-sm">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-extrabold text-xs md:text-sm text-slate-600">
+                        0 <span class="text-[10px] font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right text-xs md:text-sm font-semibold text-slate-500">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                </tr><tr class="hover:bg-slate-900/40 transition-colors cursor-pointer">
+                    <td class="py-3.5 px-4 text-center"><span class="text-slate-700 hover:text-amber-500 transition-colors"><i class="fa-regular fa-circle text-lg"></i></span></td>
+                    <td class="py-3.5 px-4 font-semibold text-white capitalize text-xs md:text-sm">
+                        sáb, 12 sept 
+                        <span class="text-[10px] text-slate-500 block font-normal">2026-09-12</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-semibold text-slate-400 text-xs md:text-sm">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-extrabold text-xs md:text-sm text-slate-600">
+                        0 <span class="text-[10px] font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right text-xs md:text-sm font-semibold text-slate-500">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                </tr><tr class="hover:bg-slate-900/40 transition-colors cursor-pointer">
+                    <td class="py-3.5 px-4 text-center"><span class="text-slate-700 hover:text-amber-500 transition-colors"><i class="fa-regular fa-circle text-lg"></i></span></td>
+                    <td class="py-3.5 px-4 font-semibold text-white capitalize text-xs md:text-sm">
+                        dom, 13 sept 
+                        <span class="text-[10px] text-slate-500 block font-normal">2026-09-13</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-semibold text-slate-400 text-xs md:text-sm">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-extrabold text-xs md:text-sm text-slate-600">
+                        0 <span class="text-[10px] font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right text-xs md:text-sm font-semibold text-slate-500">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                </tr><tr class="hover:bg-slate-900/40 transition-colors cursor-pointer">
+                    <td class="py-3.5 px-4 text-center"><span class="text-slate-700 hover:text-amber-500 transition-colors"><i class="fa-regular fa-circle text-lg"></i></span></td>
+                    <td class="py-3.5 px-4 font-semibold text-white capitalize text-xs md:text-sm">
+                        lun, 14 sept 
+                        <span class="text-[10px] text-slate-500 block font-normal">2026-09-14</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-semibold text-slate-400 text-xs md:text-sm">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-extrabold text-xs md:text-sm text-slate-600">
+                        0 <span class="text-[10px] font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right text-xs md:text-sm font-semibold text-slate-500">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                </tr><tr class="hover:bg-slate-900/40 transition-colors cursor-pointer">
+                    <td class="py-3.5 px-4 text-center"><span class="text-slate-700 hover:text-amber-500 transition-colors"><i class="fa-regular fa-circle text-lg"></i></span></td>
+                    <td class="py-3.5 px-4 font-semibold text-white capitalize text-xs md:text-sm">
+                        mar, 15 sept 
+                        <span class="text-[10px] text-slate-500 block font-normal">2026-09-15</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-semibold text-slate-400 text-xs md:text-sm">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-extrabold text-xs md:text-sm text-slate-600">
+                        0 <span class="text-[10px] font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right text-xs md:text-sm font-semibold text-slate-500">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                </tr><tr class="hover:bg-slate-900/40 transition-colors cursor-pointer">
+                    <td class="py-3.5 px-4 text-center"><span class="text-slate-700 hover:text-amber-500 transition-colors"><i class="fa-regular fa-circle text-lg"></i></span></td>
+                    <td class="py-3.5 px-4 font-semibold text-white capitalize text-xs md:text-sm">
+                        mié, 16 sept 
+                        <span class="text-[10px] text-slate-500 block font-normal">2026-09-16</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-semibold text-slate-400 text-xs md:text-sm">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-extrabold text-xs md:text-sm text-slate-600">
+                        0 <span class="text-[10px] font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right text-xs md:text-sm font-semibold text-slate-500">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                </tr><tr class="hover:bg-slate-900/40 transition-colors cursor-pointer">
+                    <td class="py-3.5 px-4 text-center"><span class="text-slate-700 hover:text-amber-500 transition-colors"><i class="fa-regular fa-circle text-lg"></i></span></td>
+                    <td class="py-3.5 px-4 font-semibold text-white capitalize text-xs md:text-sm">
+                        jue, 17 sept 
+                        <span class="text-[10px] text-slate-500 block font-normal">2026-09-17</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-semibold text-slate-400 text-xs md:text-sm">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-extrabold text-xs md:text-sm text-slate-600">
+                        0 <span class="text-[10px] font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right text-xs md:text-sm font-semibold text-slate-500">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                </tr><tr class="hover:bg-slate-900/40 transition-colors cursor-pointer">
+                    <td class="py-3.5 px-4 text-center"><span class="text-slate-700 hover:text-amber-500 transition-colors"><i class="fa-regular fa-circle text-lg"></i></span></td>
+                    <td class="py-3.5 px-4 font-semibold text-white capitalize text-xs md:text-sm">
+                        vie, 18 sept 
+                        <span class="text-[10px] text-slate-500 block font-normal">2026-09-18</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-semibold text-slate-400 text-xs md:text-sm">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-extrabold text-xs md:text-sm text-slate-600">
+                        0 <span class="text-[10px] font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right text-xs md:text-sm font-semibold text-slate-500">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                </tr><tr class="hover:bg-slate-900/40 transition-colors cursor-pointer">
+                    <td class="py-3.5 px-4 text-center"><span class="text-slate-700 hover:text-amber-500 transition-colors"><i class="fa-regular fa-circle text-lg"></i></span></td>
+                    <td class="py-3.5 px-4 font-semibold text-white capitalize text-xs md:text-sm">
+                        sáb, 19 sept 
+                        <span class="text-[10px] text-slate-500 block font-normal">2026-09-19</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-semibold text-slate-400 text-xs md:text-sm">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-extrabold text-xs md:text-sm text-slate-600">
+                        0 <span class="text-[10px] font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right text-xs md:text-sm font-semibold text-slate-500">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                </tr><tr class="hover:bg-slate-900/40 transition-colors cursor-pointer">
+                    <td class="py-3.5 px-4 text-center"><span class="text-slate-700 hover:text-amber-500 transition-colors"><i class="fa-regular fa-circle text-lg"></i></span></td>
+                    <td class="py-3.5 px-4 font-semibold text-white capitalize text-xs md:text-sm">
+                        dom, 20 sept 
+                        <span class="text-[10px] text-slate-500 block font-normal">2026-09-20</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-semibold text-slate-400 text-xs md:text-sm">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-extrabold text-xs md:text-sm text-slate-600">
+                        0 <span class="text-[10px] font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right text-xs md:text-sm font-semibold text-slate-500">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                </tr><tr class="hover:bg-slate-900/40 transition-colors cursor-pointer">
+                    <td class="py-3.5 px-4 text-center"><span class="text-slate-700 hover:text-amber-500 transition-colors"><i class="fa-regular fa-circle text-lg"></i></span></td>
+                    <td class="py-3.5 px-4 font-semibold text-white capitalize text-xs md:text-sm">
+                        lun, 21 sept 
+                        <span class="text-[10px] text-slate-500 block font-normal">2026-09-21</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-semibold text-slate-400 text-xs md:text-sm">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-extrabold text-xs md:text-sm text-slate-600">
+                        0 <span class="text-[10px] font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right text-xs md:text-sm font-semibold text-slate-500">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                </tr><tr class="hover:bg-slate-900/40 transition-colors cursor-pointer">
+                    <td class="py-3.5 px-4 text-center"><span class="text-slate-700 hover:text-amber-500 transition-colors"><i class="fa-regular fa-circle text-lg"></i></span></td>
+                    <td class="py-3.5 px-4 font-semibold text-white capitalize text-xs md:text-sm">
+                        mar, 22 sept 
+                        <span class="text-[10px] text-slate-500 block font-normal">2026-09-22</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-semibold text-slate-400 text-xs md:text-sm">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-extrabold text-xs md:text-sm text-slate-600">
+                        0 <span class="text-[10px] font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right text-xs md:text-sm font-semibold text-slate-500">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                </tr><tr class="hover:bg-slate-900/40 transition-colors cursor-pointer">
+                    <td class="py-3.5 px-4 text-center"><span class="text-slate-700 hover:text-amber-500 transition-colors"><i class="fa-regular fa-circle text-lg"></i></span></td>
+                    <td class="py-3.5 px-4 font-semibold text-white capitalize text-xs md:text-sm">
+                        mié, 23 sept 
+                        <span class="text-[10px] text-slate-500 block font-normal">2026-09-23</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-semibold text-slate-400 text-xs md:text-sm">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-extrabold text-xs md:text-sm text-slate-600">
+                        0 <span class="text-[10px] font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right text-xs md:text-sm font-semibold text-slate-500">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                </tr><tr class="hover:bg-slate-900/40 transition-colors cursor-pointer">
+                    <td class="py-3.5 px-4 text-center"><span class="text-slate-700 hover:text-amber-500 transition-colors"><i class="fa-regular fa-circle text-lg"></i></span></td>
+                    <td class="py-3.5 px-4 font-semibold text-white capitalize text-xs md:text-sm">
+                        jue, 24 sept 
+                        <span class="text-[10px] text-slate-500 block font-normal">2026-09-24</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-semibold text-slate-400 text-xs md:text-sm">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-extrabold text-xs md:text-sm text-slate-600">
+                        0 <span class="text-[10px] font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right text-xs md:text-sm font-semibold text-slate-500">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                </tr><tr class="hover:bg-slate-900/40 transition-colors cursor-pointer">
+                    <td class="py-3.5 px-4 text-center"><span class="text-slate-700 hover:text-amber-500 transition-colors"><i class="fa-regular fa-circle text-lg"></i></span></td>
+                    <td class="py-3.5 px-4 font-semibold text-white capitalize text-xs md:text-sm">
+                        vie, 25 sept 
+                        <span class="text-[10px] text-slate-500 block font-normal">2026-09-25</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-semibold text-slate-400 text-xs md:text-sm">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-extrabold text-xs md:text-sm text-slate-600">
+                        0 <span class="text-[10px] font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right text-xs md:text-sm font-semibold text-slate-500">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                </tr><tr class="hover:bg-slate-900/40 transition-colors cursor-pointer">
+                    <td class="py-3.5 px-4 text-center"><span class="text-slate-700 hover:text-amber-500 transition-colors"><i class="fa-regular fa-circle text-lg"></i></span></td>
+                    <td class="py-3.5 px-4 font-semibold text-white capitalize text-xs md:text-sm">
+                        sáb, 26 sept 
+                        <span class="text-[10px] text-slate-500 block font-normal">2026-09-26</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-semibold text-slate-400 text-xs md:text-sm">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-extrabold text-xs md:text-sm text-slate-600">
+                        0 <span class="text-[10px] font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right text-xs md:text-sm font-semibold text-slate-500">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                </tr><tr class="hover:bg-slate-900/40 transition-colors cursor-pointer">
+                    <td class="py-3.5 px-4 text-center"><span class="text-slate-700 hover:text-amber-500 transition-colors"><i class="fa-regular fa-circle text-lg"></i></span></td>
+                    <td class="py-3.5 px-4 font-semibold text-white capitalize text-xs md:text-sm">
+                        dom, 27 sept 
+                        <span class="text-[10px] text-slate-500 block font-normal">2026-09-27</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-semibold text-slate-400 text-xs md:text-sm">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-extrabold text-xs md:text-sm text-slate-600">
+                        0 <span class="text-[10px] font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right text-xs md:text-sm font-semibold text-slate-500">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                </tr><tr class="hover:bg-slate-900/40 transition-colors cursor-pointer">
+                    <td class="py-3.5 px-4 text-center"><span class="text-slate-700 hover:text-amber-500 transition-colors"><i class="fa-regular fa-circle text-lg"></i></span></td>
+                    <td class="py-3.5 px-4 font-semibold text-white capitalize text-xs md:text-sm">
+                        lun, 28 sept 
+                        <span class="text-[10px] text-slate-500 block font-normal">2026-09-28</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-semibold text-slate-400 text-xs md:text-sm">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-extrabold text-xs md:text-sm text-slate-600">
+                        0 <span class="text-[10px] font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right text-xs md:text-sm font-semibold text-slate-500">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                </tr><tr class="hover:bg-slate-900/40 transition-colors cursor-pointer">
+                    <td class="py-3.5 px-4 text-center"><span class="text-slate-700 hover:text-amber-500 transition-colors"><i class="fa-regular fa-circle text-lg"></i></span></td>
+                    <td class="py-3.5 px-4 font-semibold text-white capitalize text-xs md:text-sm">
+                        mar, 29 sept 
+                        <span class="text-[10px] text-slate-500 block font-normal">2026-09-29</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-semibold text-slate-400 text-xs md:text-sm">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-extrabold text-xs md:text-sm text-slate-600">
+                        0 <span class="text-[10px] font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right text-xs md:text-sm font-semibold text-slate-500">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                </tr><tr class="hover:bg-slate-900/40 transition-colors cursor-pointer">
+                    <td class="py-3.5 px-4 text-center"><span class="text-slate-700 hover:text-amber-500 transition-colors"><i class="fa-regular fa-circle text-lg"></i></span></td>
+                    <td class="py-3.5 px-4 font-semibold text-white capitalize text-xs md:text-sm">
+                        mié, 30 sept 
+                        <span class="text-[10px] text-slate-500 block font-normal">2026-09-30</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-semibold text-slate-400 text-xs md:text-sm">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-extrabold text-xs md:text-sm text-slate-600">
+                        0 <span class="text-[10px] font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right text-xs md:text-sm font-semibold text-slate-500">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                </tr><tr class="hover:bg-slate-900/40 transition-colors cursor-pointer">
+                    <td class="py-3.5 px-4 text-center"><span class="text-slate-700 hover:text-amber-500 transition-colors"><i class="fa-regular fa-circle text-lg"></i></span></td>
+                    <td class="py-3.5 px-4 font-semibold text-white capitalize text-xs md:text-sm">
+                        jue, 1 oct 
+                        <span class="text-[10px] text-slate-500 block font-normal">2026-10-01</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-semibold text-slate-400 text-xs md:text-sm">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-extrabold text-xs md:text-sm text-slate-600">
+                        0 <span class="text-[10px] font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right text-xs md:text-sm font-semibold text-slate-500">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                </tr><tr class="hover:bg-slate-900/40 transition-colors cursor-pointer">
+                    <td class="py-3.5 px-4 text-center"><span class="text-slate-700 hover:text-amber-500 transition-colors"><i class="fa-regular fa-circle text-lg"></i></span></td>
+                    <td class="py-3.5 px-4 font-semibold text-white capitalize text-xs md:text-sm">
+                        vie, 2 oct 
+                        <span class="text-[10px] text-slate-500 block font-normal">2026-10-02</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-semibold text-slate-400 text-xs md:text-sm">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-extrabold text-xs md:text-sm text-slate-600">
+                        0 <span class="text-[10px] font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right text-xs md:text-sm font-semibold text-slate-500">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                </tr><tr class="hover:bg-slate-900/40 transition-colors cursor-pointer">
+                    <td class="py-3.5 px-4 text-center"><span class="text-slate-700 hover:text-amber-500 transition-colors"><i class="fa-regular fa-circle text-lg"></i></span></td>
+                    <td class="py-3.5 px-4 font-semibold text-white capitalize text-xs md:text-sm">
+                        sáb, 3 oct 
+                        <span class="text-[10px] text-slate-500 block font-normal">2026-10-03</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-semibold text-slate-400 text-xs md:text-sm">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-extrabold text-xs md:text-sm text-slate-600">
+                        0 <span class="text-[10px] font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right text-xs md:text-sm font-semibold text-slate-500">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                </tr><tr class="hover:bg-slate-900/40 transition-colors cursor-pointer">
+                    <td class="py-3.5 px-4 text-center"><span class="text-slate-700 hover:text-amber-500 transition-colors"><i class="fa-regular fa-circle text-lg"></i></span></td>
+                    <td class="py-3.5 px-4 font-semibold text-white capitalize text-xs md:text-sm">
+                        dom, 4 oct 
+                        <span class="text-[10px] text-slate-500 block font-normal">2026-10-04</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-semibold text-slate-400 text-xs md:text-sm">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-extrabold text-xs md:text-sm text-slate-600">
+                        0 <span class="text-[10px] font-bold">G</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right text-xs md:text-sm font-semibold text-slate-500">
+                        220.857 <span class="text-[10px] text-slate-600 font-bold">G</span>
+                    </td>
+                </tr></tbody>
                             </table>
                         </div>
                     </div>
 
                     <!-- SECCIÓN AVANZADA: HISTORIAL, GRÁFICO DE RENDIMIENTO Y SIMULACIÓN PROYECTADA (MEJORADA) -->
-                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl animate-soft space-y-6">
-                        <div>
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl animate-soft space-y-6" bis_skin_checked="1">
+                        <div bis_skin_checked="1">
                             <h3 class="text-lg font-bold text-white flex items-center gap-2">
                                 <i class="fa-solid fa-chart-line text-amber-500"></i> Inteligencia de Rendimiento y Análisis de Farmeo
                             </h3>
                             <p class="text-xs text-slate-400">Análisis detallado del ritmo de juego en base a tus registros diarios guardados en caché.</p>
                         </div>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
-                            <div class="bg-slate-950 border border-slate-800/80 p-3.5 rounded-xl stat-card">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3" bis_skin_checked="1">
+                            <div class="bg-slate-950 border border-slate-800/80 p-3.5 rounded-xl stat-card" bis_skin_checked="1">
                                 <span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Mejor Día</span>
-                                <div class="mt-1.5">
-                                    <div class="flex items-baseline gap-1">
-                                        <span id="stats-best-day-gold" class="text-base md:text-lg font-extrabold text-emerald-400">0</span>
+                                <div class="mt-1.5" bis_skin_checked="1">
+                                    <div class="flex items-baseline gap-1" bis_skin_checked="1">
+                                        <span id="stats-best-day-gold" class="text-base md:text-lg font-extrabold text-emerald-400">66.000</span>
                                         <span class="text-[9px] text-emerald-500 font-bold">G</span>
                                     </div>
-                                    <span id="stats-best-day-date" class="text-[9px] text-slate-500 block">--/--</span>
+                                    <span id="stats-best-day-date" class="text-[9px] text-slate-500 block">6 sept</span>
                                 </div>
                             </div>
-                            <div class="bg-slate-950 border border-slate-800/80 p-3.5 rounded-xl stat-card">
+                            <div class="bg-slate-950 border border-slate-800/80 p-3.5 rounded-xl stat-card" bis_skin_checked="1">
                                 <span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Promedio Real</span>
-                                <div class="mt-1.5">
-                                    <div class="flex items-baseline gap-1">
-                                        <span id="stats-avg-day-gold" class="text-base md:text-lg font-extrabold text-amber-400">0</span>
+                                <div class="mt-1.5" bis_skin_checked="1">
+                                    <div class="flex items-baseline gap-1" bis_skin_checked="1">
+                                        <span id="stats-avg-day-gold" class="text-base md:text-lg font-extrabold text-amber-400">66.000</span>
                                         <span class="text-[9px] text-amber-500 font-bold">G/día</span>
                                     </div>
-                                    <span id="stats-completed-days-count" class="text-[9px] text-slate-500 block">0 días registrados</span>
+                                    <span id="stats-completed-days-count" class="text-[9px] text-slate-500 block">1 días registrados de 29</span>
                                 </div>
                             </div>
-                            <div class="bg-slate-950 border border-slate-800/80 p-3.5 rounded-xl stat-card">
+                            <div class="bg-slate-950 border border-slate-800/80 p-3.5 rounded-xl stat-card" bis_skin_checked="1">
                                 <span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Consistencia</span>
-                                <div class="mt-1.5">
-                                    <div class="flex items-baseline gap-1">
-                                        <span id="stats-consistency-percent" class="text-base md:text-lg font-extrabold text-indigo-400">0%</span>
+                                <div class="mt-1.5" bis_skin_checked="1">
+                                    <div class="flex items-baseline gap-1" bis_skin_checked="1">
+                                        <span id="stats-consistency-percent" class="text-base md:text-lg font-extrabold text-indigo-400">32%</span>
                                     </div>
-                                    <span id="stats-consistency-status" class="text-[9px] text-slate-500 block">Sin datos suficientes</span>
+                                    <span id="stats-consistency-status" class="text-[9px] text-rose-400 block font-semibold"><i class="fa-solid fa-circle-exclamation"></i> Inestable</span>
                                 </div>
                             </div>
-                            <div class="bg-slate-950 border border-slate-800/80 p-3.5 rounded-xl stat-card">
+                            <div class="bg-slate-950 border border-slate-800/80 p-3.5 rounded-xl stat-card" bis_skin_checked="1">
                                 <span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Eficiencia</span>
-                                <div class="mt-1.5">
-                                    <div class="flex items-baseline gap-1">
+                                <div class="mt-1.5" bis_skin_checked="1">
+                                    <div class="flex items-baseline gap-1" bis_skin_checked="1">
                                         <span id="stats-efficiency-percent" class="text-base md:text-lg font-extrabold text-emerald-400">0%</span>
                                     </div>
-                                    <span id="stats-efficiency-status" class="text-[9px] text-slate-500 block">Evaluando...</span>
+                                    <span id="stats-efficiency-status" class="text-[9px] text-rose-400 block font-semibold">Baja eficiencia</span>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="bg-slate-950/60 border border-slate-800/80 rounded-xl p-4">
+                        <div class="bg-slate-950/60 border border-slate-800/80 rounded-xl p-4" bis_skin_checked="1">
                             <h4 class="text-xs font-bold text-slate-300 flex items-center gap-1.5 uppercase tracking-wider mb-3">
                                 <i class="fa-solid fa-gauge-high text-amber-500"></i> Análisis de Ritmo de Farmeo
                             </h4>
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-                                <div class="bg-slate-950/40 rounded-lg p-3 border border-slate-800/60">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs" bis_skin_checked="1">
+                                <div class="bg-slate-950/40 rounded-lg p-3 border border-slate-800/60" bis_skin_checked="1">
                                     <span class="text-slate-400 block text-[10px]">Tendencia General</span>
-                                    <span id="analysis-trend" class="text-amber-400 font-bold text-sm block mt-1">⏳ Sin datos</span>
-                                    <span id="analysis-trend-detail" class="text-[10px] text-slate-500">Registra tu progreso diario</span>
+                                    <span id="analysis-trend" class="text-slate-400 font-bold text-sm block mt-1">⏳ Evaluando</span>
+                                    <span id="analysis-trend-detail" class="text-[10px] text-slate-500">Mínimo 3 días para análisis</span>
                                 </div>
-                                <div class="bg-slate-950/40 rounded-lg p-3 border border-slate-800/60">
+                                <div class="bg-slate-950/40 rounded-lg p-3 border border-slate-800/60" bis_skin_checked="1">
                                     <span class="text-slate-400 block text-[10px]">Desviación Estándar</span>
                                     <span id="analysis-std-dev" class="text-white font-bold text-sm block mt-1">--</span>
-                                    <span id="analysis-std-detail" class="text-[10px] text-slate-500">Sin registros de farmeo</span>
+                                    <span id="analysis-std-detail" class="text-[10px] text-slate-500">Se necesitan más registros</span>
                                 </div>
-                                <div class="bg-slate-950/40 rounded-lg p-3 border border-slate-800/60">
+                                <div class="bg-slate-950/40 rounded-lg p-3 border border-slate-800/60" bis_skin_checked="1">
                                     <span class="text-slate-400 block text-[10px]">Proyección al Objetivo</span>
-                                    <span id="analysis-projection-days" class="text-emerald-400 font-bold text-sm block mt-1">-- días</span>
-                                    <span id="analysis-projection-detail" class="text-[10px] text-slate-500">Al ritmo actual</span>
+                                    <span id="analysis-projection-days" class="text-emerald-400 font-bold text-sm block mt-1">94 días</span>
+                                    <span id="analysis-projection-detail" class="text-[10px] text-slate-500">Al ritmo actual de 66.000 G/día</span>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="bg-slate-950/60 border border-slate-800/80 rounded-xl p-4 space-y-4">
-                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                        <div class="bg-slate-950/60 border border-slate-800/80 rounded-xl p-4 space-y-4" bis_skin_checked="1">
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4" bis_skin_checked="1">
                                 <h4 class="text-xs font-bold text-slate-300 flex items-center gap-1.5 uppercase tracking-wider">
                                     <i class="fa-solid fa-cubes-stacked text-amber-500"></i> Gráfica de Avance Acumulado (Real vs Teórico)
                                 </h4>
                                 
-                                <div class="flex items-center gap-2 bg-slate-900 border border-slate-800 rounded-xl px-2.5 py-1.5 shadow-md">
+                                <div class="flex items-center gap-2 bg-slate-900 border border-slate-800 rounded-xl px-2.5 py-1.5 shadow-md" bis_skin_checked="1">
                                     <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider select-none">Escala:</span>
                                     <button type="button" id="btn-zoom-out" class="text-slate-400 hover:text-amber-400 active:scale-95 px-2 py-0.5 bg-slate-950 hover:bg-slate-800 border border-slate-800 rounded-lg text-xs transition-all cursor-pointer">
                                         <i class="fa-solid fa-minus"></i>
@@ -1048,59 +1700,79 @@
                                 </div>
                             </div>
                             
-                            <div class="w-full relative h-48 md:h-64 bg-slate-950/40 rounded-lg overflow-x-auto overflow-y-hidden border border-slate-900 scroll-smooth" id="chart-container"></div>
+                            <div class="w-full relative h-48 md:h-64 bg-slate-950/40 rounded-lg overflow-x-auto overflow-y-hidden border border-slate-900 scroll-smooth" id="chart-container" bis_skin_checked="1"><svg width="704" height="100%" viewBox="0 0 704 220" xmlns="http://www.w3.org/2000/svg" class="font-sans min-w-full">
+                <defs>
+                    <linearGradient id="chartBg" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#0f172a" stop-opacity="0.3"></stop>
+                        <stop offset="100%" stop-color="#0f172a" stop-opacity="0"></stop>
+                    </linearGradient>
+                    <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#10b981" stop-opacity="0.25"></stop>
+                        <stop offset="100%" stop-color="#10b981" stop-opacity="0"></stop>
+                    </linearGradient>
+                </defs>
+                <rect x="0" y="0" width="704" height="220" fill="url(#chartBg)"></rect>
+            <line x1="45" y1="175" x2="659" y2="175" stroke="#334155" stroke-width="0.8" stroke-dasharray="4,4" opacity="0.3"></line><text x="37" y="178" fill="#64748b" font-size="7.5" text-anchor="end" font-weight="600">0</text><line x1="45" y1="153.5" x2="659" y2="153.5" stroke="#334155" stroke-width="0.8" stroke-dasharray="4,4" opacity="0.15"></line><text x="37" y="156.5" fill="#64748b" font-size="7.5" text-anchor="end" font-weight="600">1.437.500</text><line x1="45" y1="132" x2="659" y2="132" stroke="#334155" stroke-width="0.8" stroke-dasharray="4,4" opacity="0.15"></line><text x="37" y="135" fill="#64748b" font-size="7.5" text-anchor="end" font-weight="600">2.875.000</text><line x1="45" y1="110.5" x2="659" y2="110.5" stroke="#334155" stroke-width="0.8" stroke-dasharray="4,4" opacity="0.15"></line><text x="37" y="113.5" fill="#64748b" font-size="7.5" text-anchor="end" font-weight="600">4.312.500</text><line x1="45" y1="88.99999999999999" x2="659" y2="88.99999999999999" stroke="#334155" stroke-width="0.8" stroke-dasharray="4,4" opacity="0.15"></line><text x="37" y="91.99999999999999" fill="#64748b" font-size="7.5" text-anchor="end" font-weight="600">5.750.000</text><line x1="45" y1="67.5" x2="659" y2="67.5" stroke="#334155" stroke-width="0.8" stroke-dasharray="4,4" opacity="0.3"></line><text x="37" y="70.5" fill="#64748b" font-size="7.5" text-anchor="end" font-weight="600">7.187.500</text><path d="M 45 171.7766153043478 L 66.92857142857143 168.55323060869566 L 88.85714285714286 165.32984591304347 L 110.78571428571428 162.1064612173913 L 132.71428571428572 158.88307652173913 L 154.64285714285714 155.65969182608694 L 176.57142857142856 152.43630713043478 L 198.5 149.2129224347826 L 220.42857142857142 145.98953773913044 L 242.35714285714286 142.76615304347825 L 264.2857142857143 139.5427683478261 L 286.2142857142857 136.3193836521739 L 308.1428571428571 133.09599895652173 L 330.07142857142856 129.87261426086957 L 352 126.64922956521738 L 373.92857142857144 123.42584486956521 L 395.85714285714283 120.20246017391304 L 417.7857142857143 116.97907547826085 L 439.7142857142857 113.7556907826087 L 461.64285714285717 110.53230608695651 L 483.57142857142856 107.30892139130434 L 505.5 104.08553669565217 L 527.4285714285714 100.862152 L 549.3571428571429 97.63876730434782 L 571.2857142857142 94.41538260869565 L 593.2142857142858 91.19199791304347 L 615.1428571428571 87.9686132173913 L 637.0714285714286 84.74522852173912 L 659 81.52184382608694" fill="none" stroke="#eab308" stroke-width="2.5" stroke-linecap="round" opacity="0.5" class="chart-line"></path><line x1="45" y1="171.7766153043478" x2="659" y2="171.7766153043478" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.4"></line><text x="654" y="167.7766153043478" fill="#3b82f6" font-size="7" text-anchor="end" opacity="0.6">Meta Diaria</text><text x="45" y="210" fill="#64748b" font-size="7.5" text-anchor="middle" font-weight="500">6 sept</text><text x="154.64285714285714" y="210" fill="#64748b" font-size="7.5" text-anchor="middle" font-weight="500">11 sept</text><text x="264.2857142857143" y="210" fill="#64748b" font-size="7.5" text-anchor="middle" font-weight="500">16 sept</text><text x="373.92857142857144" y="210" fill="#64748b" font-size="7.5" text-anchor="middle" font-weight="500">21 sept</text><text x="483.57142857142856" y="210" fill="#64748b" font-size="7.5" text-anchor="middle" font-weight="500">26 sept</text><text x="593.2142857142858" y="210" fill="#64748b" font-size="7.5" text-anchor="middle" font-weight="500">1 oct</text><text x="659" y="210" fill="#64748b" font-size="7.5" text-anchor="middle" font-weight="500">4 oct</text>
+                <rect x="539" y="50" width="150" height="58" rx="6" fill="#080d1a" fill-opacity="0.9" stroke="#162238" stroke-width="0.8"></rect>
+                <circle cx="549" cy="65" r="4" fill="#eab308" opacity="0.7"></circle>
+                <text x="559" y="69" fill="#94a3b8" font-size="7.5">Objetivo Teórico</text>
+                <circle cx="549" cy="82" r="4" fill="#10b981"></circle>
+                <text x="559" y="86" fill="#94a3b8" font-size="7.5">Progreso Real</text>
+                <line x1="549" y1="98" x2="557" y2="98" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"></line>
+                <text x="559" y="102" fill="#94a3b8" font-size="7.5">Meta Diaria Ideal</text>
+            </svg></div>
                             
-                            <div class="flex justify-center gap-6 text-[10px] md:text-xs select-none">
-                                <div class="flex items-center gap-1.5">
+                            <div class="flex justify-center gap-6 text-[10px] md:text-xs select-none" bis_skin_checked="1">
+                                <div class="flex items-center gap-1.5" bis_skin_checked="1">
                                     <span class="w-3 h-1 bg-amber-500 inline-block rounded"></span>
                                     <span class="text-slate-400">Objetivo Teórico</span>
                                 </div>
-                                <div class="flex items-center gap-1.5">
+                                <div class="flex items-center gap-1.5" bis_skin_checked="1">
                                     <span class="w-3 h-1 bg-emerald-500 inline-block rounded"></span>
                                     <span class="text-slate-400">Progreso Real Acumulado</span>
                                 </div>
-                                <div class="flex items-center gap-1.5">
+                                <div class="flex items-center gap-1.5" bis_skin_checked="1">
                                     <span class="w-3 h-1 bg-blue-500 inline-block rounded"></span>
                                     <span class="text-slate-400">Meta Diaria Ideal</span>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="border-t border-slate-800/80 pt-4">
+                        <div class="border-t border-slate-800/80 pt-4" bis_skin_checked="1">
                             <h4 class="text-xs font-bold text-amber-400 flex items-center gap-1.5 uppercase tracking-wider mb-3">
                                 <i class="fa-solid fa-wand-magic-sparkles"></i> Simulación Proyectada (Próximos 2 Días)
                             </h4>
                             <p class="text-xs text-slate-400 mb-4">
                                 Proyección de racha a corto plazo basada en tu rendimiento reciente.
                             </p>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div class="bg-slate-950/80 border border-slate-800/80 rounded-xl p-3.5 space-y-2">
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-xs font-bold text-slate-300" id="projection-day1-label">Mañana (--/--) </span>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" bis_skin_checked="1">
+                                <div class="bg-slate-950/80 border border-slate-800/80 rounded-xl p-3.5 space-y-2" bis_skin_checked="1">
+                                    <div class="flex justify-between items-center" bis_skin_checked="1">
+                                        <span class="text-xs font-bold text-slate-300" id="projection-day1-label">Mañana (8 sept)</span>
                                         <span class="px-2 py-0.5 text-[9px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded">Racha Reciente</span>
                                     </div>
-                                    <div class="flex justify-between items-baseline pt-1">
+                                    <div class="flex justify-between items-baseline pt-1" bis_skin_checked="1">
                                         <span class="text-[11px] text-slate-400">Oro Acumulado Esperado:</span>
-                                        <span id="projection-day1-gold" class="text-sm font-extrabold text-white">0 G</span>
+                                        <span id="projection-day1-gold" class="text-sm font-extrabold text-white">132.000 G</span>
                                     </div>
-                                    <div class="flex justify-between items-baseline border-t border-slate-900/60 pt-1 text-[11px]">
+                                    <div class="flex justify-between items-baseline border-t border-slate-900/60 pt-1 text-[11px]" bis_skin_checked="1">
                                         <span class="text-slate-500">Valor USD Estimado:</span>
-                                        <span id="projection-day1-usd" class="text-emerald-400 font-semibold">$0,00</span>
+                                        <span id="projection-day1-usd" class="text-emerald-400 font-semibold">$5,28</span>
                                     </div>
                                 </div>
 
-                                <div class="bg-slate-950/80 border border-slate-800/80 rounded-xl p-3.5 space-y-2">
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-xs font-bold text-slate-300" id="projection-day2-label">Pasado Mañana (--/--) </span>
+                                <div class="bg-slate-950/80 border border-slate-800/80 rounded-xl p-3.5 space-y-2" bis_skin_checked="1">
+                                    <div class="flex justify-between items-center" bis_skin_checked="1">
+                                        <span class="text-xs font-bold text-slate-300" id="projection-day2-label">Pasado Mañana (9 sept)</span>
                                         <span class="px-2 py-0.5 text-[9px] font-bold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 rounded">Racha Reciente</span>
                                     </div>
-                                    <div class="flex justify-between items-baseline pt-1">
+                                    <div class="flex justify-between items-baseline pt-1" bis_skin_checked="1">
                                         <span class="text-[11px] text-slate-400">Oro Acumulado Esperado:</span>
-                                        <span id="projection-day2-gold" class="text-sm font-extrabold text-white">0 G</span>
+                                        <span id="projection-day2-gold" class="text-sm font-extrabold text-white">198.000 G</span>
                                     </div>
-                                    <div class="flex justify-between items-baseline border-t border-slate-900/60 pt-1 text-[11px]">
+                                    <div class="flex justify-between items-baseline border-t border-slate-900/60 pt-1 text-[11px]" bis_skin_checked="1">
                                         <span class="text-slate-500">Valor USD Estimado:</span>
-                                        <span id="projection-day2-usd" class="text-emerald-400 font-semibold">$0,00</span>
+                                        <span id="projection-day2-usd" class="text-emerald-400 font-semibold">$7,92</span>
                                     </div>
                                 </div>
                             </div>
@@ -1114,9 +1786,9 @@
 
         </div>
 
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 gold-glow animate-soft w-full">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-                <div class="space-y-1.5 text-center md:text-left">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 gold-glow animate-soft w-full" bis_skin_checked="1">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6" bis_skin_checked="1">
+                <div class="space-y-1.5 text-center md:text-left" bis_skin_checked="1">
                     <span class="px-2.5 py-1 text-[10px] font-extrabold uppercase text-amber-400 bg-amber-500/10 border border-amber-500/20 rounded-md tracking-wider">
                         Listo para Hospedar en GitHub Pages
                     </span>
@@ -1134,41 +1806,41 @@
             </div>
         </div>
 
-        <div id="day-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm transition-all duration-300">
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-md overflow-hidden shadow-2xl scale-95 opacity-0 transition-all duration-300" id="day-modal-box">
-                <div class="bg-slate-950 p-4 border-b border-slate-800 flex justify-between items-center">
+        <div id="day-modal" class="fixed inset-0 z-50 items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm transition-all duration-300 hidden" bis_skin_checked="1">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-md overflow-hidden shadow-2xl transition-all duration-300 scale-95 opacity-0" id="day-modal-box" bis_skin_checked="1">
+                <div class="bg-slate-950 p-4 border-b border-slate-800 flex justify-between items-center" bis_skin_checked="1">
                     <h4 class="font-bold text-white flex items-center gap-2 text-sm md:text-base">
-                        <i class="fa-solid fa-edit text-amber-500"></i> Registrar Día: <span id="modal-date-display" class="text-amber-400">--</span>
+                        <i class="fa-solid fa-edit text-amber-500"></i> Registrar Día: <span id="modal-date-display" class="text-amber-400">7 de septiembre de 2026</span>
                     </h4>
                     <button id="close-modal-btn" class="text-slate-400 hover:text-white transition-all text-xl">×</button>
                 </div>
-                <div class="p-6 space-y-4 text-xs md:text-sm">
+                <div class="p-6 space-y-4 text-xs md:text-sm" bis_skin_checked="1">
                     <p class="text-xs text-slate-400 leading-relaxed">
                         Ingresa la cantidad exacta de oro que lograste recolectar hoy. Si marcas el día como completado, el planificador reajustará automáticamente las metas diarias de los días restantes.
                     </p>
 
-                    <div>
+                    <div bis_skin_checked="1">
                         <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Meta sugerida para este día</label>
-                        <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 flex justify-between items-center text-sm">
+                        <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 flex justify-between items-center text-sm" bis_skin_checked="1">
                             <span class="text-slate-500 font-medium">Recomendado</span>
-                            <span class="text-white font-bold" id="modal-suggested-gold">0 G</span>
+                            <span class="text-white font-bold" id="modal-suggested-gold">220.857 G</span>
                         </div>
                     </div>
 
-                    <div>
+                    <div bis_skin_checked="1">
                         <label for="modal-input-gold" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Oro Real Recolectado</label>
-                        <div class="relative">
+                        <div class="relative" bis_skin_checked="1">
                             <span class="absolute left-3 top-1/2 -translate-y-1/2 text-amber-500 font-bold text-sm">G</span>
                             <input type="number" id="modal-input-gold" min="0" placeholder="Ej. 120000" class="w-full bg-slate-950 border border-slate-800 rounded-xl py-3 pl-8 pr-4 text-white placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-amber-500 focus:border-amber-500 transition-all font-semibold">
                         </div>
                     </div>
 
-                    <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-2" bis_skin_checked="1">
                         <input type="checkbox" id="modal-check-completed" class="w-4 h-4 rounded text-amber-500 bg-slate-950 border-slate-800 focus:ring-amber-500/50 cursor-pointer">
                         <label for="modal-check-completed" class="text-xs font-medium text-slate-300 cursor-pointer select-none">Marcar día como totalmente completado</label>
                     </div>
                 </div>
-                <div class="bg-slate-950 p-4 border-t border-slate-800 flex justify-end gap-2 text-xs">
+                <div class="bg-slate-950 p-4 border-t border-slate-800 flex justify-end gap-2 text-xs" bis_skin_checked="1">
                     <button id="modal-btn-cancel" class="px-4 py-2 bg-slate-900 text-slate-400 hover:text-white border border-slate-800 rounded-xl font-semibold transition-all">
                         Cancelar
                     </button>
@@ -1182,10 +1854,10 @@
     </main>
 
     <footer class="border-t border-slate-900 bg-slate-950/60 py-6 px-4">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
-            <div class="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left w-full md:w-auto">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500" bis_skin_checked="1">
+            <div class="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left w-full md:w-auto" bis_skin_checked="1">
                 <p>© 2026 GoldQuest Planner. Herramienta premium para MMORPGs.</p>
-                <div class="flex items-center gap-2 bg-slate-900 border border-slate-800 rounded-lg px-3 py-1.5 text-slate-300 shadow-inner">
+                <div class="flex items-center gap-2 bg-slate-900 border border-slate-800 rounded-lg px-3 py-1.5 text-slate-300 shadow-inner" bis_skin_checked="1">
                     <label for="font-select" class="text-[10px] font-extrabold uppercase tracking-wider text-amber-500 flex items-center gap-1 select-none">
                         <i class="fa-solid fa-font text-[9px]"></i> Fuente:
                     </label>
@@ -1198,7 +1870,7 @@
                     </select>
                 </div>
             </div>
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-3" bis_skin_checked="1">
                 <span class="text-[10px] uppercase font-bold text-amber-500 bg-amber-500/10 border border-amber-500/20 px-2.5 py-1 rounded">Previsión de Almacenamiento Segura</span>
                 <span class="text-slate-400">¡Que tu bolsa se mantenga llena!</span>
             </div>
@@ -3272,6 +3944,206 @@
                 setTimeout(() => toast.remove(), 300);
             }, 4000);
         }
+    </script>
+<!-- ========================================== -->
+    <!-- BOTÓN FLOTANTE Y MODAL DE DE SINCRO QR     -->
+    <!-- ========================================== -->
+
+    <!-- Botón Flotante Dinámico -->
+    <button id="qr-floating-btn" class="fixed bottom-5 right-5 z-50 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-slate-950 p-4 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center text-xl font-bold border-2 border-amber-300">
+        <!-- El icono y texto cambian según el dispositivo -->
+    </button>
+
+    <!-- Modal QR PC (Generador) -->
+    <div id="qr-modal-pc" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 max-w-sm w-full text-center space-y-4 shadow-2xl relative">
+            <button id="close-qr-pc" class="absolute top-3 right-3 text-slate-400 hover:text-white text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="text-lg font-bold text-amber-400 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-qrcode"></i> Transferir a Teléfono / Tablet
+            </h3>
+            <p class="text-xs text-slate-400">Escanea este código QR desde la cámara de tu dispositivo móvil para transferir todos tus datos ingresados al instante.</p>
+            <div class="bg-white p-4 rounded-xl inline-block border-2 border-amber-500/50 shadow-lg">
+                <img id="qr-code-img" src="" alt="Código QR de Datos" class="w-48 h-48 mx-auto">
+            </div>
+            <div class="text-[11px] text-emerald-400 font-semibold bg-emerald-500/10 border border-emerald-500/30 rounded-lg py-1.5 px-3">
+                <i class="fa-solid fa-check-circle"></i> Información encriptada y lista para escanear
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal QR Móvil (Escáner de Cámara) -->
+    <div id="qr-modal-mobile" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 max-w-md w-full text-center space-y-4 shadow-2xl relative">
+            <button id="close-qr-mobile" class="absolute top-3 right-3 text-slate-400 hover:text-white text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="text-lg font-bold text-amber-400 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-camera"></i> Escanear Código QR
+            </h3>
+            <p class="text-xs text-slate-400">Apunta tu cámara hacia el código QR generado en tu pantalla de PC.</p>
+
+            <div class="relative w-full aspect-square bg-slate-950 rounded-xl overflow-hidden border-2 border-amber-500/50 flex items-center justify-center">
+                <video id="qr-video" class="w-full h-full object-cover"></video>
+                <canvas id="qr-canvas" class="hidden"></canvas>
+                <!-- Guía visual del lector -->
+                <div class="absolute inset-10 border-2 border-dashed border-amber-400 rounded-lg pointer-events-none opacity-80 animate-pulse"></div>
+            </div>
+
+            <div id="qr-camera-status" class="text-xs text-slate-300 font-medium">
+                Pidiendo permisos de la cámara...
+            </div>
+        </div>
+    </div>
+
+<script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Detección de Dispositivo Móvil / Tablet vs PC
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+
+            // Elementos del DOM
+            const qrBtn = document.getElementById("qr-floating-btn");
+            const modalPc = document.getElementById("qr-modal-pc");
+            const modalMobile = document.getElementById("qr-modal-mobile");
+            const closePc = document.getElementById("close-qr-pc");
+            const closeMobile = document.getElementById("close-qr-mobile");
+            const qrImg = document.getElementById("qr-code-img");
+            const video = document.getElementById("qr-video");
+            const canvas = document.getElementById("qr-canvas");
+            const canvasCtx = canvas.getContext("2d");
+            const cameraStatus = document.getElementById("qr-camera-status");
+
+            let videoStream = null;
+            let animationFrameId = null;
+
+            // Configurar aspecto del botón flotante según el tipo de dispositivo
+            if (isMobile) {
+                qrBtn.innerHTML = `<i class="fa-solid fa-camera"></i><span class="ml-2 text-xs uppercase tracking-wider hidden sm:inline">Escanear PC</span>`;
+                qrBtn.title = "Escanear QR de la PC";
+            } else {
+                qrBtn.innerHTML = `<i class="fa-solid fa-qrcode"></i><span class="ml-2 text-xs uppercase tracking-wider hidden sm:inline">Generar QR</span>`;
+                qrBtn.title = "Generar QR para Móvil";
+            }
+
+            // 2. Extraer solo los datos esenciales (excluyendo fechas y horas)
+            function getEssentialData() {
+                return {
+                    goldTarget: document.getElementById("gold-target")?.value || "",
+                    goldPriceRate: document.getElementById("gold-price-rate")?.value || "",
+                    goldPriceBase: document.getElementById("gold-price-base")?.value || "",
+                    fracBaseVal: document.getElementById("frac-base-val")?.value || "",
+                    fracOperator: document.getElementById("frac-operator")?.value || "sub",
+                    fracPercentage: document.getElementById("frac-percentage")?.value || "",
+                    exRateBcv: document.getElementById("ex-rate-bcv")?.value || "",
+                    exRateCustom: document.getElementById("ex-rate-custom")?.value || "",
+                    goldPerHour: document.getElementById("gold-per-hour")?.value || ""
+                };
+            }
+
+            // Rellenar formulario desde la información leída del QR
+            function applyEssentialData(data) {
+                if (!data) return;
+                
+                const setVal = (id, val) => {
+                    const el = document.getElementById(id);
+                    if (el && val !== undefined) {
+                        el.value = val;
+                        el.dispatchEvent(new Event('input', { bubbles: true }));
+                        el.dispatchEvent(new Event('change', { bubbles: true }));
+                    }
+                };
+
+                setVal("gold-target", data.goldTarget);
+                setVal("gold-price-rate", data.goldPriceRate);
+                setVal("gold-price-base", data.goldPriceBase);
+                setVal("frac-base-val", data.fracBaseVal);
+                setVal("frac-operator", data.fracOperator);
+                setVal("frac-percentage", data.fracPercentage);
+                setVal("ex-rate-bcv", data.exRateBcv);
+                setVal("ex-rate-custom", data.exRateCustom);
+                setVal("gold-per-hour", data.goldPerHour);
+
+                alert("¡Datos sincronizados correctamente desde la versión PC!");
+            }
+
+            // 3. Acción del Botón Flotante
+            qrBtn.addEventListener("click", () => {
+                if (!isMobile) {
+                    // MODO PC: Generar código QR
+                    const rawData = JSON.stringify(getEssentialData());
+                    const encodedData = encodeURIComponent(rawData);
+                    // API Pública segura para imágenes de códigos QR
+                    qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodedData}`;
+                    modalPc.classList.remove("hidden");
+                } else {
+                    // MODO MÓVIL: Iniciar Escáner de Cámara
+                    modalMobile.classList.remove("hidden");
+                    startCamera();
+                }
+            });
+
+            // Cerrar modales PC
+            closePc.addEventListener("click", () => modalPc.classList.add("hidden"));
+
+            // Cerrar modal Móvil y detener cámara
+            closeMobile.addEventListener("click", stopCamera);
+
+            // 4. Lógica de Activación de Cámara y Lectura
+            async function startCamera() {
+                cameraStatus.innerText = "Solicitando permiso de cámara...";
+                try {
+                    videoStream = await navigator.mediaDevices.getUserMedia({
+                        video: { facingMode: "environment" } // Preferir cámara trasera
+                    });
+                    video.srcObject = videoStream;
+                    video.setAttribute("playsinline", true); // Requerido para iOS WebKit
+                    video.play();
+                    cameraStatus.innerText = "Apunta al código QR...";
+                    animationFrameId = requestAnimationFrame(scanQrFrame);
+                } catch (err) {
+                    console.error("Error al acceder a la cámara:", err);
+                    cameraStatus.innerText = "Error: Permiso de cámara denegado o no disponible.";
+                }
+            }
+
+            function stopCamera() {
+                modalMobile.classList.add("hidden");
+                if (videoStream) {
+                    videoStream.getTracks().forEach(track => track.stop());
+                    videoStream = null;
+                }
+                if (animationFrameId) {
+                    cancelAnimationFrame(animationFrameId);
+                }
+            }
+
+            // Escaneo continuo con jsQR
+            function scanQrFrame() {
+                if (video.readyState === video.HAVE_ENOUGH_DATA) {
+                    canvas.height = video.videoHeight;
+                    canvas.width = video.videoWidth;
+                    canvasCtx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                    
+                    const imageData = canvasCtx.getImageData(0, 0, canvas.width, canvas.height);
+                    const code = jsQR(imageData.data, imageData.width, imageData.height, {
+                        inversionAttempts: "dontInvert",
+                    });
+
+                    if (code && code.data) {
+                        try {
+                            const parsedData = JSON.parse(code.data);
+                            stopCamera();
+                            applyEssentialData(parsedData);
+                            return;
+                        } catch (e) {
+                            cameraStatus.innerText = "QR detectado pero sin formato válido.";
+                        }
+                    }
+                }
+                animationFrameId = requestAnimationFrame(scanQrFrame);
+            }
+        });
     </script>
 
 </body>
