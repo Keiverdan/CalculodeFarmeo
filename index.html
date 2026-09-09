@@ -4023,37 +4023,48 @@ function getEssentialData() {
     // Obtener el mapa de días completo desde el AppState
     const daysMap = AppState.daysMap || {};
     
+    // --- COMPRESIÓN DEL MAPA DE DÍAS ---
+    // Convertir el objeto de días a un array compacto: [fecha, oroObtenido, completado]
+    // Formato: [["2026-09-02", 15000, true], ["2026-09-03", 0, false]]
+    const compressedDays = Object.keys(daysMap).map(key => {
+        const day = daysMap[key];
+        return [key, day.actualGold || 0, day.isCompleted || false];
+    });
+    
     return {
         // Datos de la campaña de oro
-        goldTarget: document.getElementById("gold-target")?.value || AppState.targetGold || "",
-        startDate: document.getElementById("start-date")?.value || "",
-        endDate: document.getElementById("end-date")?.value || "",
-        goldPerHour: document.getElementById("gold-per-hour")?.value || AppState.goldPerHour || "",
+        gt: document.getElementById("gold-target")?.value || AppState.targetGold || "",
+        sd: document.getElementById("start-date")?.value || "",
+        ed: document.getElementById("end-date")?.value || "",
+        gph: document.getElementById("gold-per-hour")?.value || AppState.goldPerHour || "",
         
         // Valoración (monetización)
-        goldPriceRate: document.getElementById("gold-price-rate")?.value || AppState.goldPriceRate || "",
-        goldPriceBase: document.getElementById("gold-price-base")?.value || AppState.goldPriceBase || "",
+        gpr: document.getElementById("gold-price-rate")?.value || AppState.goldPriceRate || "",
+        gpb: document.getElementById("gold-price-base")?.value || AppState.goldPriceBase || "",
         
         // Calculadora de porcentajes (Cashea)
-        fracBaseVal: document.getElementById("frac-base-val")?.value || AppState.fracBaseVal || "",
-        fracOperator: document.getElementById("frac-operator")?.value || AppState.fracOperator || "sub",
-        fracPercentage: document.getElementById("frac-percentage")?.value || AppState.fracPercentage || "",
-        fracDivisor: document.getElementById("frac-divisor")?.value || AppState.fracDivisor || 3,
+        fbv: document.getElementById("frac-base-val")?.value || AppState.fracBaseVal || "",
+        fo: document.getElementById("frac-operator")?.value || AppState.fracOperator || "sub",
+        fp: document.getElementById("frac-percentage")?.value || AppState.fracPercentage || "",
+        fd: document.getElementById("frac-divisor")?.value || AppState.fracDivisor || 3,
         
         // Conversor de divisas
-        exRateBcv: document.getElementById("ex-rate-bcv")?.value || AppState.exRateBcv || "",
-        exRateCustom: document.getElementById("ex-rate-custom")?.value || AppState.exRateCustom || "",
+        erb: document.getElementById("ex-rate-bcv")?.value || AppState.exRateBcv || "",
+        erc: document.getElementById("ex-rate-custom")?.value || AppState.exRateCustom || "",
         
         // Suscripción de tiempo de juego
-        subStartDate: document.getElementById("sub-start-date")?.value || "",
-        subDuration: document.getElementById("sub-duration")?.value || AppState.subDuration || "",
+        ssd: document.getElementById("sub-start-date")?.value || "",
+        sdur: document.getElementById("sub-duration")?.value || AppState.subDuration || "",
         
-        // Mapa de progreso diario (TODOS los días registrados)
-        daysMap: daysMap,
+        // --- MAPA DE DÍAS COMPRIMIDO ---
+        dm: compressedDays,
         
         // Metadatos
-        totalDays: AppState.totalDays || 0,
-        initialDailyRate: AppState.initialDailyRate || 0
+        td: AppState.totalDays || 0,
+        ird: AppState.initialDailyRate || 0,
+        
+        // Versión para compatibilidad futura
+        v: "2.0"
     };
 }
 
@@ -4070,49 +4081,76 @@ function applyEssentialData(data) {
         }
     };
 
-    // 1. Rellenar campos del formulario
-    setVal("gold-target", data.goldTarget);
-    setVal("start-date", data.startDate);
-    setVal("end-date", data.endDate);
-    setVal("gold-per-hour", data.goldPerHour);
-    setVal("gold-price-rate", data.goldPriceRate);
-    setVal("gold-price-base", data.goldPriceBase);
-    setVal("frac-base-val", data.fracBaseVal);
-    setVal("frac-operator", data.fracOperator);
-    setVal("frac-percentage", data.fracPercentage);
-    setVal("frac-divisor", data.fracDivisor);
-    setVal("ex-rate-bcv", data.exRateBcv);
-    setVal("ex-rate-custom", data.exRateCustom);
-    setVal("sub-start-date", data.subStartDate);
-    setVal("sub-duration", data.subDuration);
+    // 1. Rellenar campos del formulario (usando nombres cortos o largos)
+    setVal("gold-target", data.gt || data.goldTarget);
+    setVal("start-date", data.sd || data.startDate);
+    setVal("end-date", data.ed || data.endDate);
+    setVal("gold-per-hour", data.gph || data.goldPerHour);
+    setVal("gold-price-rate", data.gpr || data.goldPriceRate);
+    setVal("gold-price-base", data.gpb || data.goldPriceBase);
+    setVal("frac-base-val", data.fbv || data.fracBaseVal);
+    setVal("frac-operator", data.fo || data.fracOperator || "sub");
+    setVal("frac-percentage", data.fp || data.fracPercentage);
+    setVal("frac-divisor", data.fd || data.fracDivisor || 3);
+    setVal("ex-rate-bcv", data.erb || data.exRateBcv);
+    setVal("ex-rate-custom", data.erc || data.exRateCustom);
+    setVal("sub-start-date", data.ssd || data.subStartDate);
+    setVal("sub-duration", data.sdur || data.subDuration);
 
-    // 2. Si hay un mapa de días, restaurar el progreso completo
-    if (data.daysMap && Object.keys(data.daysMap).length > 0) {
-        AppState.daysMap = data.daysMap;
-        AppState.totalDays = data.totalDays || 0;
-        AppState.initialDailyRate = data.initialDailyRate || 0;
+    // 2. Descomprimir el mapa de días si existe
+    let daysMapData = data.dm || data.daysMap || {};
+    
+    // Si es un array comprimido, reconstruir el objeto daysMap
+    if (Array.isArray(daysMapData) && daysMapData.length > 0) {
+        const restoredDaysMap = {};
+        let goldTarget = parseInt(data.gt || data.goldTarget, 10) || 0;
         
-        // Intentar reconstruir fechas de inicio/fin desde el mapa
-        const keys = Object.keys(data.daysMap).sort();
+        daysMapData.forEach(([dateKey, actualGold, isCompleted]) => {
+            restoredDaysMap[dateKey] = {
+                dateString: dateKey,
+                targetGold: 0, // Se recalculará después
+                actualGold: actualGold || 0,
+                isCompleted: isCompleted || false
+            };
+        });
+        
+        AppState.daysMap = restoredDaysMap;
+        
+        // Calcular días totales y meta diaria inicial
+        const keys = Object.keys(restoredDaysMap).sort();
         if (keys.length > 0) {
+            AppState.totalDays = keys.length;
+            // Si el goldTarget está en los datos, usarlo
+            if (goldTarget > 0) {
+                AppState.targetGold = goldTarget;
+                AppState.initialDailyRate = Math.round(goldTarget / keys.length);
+            }
+            
+            // Establecer fechas de inicio/fin
             const startKey = keys[0];
             const endKey = keys[keys.length - 1];
-            const startDate = AppState.parseLocalDate(startKey);
-            const endDate = AppState.parseLocalDate(endKey);
-            if (startDate && endDate) {
-                AppState.startDate = startDate;
-                AppState.endDate = endDate;
-            }
+            AppState.startDate = AppState.parseLocalDate(startKey);
+            AppState.endDate = AppState.parseLocalDate(endKey);
+            
+            // Asignar targetGold a cada día basado en la tasa diaria
+            keys.forEach((key, index) => {
+                if (AppState.daysMap[key]) {
+                    // Si es el último día, ajustar para que sume exactamente el total
+                    if (index === keys.length - 1) {
+                        const totalAssigned = (keys.length - 1) * AppState.initialDailyRate;
+                        AppState.daysMap[key].targetGold = AppState.targetGold - totalAssigned;
+                    } else {
+                        AppState.daysMap[key].targetGold = AppState.initialDailyRate;
+                    }
+                }
+            });
         }
         
-        // Si hay un goldTarget en los datos, usarlo
-        if (data.goldTarget) {
-            AppState.targetGold = parseInt(data.goldTarget, 10) || 0;
+        // Configurar calendario
+        if (AppState.startDate) {
+            AppState.calendarMonth = AppState.startDate.getMonth();
+            AppState.calendarYear = AppState.startDate.getFullYear();
         }
-        
-        // Recalcular todo con los datos restaurados
-        AppState.calendarMonth = AppState.startDate ? AppState.startDate.getMonth() : new Date().getMonth();
-        AppState.calendarYear = AppState.startDate ? AppState.startDate.getFullYear() : new Date().getFullYear();
         
         // Forzar recálculo completo
         recalculatePlan();
@@ -4120,6 +4158,38 @@ function applyEssentialData(data) {
         // Mostrar el dashboard
         emptyState.classList.add('hidden');
         resultsDashboard.classList.remove('hidden');
+        
+        // Actualizar campos de fecha en el formulario
+        if (AppState.startDate && AppState.endDate) {
+            setVal("start-date", AppState.formatKey(AppState.startDate));
+            setVal("end-date", AppState.formatKey(AppState.endDate));
+            document.getElementById("start-date").min = AppState.formatKey(AppState.startDate);
+        }
+        
+        // Actualizar input de meta
+        if (AppState.targetGold > 0) {
+            document.getElementById("gold-target").value = AppState.targetGold;
+        }
+        
+    } else if (typeof daysMapData === 'object' && Object.keys(daysMapData).length > 0) {
+        // Si viene como objeto (formato antiguo), restaurar directamente
+        AppState.daysMap = daysMapData;
+        AppState.totalDays = data.td || data.totalDays || 0;
+        AppState.initialDailyRate = data.ird || data.initialDailyRate || 0;
+        
+        const keys = Object.keys(daysMapData).sort();
+        if (keys.length > 0) {
+            AppState.startDate = AppState.parseLocalDate(keys[0]);
+            AppState.endDate = AppState.parseLocalDate(keys[keys.length - 1]);
+            if (data.gt || data.goldTarget) {
+                AppState.targetGold = parseInt(data.gt || data.goldTarget, 10) || 0;
+            }
+            AppState.calendarMonth = AppState.startDate ? AppState.startDate.getMonth() : new Date().getMonth();
+            AppState.calendarYear = AppState.startDate ? AppState.startDate.getFullYear() : new Date().getFullYear();
+            recalculatePlan();
+            emptyState.classList.add('hidden');
+            resultsDashboard.classList.remove('hidden');
+        }
     }
 
     // 3. Actualizar widgets independientes
@@ -4134,10 +4204,12 @@ function applyEssentialData(data) {
     // 4. Sincronizar el estado en localStorage
     saveStateToLocalStorage();
 
-    alert("✅ ¡Todos los datos sincronizados correctamente desde la versión PC!\n" +
-          "   - Meta de oro: " + (data.goldTarget || "N/A") + " G\n" +
-          "   - Días registrados: " + (Object.keys(data.daysMap || {}).length) + " días\n" +
-          "   - Suscripción: " + (data.subDuration || "N/A") + " días");
+    // 5. Mostrar resumen de lo sincronizado
+    const totalDays = Object.keys(AppState.daysMap || {}).length;
+    const totalGold = AppState.targetGold || 0;
+    const totalEarned = Object.values(AppState.daysMap || {}).reduce((sum, day) => sum + (day.actualGold || 0), 0);
+    
+    showToast(`✅ Datos sincronizados: ${totalDays} días, ${formatGoldNumber(totalEarned)} G recolectados de ${formatGoldNumber(totalGold)} G`);
 }
 
             // 3. Acción del Botón Flotante
@@ -4190,6 +4262,27 @@ function applyEssentialData(data) {
                     cancelAnimationFrame(animationFrameId);
                 }
             }
+
+            function getQRDataSize() {
+    const data = getEssentialData();
+    const jsonStr = JSON.stringify(data);
+    const sizeInBytes = new Blob([jsonStr]).size;
+    const sizeInKB = (sizeInBytes / 1024).toFixed(2);
+    
+    // Límite práctico: ~3KB para QR estándar (versión 40)
+    if (sizeInBytes > 3000) {
+        console.warn(`⚠️ El QR es grande: ${sizeInKB} KB. Considera reducir el número de días.`);
+        return { size: sizeInKB, isLarge: true };
+    }
+    return { size: sizeInKB, isLarge: false };
+}
+
+const sizeInfo = getQRDataSize();
+if (sizeInfo.isLarge) {
+    if (!confirm(`⚠️ El código QR contiene ${sizeInfo.size} KB de datos.\n¿Continuar? (Puede ser difícil de escanear)`)) {
+        return;
+    }
+}
 
             // Escaneo continuo con jsQR
             function scanQrFrame() {
