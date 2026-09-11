@@ -1,0 +1,367 @@
+/* ============================================================
+   GOLDQUEST PLANNER - HOJA DE ESTILOS PRINCIPAL
+   ============================================================ */
+
+:root {
+    --main-font: 'Inter', sans-serif;
+}
+
+body {
+    font-family: var(--main-font);
+    background-color: #020408;
+    color: #e2e8f0;
+    transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                font-family 0.2s ease;
+}
+
+/* ============================================================
+   TIPOGRAFÍA
+   ============================================================ */
+.gaming-title {
+    font-family: 'Cinzel', serif;
+}
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #020408;
+}
+::-webkit-scrollbar-thumb {
+    background: #ca8a04;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #eab308;
+}
+
+/* ============================================================
+   TRANSICIONES GLOBALES
+   ============================================================ */
+body, header, main, footer, div, form, input, button, table, tbody, td, th {
+    transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================
+   EFECTOS DE BRILLO DORADO
+   ============================================================ */
+.gold-glow {
+    box-shadow: 0 0 15px rgba(234, 179, 8, 0.05);
+}
+.gold-glow:hover {
+    box-shadow: 0 0 25px rgba(234, 179, 8, 0.12);
+}
+.gold-glow-focus:focus {
+    box-shadow: 0 0 15px rgba(234, 179, 8, 0.3);
+    border-color: #eab308;
+}
+
+/* ============================================================
+   ANIMACIONES
+   ============================================================ */
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.animate-soft {
+    animation: fadeInSlide 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes pulse-glow {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+.pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes bar-fill {
+    from { width: 0%; }
+}
+.bar-animate {
+    animation: bar-fill 1s ease-out forwards;
+}
+
+/* ============================================================
+   OVERRIDES DE COLORES DE TAILWIND (TEMA OSCURO PROFUNDO)
+   ============================================================ */
+.bg-slate-950 { background-color: #020408 !important; }
+.bg-slate-900 { background-color: #080d1a !important; }
+.border-slate-800 { border-color: #162238 !important; }
+.bg-slate-950\/80 { background-color: rgba(2, 4, 8, 0.8) !important; }
+.bg-slate-950\/60 { background-color: rgba(2, 4, 8, 0.6) !important; }
+.bg-slate-900\/80 { background-color: rgba(8, 13, 26, 0.8) !important; }
+
+/* ============================================================
+   MODO CLARO MEJORADO CON COLORES PASTEL
+   ============================================================ */
+body.light-theme {
+    background-color: #f5f0eb !important;
+    color: #3d3a3a !important;
+}
+
+body.light-theme .bg-slate-950 {
+    background-color: #f0ebe6 !important;
+}
+body.light-theme .bg-slate-900 {
+    background-color: #f8f4f0 !important;
+}
+body.light-theme .bg-slate-950\/80 {
+    background-color: rgba(240, 235, 230, 0.85) !important;
+}
+body.light-theme .bg-slate-950\/60 {
+    background-color: rgba(240, 235, 230, 0.7) !important;
+}
+body.light-theme .bg-slate-900\/80 {
+    background-color: rgba(248, 244, 240, 0.85) !important;
+}
+body.light-theme .bg-slate-950\/20 {
+    background-color: rgba(240, 235, 230, 0.3) !important;
+}
+
+body.light-theme .border-slate-800 {
+    border-color: #d5cec7 !important;
+}
+body.light-theme .border-slate-900 {
+    border-color: #e0dad4 !important;
+}
+body.light-theme .border-slate-900\/60 {
+    border-color: rgba(200, 190, 180, 0.6) !important;
+}
+body.light-theme .border-slate-800\/80 {
+    border-color: rgba(200, 190, 180, 0.8) !important;
+}
+body.light-theme .border-slate-800\/60 {
+    border-color: rgba(200, 190, 180, 0.6) !important;
+}
+body.light-theme .border-slate-800\/40 {
+    border-color: rgba(200, 190, 180, 0.4) !important;
+}
+body.light-theme .border-slate-800\/20 {
+    border-color: rgba(200, 190, 180, 0.2) !important;
+}
+
+body.light-theme .text-white { color: #3d3a3a !important; }
+body.light-theme .text-slate-200 { color: #5a5550 !important; }
+body.light-theme .text-slate-300 { color: #6b6560 !important; }
+body.light-theme .text-slate-400 { color: #8a8380 !important; }
+body.light-theme .text-slate-500 { color: #9a9390 !important; }
+body.light-theme .text-slate-600 { color: #7a7470 !important; }
+body.light-theme .text-slate-700 { color: #6a6460 !important; }
+
+body.light-theme input,
+body.light-theme select,
+body.light-theme textarea {
+    background-color: #faf7f5 !important;
+    color: #3d3a3a !important;
+    border-color: #d5cec7 !important;
+}
+body.light-theme input::placeholder {
+    color: #b5aeaa !important;
+}
+body.light-theme input:focus,
+body.light-theme select:focus {
+    border-color: #c4a882 !important;
+}
+
+body.light-theme .bg-slate-950\/60 {
+    background-color: rgba(248, 244, 240, 0.7) !important;
+}
+body.light-theme .bg-slate-950\/40 {
+    background-color: rgba(248, 244, 240, 0.5) !important;
+}
+
+body.light-theme #day-modal-box {
+    background-color: #f8f4f0 !important;
+    border-color: #d5cec7 !important;
+}
+body.light-theme .bg-slate-950.p-4.border-b.border-slate-800 {
+    background-color: #f0ebe6 !important;
+    border-color: #d5cec7 !important;
+}
+body.light-theme #modal-btn-cancel {
+    background-color: #f0ebe6 !important;
+    border-color: #d5cec7 !important;
+    color: #3d3a3a !important;
+}
+body.light-theme #modal-btn-cancel:hover {
+    background-color: #e5ded8 !important;
+}
+
+body.light-theme #empty-state {
+    background-color: #f8f4f0 !important;
+    border-color: #d5cec7 !important;
+}
+
+body.light-theme select option {
+    background-color: #f8f4f0 !important;
+    color: #3d3a3a !important;
+}
+
+body.light-theme ::-webkit-scrollbar-track {
+    background: #f0ebe6;
+}
+body.light-theme ::-webkit-scrollbar-thumb {
+    background: #c4a882;
+}
+body.light-theme ::-webkit-scrollbar-thumb:hover {
+    background: #b0957a;
+}
+
+/* ============================================================
+   SELECCIÓN DE TEXTO
+   ============================================================ */
+input, select, textarea {
+    user-select: text !important;
+    -webkit-user-select: text !important;
+}
+
+.no-select {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+}
+
+/* ============================================================
+   TARJETAS DE ESTADÍSTICAS
+   ============================================================ */
+.stat-card {
+    transition: all 0.3s ease;
+}
+.stat-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(245, 158, 11, 0.3);
+}
+
+/* ============================================================
+   TOOLTIP DEL GRÁFICO
+   ============================================================ */
+.chart-tooltip {
+    position: absolute;
+    background: rgba(2, 4, 8, 0.95);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 10px;
+    color: #e2e8f0;
+    pointer-events: none;
+    z-index: 50;
+    display: none;
+    font-family: 'Inter', sans-serif;
+}
+body.light-theme .chart-tooltip {
+    background: rgba(248, 244, 240, 0.95);
+    color: #3d3a3a;
+    border-color: rgba(200, 190, 180, 0.5);
+}
+
+/* ============================================================
+   BOTONES DE PORCENTAJE (CASHEA)
+   ============================================================ */
+.pct-btn {
+    transition: all 0.2s ease;
+    min-width: 36px;
+    text-align: center;
+}
+.pct-btn.active {
+    background: rgba(245, 158, 11, 0.25);
+    border-color: #f59e0b;
+    color: #fbbf24;
+}
+
+/* ============================================================
+   ANIMACIONES DEL GRÁFICO SVG
+   ============================================================ */
+@keyframes drawLine {
+    from { stroke-dashoffset: 1000; }
+    to { stroke-dashoffset: 0; }
+}
+.chart-line {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: drawLine 1.5s ease-out forwards;
+}
+.chart-line-delayed {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: drawLine 1.8s ease-out 0.3s forwards;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    70% { transform: scale(1.3); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+.chart-dot {
+    animation: popIn 0.5s ease-out forwards;
+    opacity: 0;
+}
+
+/* ============================================================
+   INDICADORES DE RITMO
+   ============================================================ */
+.rhythm-indicator {
+    transition: all 0.5s ease;
+}
+.rhythm-indicator.good {
+    border-color: rgba(16, 185, 129, 0.5);
+    background: rgba(16, 185, 129, 0.1);
+}
+.rhythm-indicator.warning {
+    border-color: rgba(245, 158, 11, 0.5);
+    background: rgba(245, 158, 11, 0.1);
+}
+.rhythm-indicator.danger {
+    border-color: rgba(239, 68, 68, 0.5);
+    background: rgba(239, 68, 68, 0.1);
+}
+
+/* ============================================================
+   BOTÓN GOOGLE CALENDAR
+   ============================================================ */
+.gcal-btn {
+    transition: all 0.3s ease;
+}
+.gcal-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+}
+
+/* ============================================================
+   BOTÓN FLOTANTE QR
+   ============================================================ */
+#qr-floating-btn {
+    z-index: 40;
+}
+
+/* ============================================================
+   TRANSICIONES DEL MODAL
+   ============================================================ */
+#day-modal-box {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ============================================================
+   SCROLL HORIZONTAL DEL GRÁFICO
+   ============================================================ */
+#chart-container {
+    scrollbar-width: thin;
+    scrollbar-color: #ca8a04 #020408;
+}
+#chart-container::-webkit-scrollbar {
+    height: 8px;
+}

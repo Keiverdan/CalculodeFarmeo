@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoldQuest Planner - Calculadora e Inteligencia de Oro</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cinzel:wght@400;600;800&family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- jsQR Reader (ruta corregida) -->
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+
+    <!-- Hoja de estilos propia -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-screen bg-slate-950 flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950">
+
+    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50 px-4 py-4">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-amber-600 to-yellow-400 flex items-center justify-center shadow-lg shadow-amber-500/20 animate-pulse">
+                    <i class="fa-solid fa-coins text-slate-950 text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="gaming-title text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-500 tracking-wider">
+                        GOLDQUEST PLANNER
+                    </h1>
+                    <p class="text-xs text-slate-400">Calculador, Calendario de Metas de Oro y Monetización</p>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-center gap-3">
+                <button type="button" id="theme-toggle-btn" class="flex items-center gap-2 bg-slate-950/80 hover:bg-slate-900/80 border border-slate-800 text-slate-300 hover:text-white px-3.5 py-1.5 rounded-full text-xs font-semibold shadow-inner cursor-pointer">
+                    <i class="fa-solid fa-sun text-amber-500 hidden" id="theme-icon-light"></i>
+                    <i class="fa-solid fa-moon text-amber-400" id="theme-icon-dark"></i>
+                    <span id="theme-text">Modo Oscuro</span>
+                </button>
+
+                <div id="cache-status-badge" class="flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 px-3 py-1.5 rounded-full text-xs font-bold shadow-sm">
+                    <i class="fa-solid fa-shield-halved text-emerald-400 animate-pulse"></i> Caché: Verificada [OK]
+                </div>
+
+                <div class="flex items-center gap-2 bg-slate-950/60 px-3 py-1.5 rounded-full border border-emerald-500/20 text-xs text-emerald-400 font-medium shadow-inner">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                    <span id="last-saved-time">Autoguardado: --:--:--</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow p-4 md:p-6 lg:p-8 max-w-7xl w-full mx-auto space-y-6">
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+            <div class="lg:col-span-4 space-y-6">
+
+                <!-- STEP 1: Gold Goal Planning Setup Form -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 gold-glow animate-soft">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="w-6 h-6 rounded-full bg-amber-500/10 border border-amber-500/40 text-amber-400 flex items-center justify-center text-xs font-bold">1</span>
+                        <h2 class="text-md font-bold text-white tracking-wide">Establecer tu Meta de Oro</h2>
+                    </div>
+
+                    <form id="goal-form" class="space-y-4">
+                        <div>
+                            <label for="gold-target" class="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-2">Cantidad de Oro Objetivo</label>
+                            <div class="relative">
+                                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-amber-500 font-bold">
+                                    <i class="fa-solid fa-coins"></i>
+                                </span>
+                                <input type="number" id="gold-target" min="1" step="1" required placeholder="Ej. 1200350" class="w-full bg-slate-950 border border-slate-800 rounded-xl py-2.5 pl-10 pr-4 text-white placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-amber-500 focus:border-amber-500 transition-all font-semibold text-base gold-glow-focus">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label for="start-date" class="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-2">Fecha Inicio</label>
+                                <div class="relative">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500">
+                                        <i class="fa-regular fa-calendar-plus"></i>
+                                    </span>
+                                    <input type="date" id="start-date" required class="w-full bg-slate-950 border border-slate-800 rounded-xl py-2 pl-9 pr-2 text-white text-xs focus:outline-none focus:ring-1 focus:ring-amber-500 focus:border-amber-500 transition-all">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="end-date" class="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-2">Fecha Fin</label>
+                                <div class="relative">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500">
+                                        <i class="fa-regular fa-calendar-minus"></i>
+                                    </span>
+                                    <input type="date" id="end-date" required class="w-full bg-slate-950 border border-slate-800 rounded-xl py-2 pl-9 pr-2 text-white text-xs focus:outline-none focus:ring-1 focus:ring-amber-500 focus:border-amber-500 transition-all">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="w-full py-2.5 bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-500 hover:from-amber-500 hover:to-yellow-400 text-slate-950 font-bold rounded-xl shadow-lg shadow-amber-500/10 hover:shadow-amber-500/25 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 text-xs uppercase tracking-wider">
+                            <i class="fa-solid fa-calculator"></i>
+                            Calcular Plan de Oro
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Valuation Panel -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 gold-glow animate-soft">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="w-6 h-6 rounded-full bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 flex items-center justify-center text-xs font-bold">
+                            <i class="fa-solid fa-dollar-sign"></i>
+                        </span>
+                        <h2 class="text-md font-bold text-white tracking-wide">Valoración de Oro Real ($)</h2>
+                    </div>
+                    <p class="text-[11px] text-slate-400 mb-4 leading-relaxed">
+                        Configura un precio de cotización del mercado para estimar de inmediato el valor real en dinero fiduciario del oro alcanzado.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label for="gold-price-rate" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Precio Dólares ($)</label>
+                                <div class="relative">
+                                    <span class="absolute left-2.5 top-1/2 -translate-y-1/2 text-emerald-500 text-xs font-bold">$</span>
+                                    <input type="number" id="gold-price-rate" min="0.01" step="0.01" value="4.1" required class="w-full bg-slate-950 border border-slate-800 rounded-xl py-2 pl-6 pr-2 text-white text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-amber-500">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="gold-price-base" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Por Cada (Oro)</label>
+                                <div class="relative">
+                                    <input type="number" id="gold-price-base" min="1" step="100" value="100000" required class="w-full bg-slate-950 border border-slate-800 rounded-xl py-2 px-3 text-white text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-amber-500 text-right">
+                                    <span class="absolute left-2 top-1/2 -translate-y-1/2 text-amber-500 text-[10px] font-bold">G</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-950/60 rounded-xl p-3 border border-slate-800 space-y-2">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-slate-400">Tasa Sincronizada:</span>
+                                <span id="valuation-rate-label" class="text-amber-300 font-semibold">$4 por cada 100.000 G</span>
+                            </div>
+
+                            <div class="border-t border-slate-800/80 pt-2.5 mt-2">
+                                <label for="custom-quote-gold-input" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Simular Cotización (Oro a USD)</label>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <div class="relative">
+                                        <input type="number" id="custom-quote-gold-input" min="1" step="1000" value="100000" required class="w-full bg-slate-950 border border-slate-800 rounded-lg py-1 px-2.5 pr-6 text-white text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-amber-500">
+                                        <span class="absolute right-2 top-1/2 -translate-y-1/2 text-amber-500 text-[10px] font-bold">G</span>
+                                    </div>
+                                    <div class="bg-slate-950/40 rounded-lg py-1 px-2.5 border border-slate-800 flex items-center justify-between overflow-hidden">
+                                        <span class="text-[9px] text-slate-500 font-bold uppercase">Valor:</span>
+                                        <span id="custom-quote-usd-result" class="text-emerald-400 font-extrabold text-xs truncate">$4,00</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="border-t border-slate-800/60 pt-2.5 mt-1">
+                                <label for="custom-quote-usd-input" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Simular Valor (USD a Oro G)</label>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <div class="relative">
+                                        <span class="absolute left-2.5 top-1/2 -translate-y-1/2 text-emerald-500 text-[10px] font-bold">$</span>
+                                        <input type="number" id="custom-quote-usd-input" min="0.1" step="1" value="10" required class="w-full bg-slate-950 border border-slate-800 rounded-lg py-1 pl-6 pr-2 text-white text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-amber-500">
+                                    </div>
+                                    <div class="bg-slate-950/40 rounded-lg py-1 px-2.5 border border-slate-800 flex items-center justify-between overflow-hidden">
+                                        <span class="text-[9px] text-slate-500 font-bold uppercase">Oro G:</span>
+                                        <span id="custom-quote-gold-result" class="text-amber-400 font-extrabold text-xs truncate">16.250.000</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="border-t border-slate-900/60 my-1"></div>
+
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-slate-400">Valor Estimado de tu Meta:</span>
+                                <span id="valuation-total-usd" class="text-emerald-400 font-bold">$170,80</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CALCULADORA DE CUOTAS Y PORCENTAJES (CASHEA) -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 gold-glow animate-soft">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="w-6 h-6 rounded-full bg-amber-500/10 border border-amber-500/40 text-amber-400 flex items-center justify-center text-xs font-bold">
+                            <i class="fa-solid fa-percent"></i>
+                        </span>
+                        <h2 class="text-md font-bold text-white tracking-wide">Cálculo de Cuotas y Porcentajes (Cashea)</h2>
+                    </div>
+                    <p class="text-[11px] text-slate-400 mb-4 leading-relaxed">
+                        Aplica porcentajes con precisión de 4 decimales y calcula la merma o reparto restante fraccionado de forma personalizada.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-1 gap-3">
+                            <div>
+                                <label for="frac-base-val" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Valor Numérico Base</label>
+                                <input type="number" id="frac-base-val" step="0.0001" value="100.0000" required class="w-full bg-slate-950 border border-slate-800 rounded-xl py-2 px-3 text-white text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-amber-500 font-mono">
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-2">
+                                <div>
+                                    <label for="frac-operator" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Operación</label>
+                                    <select id="frac-operator" class="w-full bg-slate-950 border border-slate-800 rounded-xl py-2 px-3 text-white text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer">
+                                        <option value="sub" selected>Restar (-)</option>
+                                        <option value="add">Sumar (+)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="frac-percentage" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Porcentaje (%)</label>
+                                    <div class="relative">
+                                        <input type="number" id="frac-percentage" min="0" max="500" step="10" value="20" required class="w-full bg-slate-950 border border-slate-800 rounded-xl py-2 px-3 pr-6 text-white text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-amber-500 text-right font-mono">
+                                        <span class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 text-xs font-bold">%</span>
+                                    </div>
+                                    <div class="flex flex-wrap gap-1 mt-1.5">
+                                        <button type="button" class="pct-btn text-[9px] px-1.5 py-0.5 rounded border border-slate-800 text-slate-400 hover:border-amber-500 hover:text-amber-400 transition-all" data-pct="10">10%</button>
+                                        <button type="button" class="pct-btn text-[9px] px-1.5 py-0.5 rounded border border-slate-800 text-slate-400 hover:border-amber-500 hover:text-amber-400 transition-all" data-pct="20">20%</button>
+                                        <button type="button" class="pct-btn text-[9px] px-1.5 py-0.5 rounded border border-slate-800 text-slate-400 hover:border-amber-500 hover:text-amber-400 transition-all" data-pct="30">30%</button>
+                                        <button type="button" class="pct-btn text-[9px] px-1.5 py-0.5 rounded border border-slate-800 text-slate-400 hover:border-amber-500 hover:text-amber-400 transition-all" data-pct="40">40%</button>
+                                        <button type="button" class="pct-btn text-[9px] px-1.5 py-0.5 rounded border border-slate-800 text-slate-400 hover:border-amber-500 hover:text-amber-400 transition-all" data-pct="50">50%</button>
+                                        <button type="button" class="pct-btn text-[9px] px-1.5 py-0.5 rounded border border-slate-800 text-slate-400 hover:border-amber-500 hover:text-amber-400 transition-all active" data-pct="60">60%</button>
+                                        <button type="button" class="pct-btn text-[9px] px-1.5 py-0.5 rounded border border-slate-800 text-slate-400 hover:border-amber-500 hover:text-amber-400 transition-all" data-pct="70">70%</button>
+                                        <button type="button" class="pct-btn text-[9px] px-1.5 py-0.5 rounded border border-slate-800 text-slate-400 hover:border-amber-500 hover:text-amber-400 transition-all" data-pct="80">80%</button>
+                                        <button type="button" class="pct-btn text-[9px] px-1.5 py-0.5 rounded border border-slate-800 text-slate-400 hover:border-amber-500 hover:text-amber-400 transition-all" data-pct="90">90%</button>
+                                        <button type="button" class="pct-btn text-[9px] px-1.5 py-0.5 rounded border border-slate-800 text-slate-400 hover:border-amber-500 hover:text-amber-400 transition-all" data-pct="100">100%</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-950/60 rounded-xl p-3 border border-slate-800 space-y-2.5">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-slate-400">Resultado de la Operación:</span>
+                                <span id="frac-result-label" class="text-white font-extrabold font-mono text-sm">80,0000</span>
+                            </div>
+                            <div class="border-t border-slate-800/80 pt-2 flex justify-between items-center text-xs">
+                                <span class="text-slate-400 flex items-center gap-1">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> Restante para el 100%:
+                                </span>
+                                <span id="frac-remaining-100" class="text-amber-400 font-extrabold font-mono">20,0000</span>
+                            </div>
+                            <div class="flex justify-between items-center text-xs pb-1">
+                                <span class="text-slate-400 flex items-center gap-1">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> Dividir restante entre:
+                                    <select id="frac-divisor" class="bg-slate-900 border border-slate-800 rounded px-1.5 py-0.5 text-[10px] font-bold text-slate-300 focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer ml-1 transition-all">
+                                        <option value="2">2 (Mitades)</option>
+                                        <option value="3" selected>3 (Tercios)</option>
+                                        <option value="6">6 (Sextos)</option>
+                                        <option value="12">12 (Doceavos)</option>
+                                    </select>
+                                </span>
+                                <span id="frac-remaining-div" class="text-indigo-400 font-extrabold font-mono">6,6667</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Venezuela Currency Exchange Converter -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 gold-glow animate-soft">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="w-6 h-6 rounded-full bg-blue-500/10 border border-blue-500/40 text-blue-400 flex items-center justify-center text-xs font-bold">
+                            <i class="fa-solid fa-money-bill-transfer"></i>
+                        </span>
+                        <h2 class="text-md font-bold text-white tracking-wide">Conversor de Divisas (Bs.)</h2>
+                    </div>
+                    <p class="text-[11px] text-slate-400 mb-4 leading-relaxed">
+                        Calcula equivalencias entre USD y Bolívares en base a tasas configurables (BCV y Personalizado).
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label for="ex-rate-bcv" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Dólar BCV (Bs.)</label>
+                                <div class="relative">
+                                    <input type="number" id="ex-rate-bcv" min="0.01" step="0.01" value="36.50" required class="w-full bg-slate-950 border border-slate-800 rounded-xl py-2 px-3 text-white text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-blue-500">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="ex-rate-custom" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Dólar Personalizado</label>
+                                <div class="relative">
+                                    <input type="number" id="ex-rate-custom" min="0.01" step="0.01" value="44.20" required class="w-full bg-slate-950 border border-slate-800 rounded-xl py-2 px-3 text-white text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-blue-500">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-slate-800/80 pt-3">
+                            <label for="conv-usd-input" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-2">Convertir de Dólares (USD) a Bs.</label>
+                            <div class="relative mb-3">
+                                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-emerald-500 font-bold text-xs">$</span>
+                                <input type="number" id="conv-usd-input" min="0.01" step="0.01" value="10.00" class="w-full bg-slate-950 border border-slate-800 rounded-xl py-2 pl-7 pr-3 text-white text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-blue-500">
+                            </div>
+
+                            <div class="bg-slate-950/60 rounded-xl p-3 border border-slate-800 space-y-1.5 text-xs">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-slate-400">Total en Bs. (Tasa BCV):</span>
+                                    <span id="conv-res-bcv-bs" class="text-blue-400 font-bold">6.659,92 Bs.</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-slate-400">Total en Bs. (Tasa Personal):</span>
+                                    <span id="conv-res-custom-bs" class="text-indigo-400 font-bold">7.668,80 Bs.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-slate-800/80 pt-3">
+                            <label for="conv-bs-input" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-2">Convertir de Bolívares (Bs.) a USD</label>
+                            <div class="relative mb-3">
+                                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-blue-500 font-bold text-xs">Bs.</span>
+                                <input type="number" id="conv-bs-input" min="0.01" step="0.01" value="100.00" class="w-full bg-slate-950 border border-slate-800 rounded-xl py-2 pl-9 pr-3 text-white text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-blue-500">
+                            </div>
+
+                            <div class="bg-slate-950/60 rounded-xl p-3 border border-slate-800 space-y-1.5 text-xs">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-slate-400">Total en USD (Tasa BCV):</span>
+                                    <span id="conv-res-bcv-usd" class="text-emerald-400 font-bold">$14,50</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-slate-400">Total en USD (Tasa Personal):</span>
+                                    <span id="conv-res-custom-usd" class="text-teal-400 font-bold">$12,60</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WIDGET CALCULADORA -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 gold-glow animate-soft">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-full bg-yellow-500/10 border border-yellow-500/40 text-yellow-400 flex items-center justify-center text-xs font-bold">
+                                <i class="fa-solid fa-calculator"></i>
+                            </span>
+                            <h2 class="text-md font-bold text-white tracking-wide">Calculadora Express</h2>
+                        </div>
+                        <button type="button" id="toggle-calc-history" class="text-xs text-amber-500 hover:text-amber-400 font-semibold flex items-center gap-1 transition-all cursor-pointer">
+                            <i class="fa-solid fa-history"></i> Historial
+                        </button>
+                    </div>
+
+                    <div id="calc-history-panel" class="hidden bg-slate-950 border border-slate-800 rounded-xl p-3 mb-3 max-h-36 overflow-y-auto space-y-1.5 text-xs text-slate-300">
+                        <div class="flex justify-between items-center border-b border-slate-800 pb-1.5 mb-1.5 text-slate-400 uppercase tracking-wider font-semibold text-[10px]">
+                            <span>Operación</span>
+                            <button type="button" id="clear-calc-history" class="text-rose-400 hover:text-rose-300 font-bold">Limpiar</button>
+                        </div>
+                        <div id="calc-history-list" class="space-y-1 font-mono divide-y divide-slate-900"></div>
+                    </div>
+
+                    <div class="bg-slate-950 border border-slate-800 rounded-2xl p-3.5 space-y-3">
+                        <div class="bg-slate-900 rounded-xl p-3 border border-slate-800 text-right overflow-hidden relative">
+                            <div id="calc-preview" class="text-[10px] text-slate-500 font-mono tracking-tight h-4 truncate"></div>
+                            <div id="calc-screen" class="text-lg md:text-xl font-extrabold font-mono text-amber-400 truncate mt-0.5">0</div>
+                        </div>
+
+                        <div class="grid grid-cols-4 gap-1.5 font-mono text-xs md:text-sm font-semibold select-none">
+                            <button type="button" class="calc-btn py-2.5 bg-rose-950/40 hover:bg-rose-900/60 border border-rose-900/30 text-rose-300 rounded-xl transition-all cursor-pointer" data-val="C">C</button>
+                            <button type="button" class="calc-btn py-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 rounded-xl transition-all cursor-pointer" data-val="(">(</button>
+                            <button type="button" class="calc-btn py-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 rounded-xl transition-all cursor-pointer" data-val=")">)</button>
+                            <button type="button" class="calc-btn py-2.5 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/20 text-amber-400 rounded-xl transition-all font-bold cursor-pointer" data-val="/">/</button>
+
+                            <button type="button" class="calc-btn py-2.5 bg-slate-900/40 hover:bg-slate-800/80 border border-slate-800/40 text-white rounded-xl transition-all cursor-pointer" data-val="7">7</button>
+                            <button type="button" class="calc-btn py-2.5 bg-slate-900/40 hover:bg-slate-800/80 border border-slate-800/40 text-white rounded-xl transition-all cursor-pointer" data-val="8">8</button>
+                            <button type="button" class="calc-btn py-2.5 bg-slate-900/40 hover:bg-slate-800/80 border border-slate-800/40 text-white rounded-xl transition-all cursor-pointer" data-val="9">9</button>
+                            <button type="button" class="calc-btn py-2.5 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/20 text-amber-400 rounded-xl transition-all font-bold cursor-pointer" data-val="*">*</button>
+
+                            <button type="button" class="calc-btn py-2.5 bg-slate-900/40 hover:bg-slate-800/80 border border-slate-800/40 text-white rounded-xl transition-all cursor-pointer" data-val="4">4</button>
+                            <button type="button" class="calc-btn py-2.5 bg-slate-900/40 hover:bg-slate-800/80 border border-slate-800/40 text-white rounded-xl transition-all cursor-pointer" data-val="5">5</button>
+                            <button type="button" class="calc-btn py-2.5 bg-slate-900/40 hover:bg-slate-800/80 border border-slate-800/40 text-white rounded-xl transition-all cursor-pointer" data-val="6">6</button>
+                            <button type="button" class="calc-btn py-2.5 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/20 text-amber-400 rounded-xl transition-all font-bold cursor-pointer" data-val="-">-</button>
+
+                            <button type="button" class="calc-btn py-2.5 bg-slate-900/40 hover:bg-slate-800/80 border border-slate-800/40 text-white rounded-xl transition-all cursor-pointer" data-val="1">1</button>
+                            <button type="button" class="calc-btn py-2.5 bg-slate-900/40 hover:bg-slate-800/80 border border-slate-800/40 text-white rounded-xl transition-all cursor-pointer" data-val="2">2</button>
+                            <button type="button" class="calc-btn py-2.5 bg-slate-900/40 hover:bg-slate-800/80 border border-slate-800/40 text-white rounded-xl transition-all cursor-pointer" data-val="3">3</button>
+                            <button type="button" class="calc-btn py-2.5 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/20 text-amber-400 rounded-xl transition-all font-bold cursor-pointer" data-val="+">+</button>
+
+                            <button type="button" class="calc-btn py-2.5 bg-slate-900/40 hover:bg-slate-800/80 border border-slate-800/40 text-white rounded-xl transition-all cursor-pointer" data-val="0">0</button>
+                            <button type="button" class="calc-btn py-2.5 bg-slate-900/40 hover:bg-slate-800/80 border border-slate-800/40 text-white rounded-xl transition-all cursor-pointer" data-val=".">.</button>
+                            <button type="button" class="calc-btn py-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 rounded-xl transition-all cursor-pointer flex items-center justify-center" data-val="backspace">
+                                <i class="fa-solid fa-delete-left"></i>
+                            </button>
+                            <button type="button" class="calc-btn py-2.5 bg-gradient-to-tr from-amber-600 to-yellow-500 hover:from-amber-500 hover:to-yellow-400 text-slate-950 rounded-xl transition-all font-extrabold cursor-pointer" data-val="=">=</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="speed-panel" class="bg-slate-900 border border-slate-800 rounded-2xl p-5 gold-glow animate-soft">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="w-6 h-6 rounded-full bg-amber-500/10 border border-amber-500/40 text-amber-400 flex items-center justify-center text-xs font-bold">
+                            <i class="fa-solid fa-hourglass-half"></i>
+                        </span>
+                        <h2 class="text-md font-bold text-white tracking-wide">Rendimiento y Tiempos</h2>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label for="gold-per-hour" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-2">Mi Oro Promedio por Hora</label>
+                            <div class="relative">
+                                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-yellow-500 font-bold text-xs">
+                                    <i class="fa-solid fa-gauge-high"></i>
+                                </span>
+                                <input type="number" id="gold-per-hour" min="1" step="500" value="30000" required placeholder="Ej. 30000" class="w-full bg-slate-950 border border-slate-800 rounded-xl py-2 pl-9 pr-3 text-white placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-amber-500 transition-all font-semibold text-sm">
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-950/80 border border-slate-800/80 rounded-xl p-3.5 space-y-2.5 text-xs">
+                            <div class="flex justify-between items-center pb-2 border-b border-slate-900/60">
+                                <span class="text-slate-400">Farmeo Diario Requerido (Inicial):</span>
+                                <span id="time-daily-initial" class="text-white font-bold">0h 0m</span>
+                            </div>
+                            <div class="flex justify-between items-center pb-2 border-b border-slate-900/60">
+                                <span class="text-slate-400 flex items-center gap-1.5">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span> Farmeo Diario Ajustado:
+                                </span>
+                                <span id="time-daily-adjusted" class="text-amber-400 font-bold">0h 0m</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-slate-400">Horas Totales Pendientes de Juego:</span>
+                                <span id="time-total-remaining" class="text-emerald-400 font-bold">0h 0m</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 gold-glow animate-soft">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="w-6 h-6 rounded-full bg-indigo-500/10 border border-indigo-500/40 text-indigo-400 flex items-center justify-center text-xs font-bold">
+                            <i class="fa-regular fa-clock"></i>
+                        </span>
+                        <h2 class="text-md font-bold text-white tracking-wide">Suscripción de Tiempo de Juego</h2>
+                    </div>
+                    <p class="text-[11px] text-slate-400 mb-3 leading-relaxed">
+                        Controla de forma independiente tu tiempo de juego restante en tu MMORPG. ¡Funciona al instante sin requerir metas de oro activas!
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label for="sub-start-date" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Fecha de Inicio</label>
+                                <input type="date" id="sub-start-date" required class="w-full bg-slate-950 border border-slate-800 rounded-xl py-2 px-2.5 text-white text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                            </div>
+                            <div>
+                                <label for="sub-duration" class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Duración (Días)</label>
+                                <input type="number" id="sub-duration" min="1" max="365" value="30" required class="w-full bg-slate-950 border border-slate-800 rounded-xl py-2 px-2.5 text-white text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-950/80 rounded-xl p-3 border border-slate-800 space-y-2">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-slate-400">Tiempo de Suscripción:</span>
+                                <span id="subscription-countdown" class="font-bold text-emerald-400">-- días restantes</span>
+                            </div>
+                            <div class="w-full bg-slate-900 h-2.5 rounded-full overflow-hidden border border-slate-800">
+                                <div id="subscription-progress-bar" class="h-full transition-all duration-500 bg-emerald-500" style="width: 0%;"></div>
+                            </div>
+                            <p id="subscription-alert-text" class="text-[10px] text-slate-400 leading-tight">
+                                <span class="text-emerald-400 font-semibold">Estado seguro.</span> Tienes un colchón de tiempo disponible adecuado para tu aventura.
+                            </p>
+                        </div>
+
+                        <button type="button" id="set-reminder-btn" class="gcal-btn w-full py-2.5 bg-slate-950 hover:bg-slate-900 border border-slate-800 hover:border-blue-500/50 text-slate-300 hover:text-white font-semibold rounded-xl text-xs transition-all duration-300 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-bell text-indigo-400"></i>
+                            <i class="fa-brands fa-google text-blue-400"></i>
+                            Programar Recordatorio (5 Días Antes)
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 gold-glow animate-soft">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="w-6 h-6 rounded-full bg-cyan-500/10 border border-cyan-500/40 text-cyan-400 flex items-center justify-center text-xs font-bold">
+                            <i class="fa-solid fa-file-invoice"></i>
+                        </span>
+                        <h2 class="text-md font-bold text-white tracking-wide">Copia de Seguridad (JSON)</h2>
+                    </div>
+                    <p class="text-[11px] text-slate-400 mb-4 leading-relaxed">
+                        Exporta tu planificación y registros directamente en un archivo .json de respaldo en tu disco local o restáuralo en cualquier momento.
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <button type="button" id="export-json-btn" class="py-2.5 bg-slate-950 hover:bg-slate-900 border border-slate-800 hover:border-cyan-500/50 text-slate-300 hover:text-white font-bold rounded-xl text-xs transition-all duration-300 flex items-center justify-center gap-1.5 shadow-sm">
+                            <i class="fa-solid fa-download text-cyan-400"></i> Exportar JSON
+                        </button>
+
+                        <button type="button" id="import-trigger-btn" class="py-2.5 bg-slate-950 hover:bg-slate-900 border border-slate-800 hover:border-cyan-500/50 text-slate-300 hover:text-white font-bold rounded-xl text-xs transition-all duration-300 flex items-center justify-center gap-1.5 shadow-sm">
+                            <i class="fa-solid fa-upload text-cyan-400"></i> Importar JSON
+                        </button>
+                        <input type="file" id="import-json-file" accept=".json" class="hidden">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="lg:col-span-8 space-y-6">
+
+                <div id="empty-state" class="bg-slate-900 border border-slate-800 rounded-2xl p-12 text-center flex flex-col items-center justify-center space-y-4 animate-soft">
+                    <div class="w-20 h-20 rounded-full bg-slate-950 border border-slate-800 flex items-center justify-center text-slate-600 text-3xl">
+                        <i class="fa-solid fa-calendar-days"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Ingresa una Meta de Oro</h3>
+                        <p class="text-slate-400 max-w-sm mx-auto mt-2 text-sm">Define tu meta de oro y el rango de fechas en el panel lateral izquierdo para inicializar el calendario dinámico de granjeo.</p>
+                    </div>
+                </div>
+
+                <div id="results-dashboard" class="space-y-6 animate-soft hidden">
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex flex-col justify-between transition-all duration-300 hover:border-slate-700">
+                            <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Meta Total</span>
+                            <div>
+                                <div class="flex items-baseline gap-1">
+                                    <span id="metric-total-gold" class="text-lg md:text-xl font-extrabold text-amber-400">0</span>
+                                    <span class="text-xs text-amber-500 font-bold">G</span>
+                                </div>
+                                <span id="metric-total-usd" class="text-xs text-emerald-400 font-semibold block mt-0.5">~ $0,00</span>
+                            </div>
+                            <span class="text-[10px] text-slate-500 mt-2 block" id="metric-duration-text">0 días totales de campaña</span>
+                        </div>
+
+                        <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex flex-col justify-between transition-all duration-300 hover:border-slate-700">
+                            <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Recolectado</span>
+                            <div>
+                                <div class="flex items-baseline gap-1">
+                                    <span id="metric-current-gold" class="text-lg md:text-xl font-extrabold text-emerald-400">0</span>
+                                    <span class="text-xs text-emerald-500 font-bold">G</span>
+                                </div>
+                                <span id="metric-current-usd" class="text-xs text-emerald-400 font-semibold block mt-0.5">~ $0,00</span>
+                            </div>
+                            <div class="w-full bg-slate-950 h-1.5 rounded-full overflow-hidden mt-2">
+                                <div id="metric-progress-bar" class="bg-emerald-500 h-full transition-all duration-500" style="width: 0%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex flex-col justify-between transition-all duration-300 hover:border-slate-700">
+                            <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Oro Restante</span>
+                            <div>
+                                <div class="flex items-baseline gap-1">
+                                    <span id="metric-remaining-gold" class="text-lg md:text-xl font-extrabold text-rose-400">0</span>
+                                    <span class="text-xs text-rose-500 font-bold">G</span>
+                                </div>
+                                <span id="metric-remaining-usd" class="text-xs text-emerald-400 font-semibold block mt-0.5">~ $0,00</span>
+                            </div>
+                            <span id="metric-percentage-done" class="text-[10px] text-emerald-400 mt-2 block font-medium">0% completado</span>
+                        </div>
+
+                        <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl border-l-4 border-l-amber-500 flex flex-col justify-between transition-all duration-300 hover:border-slate-700">
+                            <span class="text-xs font-semibold text-amber-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span> Diaria Inicial
+                            </span>
+                            <div>
+                                <div class="flex items-baseline gap-1">
+                                    <span id="metric-daily-gold" class="text-lg md:text-xl font-extrabold text-white">0</span>
+                                    <span class="text-xs text-slate-400 font-bold">G/día</span>
+                                </div>
+                                <span id="metric-daily-usd" class="text-xs text-emerald-500 font-semibold block mt-0.5">~ $0,00/día</span>
+                            </div>
+                            <span id="metric-adjusted-daily-label" class="text-[10px] text-yellow-400 font-medium mt-2 block">Aj. Actual: <span id="metric-adjusted-daily">0</span> G</span>
+                        </div>
+                    </div>
+
+                    <!-- CALENDAR SECTION -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                            <div>
+                                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-calendar-alt text-amber-500"></i> Vista de Calendario de Farmeo
+                                </h3>
+                                <p class="text-xs text-slate-400 mt-0.5">Haz clic en cualquier celda de fecha activa para registrar tus recolecciones u optimizar tu planificación.</p>
+                            </div>
+
+                            <div class="flex items-center gap-2">
+                                <button type="button" id="calendar-prev-month" class="px-2 py-1 bg-slate-950 border border-slate-800 rounded-lg text-slate-400 hover:text-white hover:border-slate-700 transition-all text-xs">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </button>
+                                <span id="calendar-month-year" class="text-sm font-semibold text-slate-200 bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800 shadow-inner min-w-[120px] text-center">--</span>
+                                <button type="button" id="calendar-next-month" class="px-2 py-1 bg-slate-950 border border-slate-800 rounded-lg text-slate-400 hover:text-white hover:border-slate-700 transition-all text-xs">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-7 gap-1 md:gap-2 mb-2 text-center text-[10px] md:text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                            <div>Lun</div>
+                            <div>Mar</div>
+                            <div>Mié</div>
+                            <div>Jue</div>
+                            <div>Vie</div>
+                            <div>Sáb</div>
+                            <div>Dom</div>
+                        </div>
+
+                        <div id="calendar-days-grid" class="grid grid-cols-7 gap-1.5 md:gap-2"></div>
+                    </div>
+
+                    <!-- DAILY ROUTINE TABLE -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl animate-soft">
+                        <div class="flex justify-between items-center mb-4">
+                            <div>
+                                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-list-check text-amber-500"></i> Tabla de Rutina Diaria
+                                </h3>
+                                <p class="text-xs text-slate-400">Detalle granular día a día con estimaciones, registros y estados dinámicos.</p>
+                            </div>
+                            <button id="reset-progress-btn" class="text-xs px-3 py-1.5 bg-slate-950 hover:bg-rose-950/40 text-rose-400 border border-rose-900/40 rounded-lg transition-all flex items-center gap-1.5 shadow-sm">
+                                <i class="fa-solid fa-arrow-rotate-left"></i> Reiniciar Progreso
+                            </button>
+                        </div>
+
+                        <div class="overflow-x-auto max-h-[400px] overflow-y-auto border border-slate-800 rounded-xl bg-slate-950">
+                            <table class="w-full text-left text-sm text-slate-300">
+                                <thead class="bg-slate-900/80 sticky top-0 border-b border-slate-800 text-xs uppercase text-slate-400">
+                                    <tr>
+                                        <th class="py-3 px-4 w-12 text-center">Estado</th>
+                                        <th class="py-3 px-4">Fecha</th>
+                                        <th class="py-3 px-4 text-right">Meta Estimada</th>
+                                        <th class="py-3 px-4 text-right">Oro Obtenido</th>
+                                        <th class="py-3 px-4 text-right">Oro Restante</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="daily-rows-container" class="divide-y divide-slate-900"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- SECCIÓN AVANZADA: HISTORIAL, GRÁFICO DE RENDIMIENTO Y SIMULACIÓN PROYECTADA -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl animate-soft space-y-6">
+                        <div>
+                            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-chart-line text-amber-500"></i> Inteligencia de Rendimiento y Análisis de Farmeo
+                            </h3>
+                            <p class="text-xs text-slate-400">Análisis detallado del ritmo de juego en base a tus registros diarios guardados en caché.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                            <div class="bg-slate-950 border border-slate-800/80 p-3.5 rounded-xl stat-card">
+                                <span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Mejor Día</span>
+                                <div class="mt-1.5">
+                                    <div class="flex items-baseline gap-1">
+                                        <span id="stats-best-day-gold" class="text-base md:text-lg font-extrabold text-emerald-400">0</span>
+                                        <span class="text-[9px] text-emerald-500 font-bold">G</span>
+                                    </div>
+                                    <span id="stats-best-day-date" class="text-[9px] text-slate-500 block">--</span>
+                                </div>
+                            </div>
+                            <div class="bg-slate-950 border border-slate-800/80 p-3.5 rounded-xl stat-card">
+                                <span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Promedio Real</span>
+                                <div class="mt-1.5">
+                                    <div class="flex items-baseline gap-1">
+                                        <span id="stats-avg-day-gold" class="text-base md:text-lg font-extrabold text-amber-400">0</span>
+                                        <span class="text-[9px] text-amber-500 font-bold">G/día</span>
+                                    </div>
+                                    <span id="stats-completed-days-count" class="text-[9px] text-slate-500 block">0 días registrados</span>
+                                </div>
+                            </div>
+                            <div class="bg-slate-950 border border-slate-800/80 p-3.5 rounded-xl stat-card">
+                                <span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Consistencia</span>
+                                <div class="mt-1.5">
+                                    <div class="flex items-baseline gap-1">
+                                        <span id="stats-consistency-percent" class="text-base md:text-lg font-extrabold text-indigo-400">0%</span>
+                                    </div>
+                                    <span id="stats-consistency-status" class="text-[9px] text-slate-500 block font-semibold">Sin datos</span>
+                                </div>
+                            </div>
+                            <div class="bg-slate-950 border border-slate-800/80 p-3.5 rounded-xl stat-card">
+                                <span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Eficiencia</span>
+                                <div class="mt-1.5">
+                                    <div class="flex items-baseline gap-1">
+                                        <span id="stats-efficiency-percent" class="text-base md:text-lg font-extrabold text-emerald-400">0%</span>
+                                    </div>
+                                    <span id="stats-efficiency-status" class="text-[9px] text-slate-500 block font-semibold">Sin datos</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-950/60 border border-slate-800/80 rounded-xl p-4">
+                            <h4 class="text-xs font-bold text-slate-300 flex items-center gap-1.5 uppercase tracking-wider mb-3">
+                                <i class="fa-solid fa-gauge-high text-amber-500"></i> Análisis de Ritmo de Farmeo
+                            </h4>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                                <div class="bg-slate-950/40 rounded-lg p-3 border border-slate-800/60">
+                                    <span class="text-slate-400 block text-[10px]">Tendencia General</span>
+                                    <span id="analysis-trend" class="text-slate-400 font-bold text-sm block mt-1">⏳ Sin datos</span>
+                                    <span id="analysis-trend-detail" class="text-[10px] text-slate-500">Registra tu progreso diario</span>
+                                </div>
+                                <div class="bg-slate-950/40 rounded-lg p-3 border border-slate-800/60">
+                                    <span class="text-slate-400 block text-[10px]">Desviación Estándar</span>
+                                    <span id="analysis-std-dev" class="text-white font-bold text-sm block mt-1">--</span>
+                                    <span id="analysis-std-detail" class="text-[10px] text-slate-500">Sin registros de farmeo</span>
+                                </div>
+                                <div class="bg-slate-950/40 rounded-lg p-3 border border-slate-800/60">
+                                    <span class="text-slate-400 block text-[10px]">Proyección al Objetivo</span>
+                                    <span id="analysis-projection-days" class="text-slate-400 font-bold text-sm block mt-1">-- días</span>
+                                    <span id="analysis-projection-detail" class="text-[10px] text-slate-500">Registra más días para proyectar</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-950/60 border border-slate-800/80 rounded-xl p-4 space-y-4">
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                                <h4 class="text-xs font-bold text-slate-300 flex items-center gap-1.5 uppercase tracking-wider">
+                                    <i class="fa-solid fa-cubes-stacked text-amber-500"></i> Gráfica de Avance Acumulado (Real vs Teórico)
+                                </h4>
+
+                                <div class="flex items-center gap-2 bg-slate-900 border border-slate-800 rounded-xl px-2.5 py-1.5 shadow-md">
+                                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider select-none">Escala:</span>
+                                    <button type="button" id="btn-zoom-out" class="text-slate-400 hover:text-amber-400 active:scale-95 px-2 py-0.5 bg-slate-950 hover:bg-slate-800 border border-slate-800 rounded-lg text-xs transition-all cursor-pointer">
+                                        <i class="fa-solid fa-minus"></i>
+                                    </button>
+                                    <span id="zoom-level-label" class="text-xs font-mono font-bold text-amber-400 w-10 text-center select-none">1.0x</span>
+                                    <button type="button" id="btn-zoom-in" class="text-slate-400 hover:text-amber-400 active:scale-95 px-2 py-0.5 bg-slate-950 hover:bg-slate-800 border border-slate-800 rounded-lg text-xs transition-all cursor-pointer">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                    <input type="range" id="zoom-slider" min="1" max="4" step="0.25" value="1" class="w-16 md:w-24 accent-amber-500 bg-slate-950 rounded-lg h-1.5 cursor-pointer">
+                                </div>
+                            </div>
+
+                            <div class="w-full relative h-48 md:h-64 bg-slate-950/40 rounded-lg overflow-x-auto overflow-y-hidden border border-slate-900 scroll-smooth" id="chart-container">
+                                <div id="chart-placeholder" class="absolute inset-0 flex items-center justify-center text-xs text-slate-500 flex-col gap-2">
+                                    <i class="fa-solid fa-chart-area text-2xl"></i>
+                                    <span>Ingresa y calcula una meta de oro activa</span>
+                                </div>
+                            </div>
+
+                            <div class="flex justify-center gap-6 text-[10px] md:text-xs select-none">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="w-3 h-1 bg-amber-500 inline-block rounded"></span>
+                                    <span class="text-slate-400">Objetivo Teórico</span>
+                                </div>
+                                <div class="flex items-center gap-1.5">
+                                    <span class="w-3 h-1 bg-emerald-500 inline-block rounded"></span>
+                                    <span class="text-slate-400">Progreso Real Acumulado</span>
+                                </div>
+                                <div class="flex items-center gap-1.5">
+                                    <span class="w-3 h-1 bg-blue-500 inline-block rounded"></span>
+                                    <span class="text-slate-400">Meta Diaria Ideal</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-slate-800/80 pt-4">
+                            <h4 class="text-xs font-bold text-amber-400 flex items-center gap-1.5 uppercase tracking-wider mb-3">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i> Simulación Proyectada (Próximos 2 Días)
+                            </h4>
+                            <p class="text-xs text-slate-400 mb-4">
+                                Proyección de racha a corto plazo basada en tu rendimiento reciente.
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="bg-slate-950/80 border border-slate-800/80 rounded-xl p-3.5 space-y-2">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-xs font-bold text-slate-300" id="projection-day1-label">Mañana</span>
+                                        <span class="px-2 py-0.5 text-[9px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded">Racha Reciente</span>
+                                    </div>
+                                    <div class="flex justify-between items-baseline pt-1">
+                                        <span class="text-[11px] text-slate-400">Oro Acumulado Esperado:</span>
+                                        <span id="projection-day1-gold" class="text-sm font-extrabold text-white">0 G</span>
+                                    </div>
+                                    <div class="flex justify-between items-baseline border-t border-slate-900/60 pt-1 text-[11px]">
+                                        <span class="text-slate-500">Valor USD Estimado:</span>
+                                        <span id="projection-day1-usd" class="text-emerald-400 font-semibold">$0,00</span>
+                                    </div>
+                                </div>
+
+                                <div class="bg-slate-950/80 border border-slate-800/80 rounded-xl p-3.5 space-y-2">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-xs font-bold text-slate-300" id="projection-day2-label">Pasado Mañana</span>
+                                        <span class="px-2 py-0.5 text-[9px] font-bold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 rounded">Racha Reciente</span>
+                                    </div>
+                                    <div class="flex justify-between items-baseline pt-1">
+                                        <span class="text-[11px] text-slate-400">Oro Acumulado Esperado:</span>
+                                        <span id="projection-day2-gold" class="text-sm font-extrabold text-white">0 G</span>
+                                    </div>
+                                    <div class="flex justify-between items-baseline border-t border-slate-900/60 pt-1 text-[11px]">
+                                        <span class="text-slate-500">Valor USD Estimado:</span>
+                                        <span id="projection-day2-usd" class="text-emerald-400 font-semibold">$0,00</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 gold-glow animate-soft w-full">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="space-y-1.5 text-center md:text-left">
+                    <span class="px-2.5 py-1 text-[10px] font-extrabold uppercase text-amber-400 bg-amber-500/10 border border-amber-500/20 rounded-md tracking-wider">
+                        Listo para Hospedar en GitHub Pages
+                    </span>
+                    <h3 class="text-md font-bold text-white flex items-center justify-center md:justify-start gap-2">
+                        <i class="fa-brands fa-github text-slate-200"></i> Despliegue y Exportación de Código
+                    </h3>
+                    <p class="text-xs text-slate-400 max-w-2xl">
+                        Descarga la versión íntegra, auto-suficiente y estilizada de tu planificador como un archivo único <code class="bg-slate-950 text-amber-300 px-1 py-0.5 rounded font-mono text-[11px]">index.html</code>. Puedes subir este archivo directamente a tu repositorio público de GitHub y activar GitHub Pages para tener tu planificador en línea gratis.
+                    </p>
+                </div>
+                <button type="button" id="download-html-btn" class="w-full md:w-auto px-6 py-3 bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-slate-950 font-extrabold rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/40 text-xs uppercase tracking-wide">
+                    <i class="fa-solid fa-cloud-arrow-down text-slate-950 text-sm"></i>
+                    Descargar index.html para GitHub
+                </button>
+            </div>
+        </div>
+
+        <div id="day-modal" class="fixed inset-0 z-50 items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm transition-all duration-300 hidden">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-md overflow-hidden shadow-2xl transition-all duration-300 scale-95 opacity-0" id="day-modal-box">
+                <div class="bg-slate-950 p-4 border-b border-slate-800 flex justify-between items-center">
+                    <h4 class="font-bold text-white flex items-center gap-2 text-sm md:text-base">
+                        <i class="fa-solid fa-edit text-amber-500"></i> Registrar Día: <span id="modal-date-display" class="text-amber-400">--</span>
+                    </h4>
+                    <button id="close-modal-btn" class="text-slate-400 hover:text-white transition-all text-xl">×</button>
+                </div>
+                <div class="p-6 space-y-4 text-xs md:text-sm">
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Ingresa la cantidad exacta de oro que lograste recolectar hoy. Si marcas el día como completado, el planificador reajustará automáticamente las metas diarias de los días restantes.
+                    </p>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Meta sugerida para este día</label>
+                        <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 flex justify-between items-center text-sm">
+                            <span class="text-slate-500 font-medium">Recomendado</span>
+                            <span class="text-white font-bold" id="modal-suggested-gold">0 G</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="modal-input-gold" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Oro Real Recolectado</label>
+                        <div class="relative">
+                            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-amber-500 font-bold text-sm">G</span>
+                            <input type="number" id="modal-input-gold" min="0" placeholder="Ej. 120000" class="w-full bg-slate-950 border border-slate-800 rounded-xl py-3 pl-8 pr-4 text-white placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-amber-500 focus:border-amber-500 transition-all font-semibold">
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <input type="checkbox" id="modal-check-completed" class="w-4 h-4 rounded text-amber-500 bg-slate-950 border-slate-800 focus:ring-amber-500/50 cursor-pointer">
+                        <label for="modal-check-completed" class="text-xs font-medium text-slate-300 cursor-pointer select-none">Marcar día como totalmente completado</label>
+                    </div>
+                </div>
+                <div class="bg-slate-950 p-4 border-t border-slate-800 flex justify-end gap-2 text-xs">
+                    <button id="modal-btn-cancel" class="px-4 py-2 bg-slate-900 text-slate-400 hover:text-white border border-slate-800 rounded-xl font-semibold transition-all">
+                        Cancelar
+                    </button>
+                    <button id="modal-btn-save" class="px-5 py-2 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-yellow-500 text-slate-950 font-bold rounded-xl transition-all">
+                        Guardar Progreso
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="border-t border-slate-900 bg-slate-950/60 py-6 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+            <div class="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left w-full md:w-auto">
+                <p>© 2026 GoldQuest Planner. Herramienta premium para MMORPGs.</p>
+                <div class="flex items-center gap-2 bg-slate-900 border border-slate-800 rounded-lg px-3 py-1.5 text-slate-300 shadow-inner">
+                    <label for="font-select" class="text-[10px] font-extrabold uppercase tracking-wider text-amber-500 flex items-center gap-1 select-none">
+                        <i class="fa-solid fa-font text-[9px]"></i> Fuente:
+                    </label>
+                    <select id="font-select" class="bg-transparent border-none text-xs focus:outline-none text-slate-200 font-semibold cursor-pointer">
+                        <option value="'Inter', sans-serif" class="bg-slate-950 text-slate-200">Inter (Sencilla)</option>
+                        <option value="'Cinzel', serif" class="bg-slate-950 text-slate-200">Cinzel (Épica)</option>
+                        <option value="'Poppins', sans-serif" class="bg-slate-950 text-slate-200">Poppins (Redonda)</option>
+                        <option value="'Roboto Mono', monospace" class="bg-slate-950 text-slate-200">Roboto Mono (Terminal)</option>
+                        <option value="'Playfair Display', serif" class="bg-slate-950 text-slate-200">Playfair (Clásica)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="text-[10px] uppercase font-bold text-amber-500 bg-amber-500/10 border border-amber-500/20 px-2.5 py-1 rounded">Previsión de Almacenamiento Segura</span>
+                <span class="text-slate-400">¡Que tu bolsa se mantenga llena!</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón Flotante QR -->
+    <button id="qr-floating-btn" class="fixed bottom-5 right-5 z-40 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-slate-950 p-4 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center text-xl font-bold border-2 border-amber-300" title="Generar QR para Móvil">
+        <i class="fa-solid fa-qrcode"></i>
+        <span class="ml-2 text-xs uppercase tracking-wider hidden sm:inline">Generar QR</span>
+    </button>
+
+    <!-- Modal QR PC (Generador) -->
+    <div id="qr-modal-pc" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 max-w-sm w-full text-center space-y-4 shadow-2xl relative">
+            <button id="close-qr-pc" class="absolute top-3 right-3 text-slate-400 hover:text-white text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="text-lg font-bold text-amber-400 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-qrcode"></i> Transferir a Teléfono / Tablet
+            </h3>
+            <p class="text-xs text-slate-400">Escanea este código QR desde la cámara de tu dispositivo móvil para transferir todos tus datos ingresados al instante.</p>
+            <div class="bg-white p-4 rounded-xl inline-block border-2 border-amber-500/50 shadow-lg">
+                <img id="qr-code-img" src="" alt="Código QR de Datos" class="w-48 h-48 mx-auto">
+            </div>
+            <div class="text-[11px] text-emerald-400 font-semibold bg-emerald-500/10 border border-emerald-500/30 rounded-lg py-1.5 px-3">
+                <i class="fa-solid fa-check-circle"></i> Información lista para escanear
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal QR Móvil (Escáner de Cámara) -->
+    <div id="qr-modal-mobile" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 max-w-md w-full text-center space-y-4 shadow-2xl relative">
+            <button id="close-qr-mobile" class="absolute top-3 right-3 text-slate-400 hover:text-white text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="text-lg font-bold text-amber-400 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-camera"></i> Escanear Código QR
+            </h3>
+            <p class="text-xs text-slate-400">Apunta tu cámara hacia el código QR generado en tu pantalla de PC.</p>
+
+            <div class="relative w-full aspect-square bg-slate-950 rounded-xl overflow-hidden border-2 border-amber-500/50 flex items-center justify-center">
+                <video id="qr-video" class="w-full h-full object-cover" playsinline></video>
+                <canvas id="qr-canvas" class="hidden"></canvas>
+                <div class="absolute inset-10 border-2 border-dashed border-amber-400 rounded-lg pointer-events-none opacity-80 animate-pulse"></div>
+            </div>
+
+            <div id="qr-camera-status" class="text-xs text-slate-300 font-medium">
+                Pidiendo permisos de la cámara...
+            </div>
+        </div>
+    </div>
+
+    <!-- Script principal (al final para que el DOM esté listo) -->
+    <script src="app.js"></script>
+
+</body>
+</html>
